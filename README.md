@@ -1,2 +1,2 @@
-# goplus_installer-online
-goplus online installer (Go+ language)
+# GoPlus online installer (Go+ language)
+

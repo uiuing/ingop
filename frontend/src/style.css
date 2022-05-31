@@ -1,0 +1,15 @@
+html {
+    background-color: white;
+    text-align: center;
+    color: black;
+}
+
+body {
+    margin: 0;
+    color: black;
+    overflow: hidden;
+}
+
+.internal-height {
+    height: var(--internal-height) !important;
+}

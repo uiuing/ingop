@@ -1,0 +1,12 @@
+# IntelliJ project files
+.idea
+*.iml
+
+# NodeJS project files
+node_modules
+
+# Vue.js project files
+dist
+
+# Wails project files
+/build/bin
