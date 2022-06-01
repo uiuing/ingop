@@ -3,7 +3,7 @@ import InstallationPrepare from "./pages/InstallationPrepare.vue";
 import InstallationWaiting from "./pages/InstallationWaiting.vue";
 import InstallationSucceeded from "./pages/InstallationSucceeded.vue";
 
-import StateLogo from "./components/StateLogo.vue";
+import FixedLogo from "./components/FixedLogo.vue";
 
 import { computed, ref } from "vue";
 
@@ -28,7 +28,7 @@ document.documentElement.style.setProperty("--internal-height", window.innerHeig
 <template>
   <el-container class="internal-height">
     <el-aside width="30%">
-      <state-logo />
+      <FixedLogo />
     </el-aside>
     <el-divider direction="vertical" class="internal-height" />
     <el-main>
