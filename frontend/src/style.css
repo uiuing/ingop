@@ -19,6 +19,9 @@ span,p{
     'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
     cursor: default;
 }
+p{
+    margin: 30px 0;
+}
 
 img{
     pointer-events: none;
