@@ -1,12 +1,10 @@
+<script setup>
+import SelectLanguage from "../components/SelectLanguage.vue";
+</script>
+
 <template>
   <div class="locale-changer">
-    <el-select v-model="$i18n.locale" class="locale-select" size="small">
-      <el-option
-          v-for="locale in $i18n.availableLocales"
-          :label="locale"
-          :value="locale"
-      />
-    </el-select>
+    <select-language />
   </div>
   <div class="text-title">
     <p> Hi &#x1F44B; </p>
@@ -23,10 +21,6 @@
 .locale-changer {
   display: flex;
   justify-content: flex-end;
-}
-
-.locale-select {
-  width: 100px;
 }
 
 .text-title {
