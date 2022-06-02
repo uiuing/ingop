@@ -1,5 +1,6 @@
 <script setup>
 import SelectLanguage from "../components/SelectLanguage.vue";
+import { Download } from "@element-plus/icons-vue";
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import SelectLanguage from "../components/SelectLanguage.vue";
     <p> {{ $t('prepare.title') }} </p>
   </div>
   <div class="btn-start">
-    <el-button type="primary" size="large" round plain>
+    <el-button type="primary" :icon="Download" size="large" round>
       {{ $t('prepare.start') }}
     </el-button>
   </div>

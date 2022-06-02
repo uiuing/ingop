@@ -26,6 +26,7 @@ document.documentElement.style.setProperty("--internal-height", window.innerHeig
 </script>
 
 <template>
+  <el-divider style="height: 0 !important;" />
   <el-container class="internal-height">
     <el-aside width="30%">
       <FixedLogo />

@@ -2,7 +2,6 @@
   <el-select v-model="$i18n.locale" class="select" size="small">
     <el-option
         v-for="locale in $i18n.availableLocales"
-        :label="locale"
         :value="locale"
     />
   </el-select>
