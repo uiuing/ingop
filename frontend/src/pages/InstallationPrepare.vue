@@ -1,6 +1,15 @@
 <script setup>
 import SelectLanguage from "../components/SelectLanguage.vue";
 import { Download } from "@element-plus/icons-vue";
+import { getCurrentInstance } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const { proxy } = getCurrentInstance();
+
+const start = () => {
+  proxy.$controller.checkGoEnvironment(router);
+};
 </script>
 
 <template>
@@ -9,11 +18,11 @@ import { Download } from "@element-plus/icons-vue";
   </div>
   <div class="text-title">
     <p> Hi &#x1F44B; </p>
-    <p> {{ $t('prepare.title') }} </p>
+    <p> {{ $t('installationPrepare.title') }} </p>
   </div>
   <div class="btn-start">
-    <el-button type="primary" :icon="Download" size="large" round>
-      {{ $t('prepare.start') }}
+    <el-button @click="start" type="primary" :icon="Download" size="large" round>
+      {{ $t('installationPrepare.start') }}
     </el-button>
   </div>
 </template>
