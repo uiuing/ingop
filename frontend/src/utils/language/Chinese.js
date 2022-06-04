@@ -10,5 +10,6 @@ export default {
         errorVersion: '需要 Go1.16 或更高版本',
         recheck: '重新检查 Go 环境',
         downloadGo: '下载 Go',
+        abnormal: '内部异常，请检查您的Go以及GoPATH环境变量是否正确，如果不能解决请前往 Github 反馈给我们'
     }
 };

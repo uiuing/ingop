@@ -10,6 +10,10 @@ const message = ref(route.params.message);
 const downloadGo = () => {
   window.runtime.BrowserOpenURL("https://go.dev/dl");
 };
+const openGitHubIssue = () => {
+  window.runtime.BrowserOpenURL("https://github.com/uiuing/goplus_installer-online/issues");
+};
+
 const recheck = () => {
   proxy.$controller.checkGoEnvironment(router);
 };
@@ -24,6 +28,11 @@ const recheck = () => {
         {{ $t('errorGoEnvironment.downloadGo') }} : https://go.dev/dl
       </el-link>
     </p>
+    <p>
+      <el-link type="primary" @click="openGitHubIssue">
+        GitHub Issue : goplus_installer-online/issues
+      </el-link>
+    </p>
   </div>
   <div class="btn-recheck">
     <el-button @click="recheck" type="warning" plain>{{
@@ -35,7 +44,7 @@ const recheck = () => {
 
 <style scoped>
 .text-tips {
-  margin: 80px auto;
+  margin: 60px auto;
   text-align: left;
   font-size: 18px;
   width: 430px;
