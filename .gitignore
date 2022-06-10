@@ -10,3 +10,4 @@ dist
 
 # Wails project files
 /build/bin
+/frontend/package.json.md5
