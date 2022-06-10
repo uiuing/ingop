@@ -11,16 +11,10 @@ So I had this idea: Develop a cross-platform, online support, one-click Go+ inst
 
 
 ## Currently working on.
-windwos&mac client
-- [ ] Installation package management
-- [x] Independent environment variables
-- [ ] Version management
-- [ ] Exception detection (go environment, network faults)
-- [x] Download acceleration
-
+Look: [milestone - GoPlus installer v1.0](https://github.com/uiuing/goplus_installer-online/milestone/1)
 
 ## Possible future work on.
-- [ ] Automatically prepare the required environment for go+
-- [ ] More stability and ease of use of the program
-- [ ] More clients may be added to the program
+- Automatically prepare the required environment for go+
+- More stability and ease of use of the program
+- More clients may be added to the program
 ...
