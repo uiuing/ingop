@@ -1,8 +1,10 @@
 <script setup>
 import { Loading } from "@element-plus/icons-vue";
-import router from "../router";
+import { useRouter } from "vue-router";
 import { getCurrentInstance, ref } from "vue";
 const { proxy } = getCurrentInstance();
+
+const router = useRouter();
 
 const isClick = ref(false)
 

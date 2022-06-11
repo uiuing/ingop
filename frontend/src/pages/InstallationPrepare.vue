@@ -2,14 +2,20 @@
 import SelectLanguage from "../components/SelectLanguage.vue";
 import SelectReleases from "../components/SelectReleases.vue";
 import { Download } from "@element-plus/icons-vue";
-import { getCurrentInstance } from "vue";
+import { getCurrentInstance, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const { proxy } = getCurrentInstance();
 
+const releaseUrl = ref("");
+
+const releaseChange = (url) => {
+  releaseUrl.value = url;
+};
+
 const start = () => {
-  proxy.$controller.checkGoEnvironment(router);
+  proxy.$controller.startRun(router, releaseUrl.value);
 };
 
 </script>
@@ -26,7 +32,7 @@ const start = () => {
     {{ $t('installationPrepare.start') }}
   </el-button>
   <div class="select-releases">
-    <select-releases />
+    <select-releases @releaseChange="releaseChange" />
   </div>
 </template>
 

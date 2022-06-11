@@ -1,8 +1,9 @@
 <script setup>
-import {getCurrentInstance, ref} from "vue";
-import router from "../router";
+import { getCurrentInstance, ref } from "vue";
+import { useRouter } from "vue-router";
 
-const {proxy} = getCurrentInstance();
+const router = useRouter();
+const { proxy, emit } = getCurrentInstance();
 
 const value = ref("");
 const options = ref([]);
@@ -10,17 +11,24 @@ const options = ref([]);
 proxy.$api.getReleasesData().then(data => {
   options.value = data;
   const stableChildren = data.find(item => item.label === "stable")["children"];
+
   value.value = stableChildren[0].value;
+  emit('releaseChange', stableChildren[0].value);
 }).catch((err) => {
+
   console.error("getReleasesData error:", err);
   proxy.$controller.errorNetwork(router);
 });
+
+const releaseChange = (obj) => {
+  emit('releaseChange', obj[1]);
+};
 
 </script>
 
 <template>
   <span class="text-title"> {{ $t('installationPrepare.selectRelease') }} </span>
-  <el-cascader v-model="value" :options="options" size="small" />
+  <el-cascader v-model="value" :options="options" @change="releaseChange" size="small" />
 </template>
 
 <style scoped>
