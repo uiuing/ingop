@@ -4,6 +4,7 @@ import (
   "archive/zip"
   "context"
   "fmt"
+  wRuntime "github.com/wailsapp/wails/v2/pkg/runtime"
   "io"
   "net/http"
   "os"
@@ -11,12 +12,9 @@ import (
   "path/filepath"
   "runtime"
   "strings"
-)
-import (
-  wRuntime "github.com/wailsapp/wails/v2/pkg/runtime"
+  "time"
 )
 
-// App ------------- Wails: LifeCycle ---------------->
 type App struct {
   ctx context.Context
 }
@@ -29,24 +27,18 @@ func (a *App) startup(ctx context.Context) {
   a.ctx = ctx
 }
 
-// <-------------- Wails: LifeCycle -------------------
-
-func deepCopyMap(originalMap map[string]interface{}) map[string]interface{} {
-  targetMap := make(map[string]interface{})
-  for key, value := range originalMap {
-    targetMap[key] = value
+func initRequest() map[string]interface{} {
+  targetMap := map[string]interface{}{
+    "status":  false,
+    "key":     "",
+    "message": "",
   }
   return targetMap
 }
 
-var requestStruct = map[string]interface{}{
-  "status":  nil,
-  "message": nil,
-}
-
 // CheckGoEnvironment ------------- Hooks: Check if Go is installed --------------------->
 func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
-  req = deepCopyMap(requestStruct)
+  req = initRequest()
 
   _, status := os.LookupEnv("GOROOT")
   req["status"] = status
@@ -56,18 +48,18 @@ func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
     defer func() {
       if err := recover(); err != nil {
         req["status"] = false
-        req["message"] = "abnormal"
+        req["key"] = "abnormal"
       }
     }()
 
     goVersions := strings.Split(goVersion[2:], ".")
     if goVersions[0] >= "1" && goVersions[1] >= "16" {
-      req["message"] = "success"
+      req["key"] = "success"
     } else {
-      req["message"] = "errorVersion"
+      req["key"] = "errorVersion"
     }
   } else {
-    req["message"] = "errorEnvironment"
+    req["key"] = "errorEnvironment"
   }
 
   return req
@@ -75,45 +67,23 @@ func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
 
 // <------------------ Hooks: Check if Go is installed ---------------------
 
-func checkError(err error, errorLogsPath string) {
-  if err != nil {
-    if _, e := os.Stat(errorLogsPath); os.IsNotExist(e) {
-      os.Create(errorLogsPath)
-    }
-    errorLogs, _ := os.OpenFile(errorLogsPath, os.O_APPEND|os.O_WRONLY, 0644)
-    errorLogs.WriteString(err.Error())
-    defer errorLogs.Close()
-  }
+func initDirConfig() map[string]string {
+
+  config := map[string]string{}
+
+  homeDir, _ := os.UserHomeDir()
+
+  config["osType"] = runtime.GOOS
+  config["rootAddress"] = filepath.Join(homeDir, "GoPlus")
+  config["downloadAddress"] = filepath.Join(config["rootAddress"], "gop.zip")
+  config["unzipAddress"] = filepath.Join(config["rootAddress"], "gop")
+  config["errorLogAddress"] = filepath.Join(config["rootAddress"], "InstallErrorLogs.log")
+
+  return config
 }
 
-/* ------------------------------------------------------------------------------------------------->
-Installation configuration for different clients
-Required parameters: osType, rootAddress, decompressionAddress, storageAddress, errorLogs
-Follow the installationFor[More] method to add more clients
-*/
-var osTypeData = map[string]map[string]string{
-  "windows": {
-    "osType":               "windows",
-    "rootAddress":          "C:/ProgramData/GoPlus",
-    "decompressionAddress": "C:/ProgramData/GoPlus/gop",
-    "storageAddress":       "C:/ProgramData/GoPlus/gop.zip",
-    "errorLogs":            "C:/ProgramData/GoPlus/gop/errorLogs.log",
-    "environmentAddress":   "C:/ProgramData/GoPlus/gop/environmentVariableConfiguration.bat",
-  },
-}
+func downloadReleasePackage(rootAddress, downloadAddress, remoteAddress string) error {
 
-// <-------------------------------------------------------------------------------------------------
-
-func getSystemConfig() map[string]string {
-  osType := runtime.GOOS
-
-  if _, ok := osTypeData[osType]; ok {
-    return osTypeData[osType]
-  }
-  return nil
-}
-
-func downloadReleasePackage(rootAddress, storageAddress, remoteAddress string) error {
   if _, err := os.Stat(rootAddress); os.IsNotExist(err) {
     os.Mkdir(rootAddress, 0777)
   } else {
@@ -121,7 +91,7 @@ func downloadReleasePackage(rootAddress, storageAddress, remoteAddress string) e
     os.Mkdir(rootAddress, 0777)
   }
 
-  out, err := os.Create(storageAddress + ".tmp")
+  out, err := os.Create(downloadAddress + ".tmp")
   if err != nil {
     return err
   }
@@ -142,7 +112,7 @@ func downloadReleasePackage(rootAddress, storageAddress, remoteAddress string) e
     return err
   }
 
-  err = os.Rename(storageAddress+".tmp", storageAddress)
+  err = os.Rename(downloadAddress+".tmp", downloadAddress)
   if err != nil {
     return err
   }
@@ -150,18 +120,19 @@ func downloadReleasePackage(rootAddress, storageAddress, remoteAddress string) e
   return nil
 }
 
-func unZip(storageAddress, decompressionAddress string) error {
-  reader, err := zip.OpenReader(storageAddress)
+func unZip(downloadAddress, unzipAddress string) error {
+
+  reader, err := zip.OpenReader(downloadAddress)
   if err != nil {
     return err
   }
 
-  if err := os.MkdirAll(decompressionAddress, 0755); err != nil {
+  if err := os.MkdirAll(unzipAddress, 0755); err != nil {
     return err
   }
 
   for _, file := range reader.File {
-    path := filepath.Join(decompressionAddress, file.Name)
+    path := filepath.Join(unzipAddress, file.Name)
     if file.FileInfo().IsDir() {
       os.MkdirAll(path, file.Mode())
       continue
@@ -185,7 +156,7 @@ func unZip(storageAddress, decompressionAddress string) error {
   }
 
   reader.Close()
-  err = os.Remove(storageAddress)
+  err = os.Remove(downloadAddress)
   if err != nil {
     return err
   }
@@ -193,23 +164,10 @@ func unZip(storageAddress, decompressionAddress string) error {
   return nil
 }
 
-func removeDuplicateStr(strSlice []string) []string {
-  allKeys := make(map[string]bool)
-  var list []string
-  for _, item := range strSlice {
-    if _, value := allKeys[item]; !value {
-      allKeys[item] = true
-      if item != "%%GOPROOT%%\\bin" {
-        list = append(list, item)
-      }
-    }
-  }
+func getUnzipRootAddress(unzipAddress string) (string, error) {
 
-  return list
-}
+  dirs, err := filepath.Glob(unzipAddress + "/*")
 
-func installationForWindows(decompressionAddress, environmentAddress string) error {
-  dirs, err := filepath.Glob(decompressionAddress + "/*")
   var dir string
   for _, path := range dirs {
     if info, err := os.Stat(path); err == nil && info.IsDir() {
@@ -218,87 +176,86 @@ func installationForWindows(decompressionAddress, environmentAddress string) err
     }
   }
   if dir == "" {
-    return fmt.Errorf("can't find the installation directory")
+    return "", fmt.Errorf("can't find the installation directory")
   }
   if err != nil {
-    return err
+    return "", err
   }
 
-  cmd := exec.Command(dir + "\\all.bat")
-  cmd.Dir = dir
-  err = cmd.Run()
+  return dir, nil
+}
+
+func getInstallerScriptName(osType string) string {
+  if osType == "windows" {
+    return "all.bat"
+  }
+  return "all.bash"
+}
+
+func installGoPlus(unzipRootAddress, buildScriptName string) error {
+
+  buildScriptAddress := filepath.Join(unzipRootAddress, buildScriptName)
+
+  cmd := exec.Command(buildScriptAddress)
+  cmd.Dir = unzipRootAddress
+  out, err := cmd.CombinedOutput()
   if err != nil {
-    return err
+    return fmt.Errorf("combined out: %s ; cmd.Run() failed with %s", string(out), err)
   }
 
-  Paths := removeDuplicateStr(strings.Split(os.Getenv("PATH"), ";"))
-  Paths = append(Paths, "%%GOPROOT%%\\bin")
-  Path := strings.Join(Paths, ";")
-
-  batFile, err := os.Create(environmentAddress)
-  if err != nil {
-    return err
-  }
-  gopEnv := "setx GOPROOT " + dir
-  gopPathEnv := "reg add HKEY_CURRENT_USER\\Environment /v path /t REG_EXPAND_SZ /d \"" + Path + "\" /f"
-  _, err = batFile.WriteString(gopEnv + " & " + gopPathEnv)
-  batFile.Close()
-  if err != nil {
-    return err
-  }
-
-  environmentAddress = strings.ReplaceAll(environmentAddress, "/", "\\")
-  err = exec.Command(environmentAddress).Run()
-  if err != nil {
-    return err
-  }
-
-  err = os.Remove(environmentAddress)
-  if err != nil {
-    return err
-  }
   return nil
 }
 
-/* ------------------------------------------------------------------------------------------------->
-    Different installation commands for each type of client
-   - The GoPlus all.* installation script was executed here
-   - Added separate environment variables
-   To be added mac or linux ?
-*/
-func startInstall(config map[string]string) error {
-  if config["osType"] == "windows" {
-    err := installationForWindows(config["decompressionAddress"], config["environmentAddress"])
-    if err != nil {
-      return err
-    }
+var errorLogAddress string
+
+func checkError(err error) {
+  if err != nil {
+    errorLogFile, _ := os.OpenFile(errorLogAddress, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+    defer errorLogFile.Close()
+
+    t := time.Now()
+    errorLogFile.WriteString(t.String() + ":  " + err.Error() + "\n")
   }
-  return nil
 }
 
-// <-------------------------------------------------------------------------------------------------
+func sendStatus(ctx context.Context, statusKey string) {
+  wRuntime.EventsEmit(ctx, "installation-status", statusKey)
+}
 
 // StartInstallation ------------- Hooks: Start GoPlus installation ---------------->
 func (a *App) StartInstallation(remoteAddress string) (req map[string]interface{}) {
-  req = deepCopyMap(requestStruct)
-  req["status"] = false
 
-  config := getSystemConfig()
-  if config != nil {
-    wRuntime.EventsEmit(a.ctx, "InstallationProgress", "Downloading...")
-    err := downloadReleasePackage(config["rootAddress"], config["storageAddress"], remoteAddress)
-    checkError(err, config["errorLogs"])
+  sendStatus(a.ctx, "init")
 
-    wRuntime.EventsEmit(a.ctx, "InstallationProgress", "Decompressing...")
-    err = unZip(config["storageAddress"], config["decompressionAddress"])
-    checkError(err, config["errorLogs"])
+  req = initRequest()
 
-    wRuntime.EventsEmit(a.ctx, "InstallationProgress", "Installing...")
-    err = startInstall(config)
-    checkError(err, config["errorLogs"])
+  config := initDirConfig()
+  errorLogAddress = config["errorLogAddress"]
 
-    wRuntime.EventsEmit(a.ctx, "InstallationProgress", "Installation complete")
-  }
+  defer func() {
+    if err := recover(); err != nil {
+      req["status"] = false
+      req["key"] = "abnormal"
+      req["message"] = errorLogAddress
+    }
+  }()
+
+  sendStatus(a.ctx, "download")
+  err := downloadReleasePackage(config["rootAddress"], config["downloadAddress"], remoteAddress)
+  checkError(err)
+
+  sendStatus(a.ctx, "unzip")
+  err = unZip(config["downloadAddress"], config["unzipAddress"])
+  checkError(err)
+
+  sendStatus(a.ctx, "install")
+  config["unzipRootAddress"], err = getUnzipRootAddress(config["unzipAddress"])
+  checkError(err)
+  config["installerScriptName"] = getInstallerScriptName(config["osType"])
+
+  err = installGoPlus(config["unzipRootAddress"], config["installerScriptName"])
+  checkError(err)
+  sendStatus(a.ctx, "done")
 
   req["status"] = true
   return req
