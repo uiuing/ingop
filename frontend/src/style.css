@@ -31,3 +31,10 @@ img {
 .el-divider {
     margin: 0 !important;
 }
+
+span, input, p {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

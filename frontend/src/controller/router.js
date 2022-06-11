@@ -11,13 +11,30 @@ const checkGoEnvironment = (router) => {
             router.push({
                 name: "ErrorGoEnvironment",
                 params: {
-                    message: res.message
+                    key: res.key
                 }
             });
         }
+    }).then((err) => {
+        console.error("checkGoEnvironment error: ", err);
     });
 };
 
+const errorNetwork = (router) => {
+    router.push({
+        name: "ErrorNetwork",
+        params: {}
+    });
+}
+
+const callBackIndex = (router) => {
+    router.push({
+        name: "InstallationPrepare",
+        params: {}
+    });
+}
+
 export default {
-    checkGoEnvironment
+    checkGoEnvironment,errorNetwork,
+    callBackIndex
 };

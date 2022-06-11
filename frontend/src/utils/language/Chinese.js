@@ -1,7 +1,8 @@
 export default {
     installationPrepare: {
         title: '欢迎使用 Go+ 在线安装程序',
-        start: '开始安装'
+        start: '开始安装',
+        selectRelease: '选择发行版本',
     },
     errorGoEnvironment: {
         error: '环境错误',
@@ -11,5 +12,9 @@ export default {
         recheck: '重新检查 Go 环境',
         downloadGo: '下载 Go',
         abnormal: '内部异常，请检查您的Go以及GoPATH环境变量是否正确，如果不能解决请前往 Github 反馈给我们'
+    },
+    errorNetwork:{
+        error: '网络错误',
+        recheck: '重新检查网络',
     }
 };

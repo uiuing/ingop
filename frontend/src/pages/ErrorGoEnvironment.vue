@@ -5,7 +5,7 @@ import { getCurrentInstance, ref } from "vue";
 const router = useRouter();
 const route = useRoute();
 const { proxy } = getCurrentInstance();
-const message = ref(route.params.message);
+const key = ref(route.params.key);
 
 const downloadGo = () => {
   window.runtime.BrowserOpenURL("https://go.dev/dl");
@@ -22,7 +22,7 @@ const recheck = () => {
   <h1>{{ $t('errorGoEnvironment.error') }}</h1>
   <div class="text-tips">
     <b>{{ $t('errorGoEnvironment.reason') }} : </b>
-    <span>{{ $t('errorGoEnvironment.' + message) }}</span>
+    <span>{{ $t('errorGoEnvironment.' + key) }}</span>
     <p>
       <el-link type="primary" @click="downloadGo">
         {{ $t('errorGoEnvironment.downloadGo') }} : https://go.dev/dl

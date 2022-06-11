@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import language from './utils/language/index';
 import router from "./router";
-import controller from "./controller/index";
+import controller from "./controller/router";
 import api from "./controller/api";
 
 const app = createApp(App);

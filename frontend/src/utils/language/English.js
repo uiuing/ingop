@@ -1,7 +1,8 @@
 export default {
     installationPrepare: {
         title: 'Welcome to the Go+ online installer',
-        start: 'Start install'
+        start: 'Start install',
+        selectRelease: 'Select release',
     },
     errorGoEnvironment: {
         error: 'Environmental errors',
@@ -11,5 +12,9 @@ export default {
         recheck: 'Recheck Go environment',
         downloadGo: 'Download Go',
         abnormal: 'Internal error, please check your Go and GoPATH environment variable, if it cannot be resolved, please contact us through Github'
+    },
+    errorNetwork: {
+        error: 'Network error',
+        recheck: 'Recheck network',
     }
 };
