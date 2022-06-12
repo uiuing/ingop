@@ -40,26 +40,26 @@ func initRequest() map[string]interface{} {
 func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
   req = initRequest()
 
-  _, status := os.LookupEnv("GOROOT")
-  req["status"] = status
-
-  if status {
-    goVersion := runtime.Version()
-    defer func() {
-      if err := recover(); err != nil {
-        req["status"] = false
-        req["key"] = "abnormal"
-      }
-    }()
-
-    goVersions := strings.Split(goVersion[2:], ".")
-    if goVersions[0] >= "1" && goVersions[1] >= "16" {
-      req["key"] = "success"
-    } else {
-      req["key"] = "errorVersion"
+  defer func() {
+    if err := recover(); err != nil {
+      req["key"] = "abnormal"
     }
-  } else {
+  }()
+
+  cmd := exec.Command("go", "version")
+  out, err := cmd.CombinedOutput()
+  if err != nil {
     req["key"] = "errorEnvironment"
+    return req
+  }
+
+  goVersion := strings.Split(string(out), " ")[2][2:]
+  goVersions := strings.Split(goVersion[2:], ".")
+  if goVersions[0] >= "1" && goVersions[1] >= "16" {
+    req["status"] = true
+    req["key"] = "success"
+  } else {
+    req["key"] = "errorVersion"
   }
 
   return req
@@ -222,8 +222,8 @@ func sendStatus(ctx context.Context, statusKey string) {
   wRuntime.EventsEmit(ctx, "installation-status", statusKey)
 }
 
-// StartInstallation ------------- Hooks: Start GoPlus installation ---------------->
-func (a *App) StartInstallation(remoteAddress string) (req map[string]interface{}) {
+// StartInstall ------------- Hooks: Start GoPlus installation ---------------->
+func (a *App) StartInstall(remoteAddress string) (req map[string]interface{}) {
 
   sendStatus(a.ctx, "init")
 
