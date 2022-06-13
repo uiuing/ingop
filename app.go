@@ -27,31 +27,14 @@ func (a *App) startup(ctx context.Context) {
   a.ctx = ctx
 }
 
+var errorLogAddress string
+
 func initRequest() map[string]interface{} {
   targetMap := map[string]interface{}{
     "status": false,
     "key":    "",
   }
   return targetMap
-}
-
-var errorLogAddress string
-
-func checkError(err error, errKey string) map[string]interface{} {
-  req := initRequest()
-
-  if err != nil {
-    errorLogFile, _ := os.OpenFile(errorLogAddress, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-    defer errorLogFile.Close()
-
-    t := time.Now()
-    errorLogFile.WriteString(t.String() + ":  Error: " + errKey + "; " + err.Error() + "\n")
-
-    req["key"] = errKey
-    return req
-  }
-  req["status"] = true
-  return req
 }
 
 func initDirConfig() map[string]string {
@@ -70,6 +53,83 @@ func initDirConfig() map[string]string {
   return config
 }
 
+func checkError(err error, errKey string) map[string]interface{} {
+  req := initRequest()
+
+  if err != nil {
+    errorLogFile, _ := os.OpenFile(errorLogAddress, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+    defer errorLogFile.Close()
+
+    t := time.Now()
+    errorLogFile.WriteString(t.String() + ":  Error: " + errKey + "; " + err.Error() + "\n")
+
+    req["key"] = errKey
+    return req
+  }
+  req["status"] = true
+  return req
+}
+
+// Check the environment of go ---------------------------------------------------->
+func getCheckGoEnvScriptConfig(osType string) map[string]string {
+  if osType == "windows" {
+    return map[string]string{
+      "name":    "CheckGoEnvironment.bat",
+      "content": `go version`,
+    }
+  }
+  return map[string]string{
+    "name": "CheckGoEnvironment.bash",
+    "content": `#! /usr/bin/env bash
+source /etc/profile
+go version`,
+  }
+}
+
+func makeScript(scriptConfig map[string]string, rootAddress string) (string, error) {
+
+  scriptName := scriptConfig["name"]
+  scriptContent := scriptConfig["content"]
+
+  scriptAddress := filepath.Join(rootAddress, scriptName)
+  if _, err := os.Stat(scriptAddress); err == nil {
+    os.Remove(scriptAddress)
+  }
+
+  scriptFile, err := os.Create(scriptAddress)
+  if err != nil {
+    return "", err
+  }
+  defer scriptFile.Close()
+
+  scriptFile.WriteString(scriptContent)
+  scriptFile.Chmod(0777)
+
+  return filepath.Join(rootAddress, scriptName), nil
+}
+
+func compileCheckGoEnvScript(scriptAddress string) (string, error) {
+  cmd := exec.Command(scriptAddress)
+  out, err := cmd.CombinedOutput()
+
+  if err != nil {
+    return string(out), err
+  }
+  return string(out), nil
+}
+
+func checkGoVersion(goVersion string) bool {
+
+  versionNumber := strings.Split(goVersion, " ")[2][2:]
+
+  goVersions := strings.Split(versionNumber, ".")
+  if goVersions[0] >= "1" && goVersions[1] >= "16" {
+    return true
+  }
+
+  return false
+}
+
 // CheckGoEnvironment ------------- Hooks: Check if Go is installed --------------------->
 func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
 
@@ -81,13 +141,19 @@ func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
     }
   }()
 
-  cmd := exec.Command("go", "version")
-  out, err := cmd.CombinedOutput()
-  req = checkError(err, "errorEnvironment")
+  config := initDirConfig()
+  scriptAddress, _ := makeScript(getCheckGoEnvScriptConfig(config["ostype"]), config["rootAddress"])
+  goVersion, _ := compileCheckGoEnvScript(scriptAddress)
 
-  goVersion := strings.Split(string(out), " ")[2][2:]
-  goVersions := strings.Split(goVersion[2:], ".")
-  if goVersions[0] >= "1" && goVersions[1] >= "16" {
+  errorLogFile, _ := os.OpenFile("/Users/uiu/GoPlus/log.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+  defer errorLogFile.Close()
+
+  t := time.Now()
+  errorLogFile.WriteString(t.String() + ": " + goVersion + "\n")
+
+  isGo := checkGoVersion(goVersion)
+
+  if isGo {
     req["status"] = true
     req["key"] = "success"
   } else {
@@ -98,6 +164,22 @@ func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
 }
 
 // <------------------ Hooks: Check if Go is installed ---------------------
+
+// Online install GoPlus --------------------------------------------------------------------->
+func getInstallGoPlusScriptConfig(osType string) map[string]string {
+  if osType == "windows" {
+    return map[string]string{
+      "name":    "InstallGoPlus.bat",
+      "content": `go run cmd/make.go --install --autoproxy`,
+    }
+  }
+  return map[string]string{
+    "name": "InstallGoPlus.bash",
+    "content": `#! /usr/bin/env bash
+source /etc/profile
+go run cmd/make.go --install --autoproxy`,
+  }
+}
 
 func downloadReleasePackage(rootAddress, downloadAddress, remoteAddress string) error {
 
@@ -135,42 +217,45 @@ func downloadReleasePackage(rootAddress, downloadAddress, remoteAddress string) 
   return nil
 }
 
-func unZip(downloadAddress, unzipAddress string) error {
+func unZip(downloadAddress string, unzipAddress string) error {
 
-  reader, err := zip.OpenReader(downloadAddress)
+  r, err := zip.OpenReader(downloadAddress)
+
   if err != nil {
     return err
   }
 
-  if err := os.MkdirAll(unzipAddress, 0755); err != nil {
-    return err
-  }
+  defer r.Close()
 
-  for _, file := range reader.File {
-    path := filepath.Join(unzipAddress, file.Name)
-    if file.FileInfo().IsDir() {
-      os.MkdirAll(path, file.Mode())
+  for _, f := range r.File {
+    path := filepath.Join(unzipAddress, f.Name)
+    if f.FileInfo().IsDir() {
+      os.MkdirAll(path, os.ModePerm)
       continue
     }
 
-    fileReader, err := file.Open()
+    if err = os.MkdirAll(filepath.Dir(path), os.ModePerm); err != nil {
+      return err
+    }
+
+    outFile, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, f.Mode())
     if err != nil {
       return err
     }
-    defer fileReader.Close()
 
-    targetFile, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, file.Mode())
+    rc, err := f.Open()
     if err != nil {
       return err
     }
-    defer targetFile.Close()
+    _, err = io.Copy(outFile, rc)
 
-    if _, err := io.Copy(targetFile, fileReader); err != nil {
+    outFile.Close()
+    rc.Close()
+    if err != nil {
       return err
     }
   }
 
-  reader.Close()
   err = os.Remove(downloadAddress)
   if err != nil {
     return err
@@ -200,18 +285,14 @@ func getUnzipRootAddress(unzipAddress string) (string, error) {
   return dir, nil
 }
 
-func getInstallerScriptName(osType string) string {
-  if osType == "windows" {
-    return "all.bat"
+func installGoPlus(osType, unzipRootAddress string) error {
+
+  scriptAddress, err := makeScript(getInstallGoPlusScriptConfig(osType), unzipRootAddress)
+  if err != nil {
+    return err
   }
-  return "all.bash"
-}
 
-func installGoPlus(unzipRootAddress, buildScriptName string) error {
-
-  buildScriptAddress := filepath.Join(unzipRootAddress, buildScriptName)
-
-  cmd := exec.Command(buildScriptAddress)
+  cmd := exec.Command(scriptAddress)
   cmd.Dir = unzipRootAddress
   out, err := cmd.CombinedOutput()
   if err != nil {
@@ -221,8 +302,22 @@ func installGoPlus(unzipRootAddress, buildScriptName string) error {
   return nil
 }
 
+func getGoPlusVersion(unzipRootAddress string) (string, error) {
+  cmd := exec.Command("gop", "version")
+  cmd.Dir = filepath.Join(unzipRootAddress, "bin")
+  out, err := cmd.CombinedOutput()
+  if err != nil {
+    return "", err
+  }
+
+  return string(out), nil
+}
+
 func sendStatus(ctx context.Context, statusKey string) {
   wRuntime.EventsEmit(ctx, "installation-status", statusKey)
+}
+func sendGoPlusVersion(ctx context.Context, message string) {
+  wRuntime.EventsEmit(ctx, "goplus-version", message)
 }
 
 // StartInstall ------------- Hooks: Start GoPlus installation ---------------->
@@ -247,29 +342,42 @@ func (a *App) StartInstall(remoteAddress string) (req map[string]interface{}) {
   //
   sendStatus(a.ctx, "download")
   err := downloadReleasePackage(config["rootAddress"], config["downloadAddress"], remoteAddress)
-  req = checkError(err, "errorDownload")
+  if err != nil {
+    return checkError(err, "errorDownload")
+  }
 
   // unzip release package
   //
   sendStatus(a.ctx, "unzip")
   err = unZip(config["downloadAddress"], config["unzipAddress"])
-  req = checkError(err, "errorUnzip")
+  if err != nil {
+    return checkError(err, "errorUnzip")
+  }
 
   // get unzip root address
   //
   sendStatus(a.ctx, "install")
   config["unzipRootAddress"], err = getUnzipRootAddress(config["unzipAddress"])
-  req = checkError(err, "errorGetUnzipRootAddress")
-  config["installerScriptName"] = getInstallerScriptName(config["osType"])
+  if err != nil {
+    return checkError(err, "errorGetUnzipRootAddress")
+  }
 
   // install GoPlus
   //
-  err = installGoPlus(config["unzipRootAddress"], config["installerScriptName"])
-  req = checkError(err, "errorInstall")
-
+  err = installGoPlus(config["osType"], config["unzipRootAddress"])
+  if err != nil {
+    return checkError(err, "errorInstall")
+  }
   sendStatus(a.ctx, "complete")
 
-  req["key"] = "errorDownload"
+  message, err := getGoPlusVersion(config["unzipRootAddress"])
+  if err != nil {
+    return checkError(err, "errorGetGoPlusVersion")
+  }
+
+  sendGoPlusVersion(a.ctx, message)
+
+  req["status"] = true
   return req
 }
 

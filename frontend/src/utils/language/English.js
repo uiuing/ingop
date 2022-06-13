@@ -28,7 +28,7 @@ export default {
         download: 'Downloading install package...',
         unzip: 'Unzipping install package...',
         install: 'Executing install script...',
-        complete: 'Install complete !',
+        complete: 'Go+ Install complete ~',
         error: {
             reason: 'Reason',
             abnormal: 'Internal error, please contact us through Github',
@@ -36,7 +36,8 @@ export default {
             errorDownload: 'Download install package failed, please check network, if it still cannot be resolved, please contact us through Github',
             errorUnzip: 'Unzip install package failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github',
             errorGetUnzipPath: 'Get unzip path failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github',
-            errorInstall: 'Execute install script failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github'
+            errorInstall: 'Execute install script failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github',
+            errorGetGoPlusVersion: 'Get Go+ version failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github',
         }
     }
 };

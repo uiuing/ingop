@@ -28,7 +28,7 @@ export default {
         download: '正在下载安装包...',
         unzip: '正在解压安装包...',
         install: '正在执行安装脚本...',
-        complete: '安装完成 !',
+        complete: 'Go+ 安装完成 ~',
         error: {
             reason: '原因',
             abnormal: '内部异常，请前往 Github 反馈给我们',
@@ -36,7 +36,8 @@ export default {
             errorDownload: '下载安装包失败, 请检查网络, 如果仍然无法解决请前往 Github 反馈给我们',
             errorUnzip: '解压安装包失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们',
             errorGetUnzipPath: '获取解压路径失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们',
-            errorInstall: '执行安装脚本失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们'
+            errorInstall: '执行安装脚本失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们',
+            errorGetGoPlusVersion:'Go+ 版本号获取失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们'
         }
     }
 };
