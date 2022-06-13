@@ -1,4 +1,6 @@
 <script setup>
+import TipsGithubIssue from "../components/TipsGithubIssue.vue";
+
 import { useRoute, useRouter } from "vue-router";
 import { getCurrentInstance, ref } from "vue";
 
@@ -9,9 +11,6 @@ const key = ref(route.params.key);
 
 const downloadGo = () => {
   window.runtime.BrowserOpenURL("https://go.dev/dl");
-};
-const openGitHubIssue = () => {
-  window.runtime.BrowserOpenURL("https://github.com/uiuing/goplus_installer-online/issues");
 };
 
 const recheck = () => {
@@ -29,9 +28,7 @@ const recheck = () => {
       </el-link>
     </p>
     <p>
-      <el-link type="primary" @click="openGitHubIssue">
-        GitHub Issue : goplus_installer-online/issues
-      </el-link>
+      <tips-github-issue />
     </p>
   </div>
   <div class="btn-recheck">

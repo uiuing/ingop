@@ -29,15 +29,50 @@ func (a *App) startup(ctx context.Context) {
 
 func initRequest() map[string]interface{} {
   targetMap := map[string]interface{}{
-    "status":  false,
-    "key":     "",
-    "message": "",
+    "status": false,
+    "key":    "",
   }
   return targetMap
 }
 
+var errorLogAddress string
+
+func checkError(err error, errKey string) map[string]interface{} {
+  req := initRequest()
+
+  if err != nil {
+    errorLogFile, _ := os.OpenFile(errorLogAddress, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+    defer errorLogFile.Close()
+
+    t := time.Now()
+    errorLogFile.WriteString(t.String() + ":  Error: " + errKey + "; " + err.Error() + "\n")
+
+    req["key"] = errKey
+    return req
+  }
+  req["status"] = true
+  return req
+}
+
+func initDirConfig() map[string]string {
+
+  config := map[string]string{}
+
+  homeDir, _ := os.UserHomeDir()
+
+  config["osType"] = runtime.GOOS
+  config["rootAddress"] = filepath.Join(homeDir, "GoPlus")
+  config["downloadAddress"] = filepath.Join(config["rootAddress"], "gop.zip")
+  config["unzipAddress"] = filepath.Join(config["rootAddress"], "gop")
+  config["errorLogAddress"] = filepath.Join(config["rootAddress"], "InstallErrorLogs.log")
+  errorLogAddress = config["errorLogAddress"]
+
+  return config
+}
+
 // CheckGoEnvironment ------------- Hooks: Check if Go is installed --------------------->
 func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
+
   req = initRequest()
 
   defer func() {
@@ -48,10 +83,7 @@ func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
 
   cmd := exec.Command("go", "version")
   out, err := cmd.CombinedOutput()
-  if err != nil {
-    req["key"] = "errorEnvironment"
-    return req
-  }
+  req = checkError(err, "errorEnvironment")
 
   goVersion := strings.Split(string(out), " ")[2][2:]
   goVersions := strings.Split(goVersion[2:], ".")
@@ -67,29 +99,12 @@ func (a *App) CheckGoEnvironment() (req map[string]interface{}) {
 
 // <------------------ Hooks: Check if Go is installed ---------------------
 
-func initDirConfig() map[string]string {
-
-  config := map[string]string{}
-
-  homeDir, _ := os.UserHomeDir()
-
-  config["osType"] = runtime.GOOS
-  config["rootAddress"] = filepath.Join(homeDir, "GoPlus")
-  config["downloadAddress"] = filepath.Join(config["rootAddress"], "gop.zip")
-  config["unzipAddress"] = filepath.Join(config["rootAddress"], "gop")
-  config["errorLogAddress"] = filepath.Join(config["rootAddress"], "InstallErrorLogs.log")
-
-  return config
-}
-
 func downloadReleasePackage(rootAddress, downloadAddress, remoteAddress string) error {
 
-  if _, err := os.Stat(rootAddress); os.IsNotExist(err) {
-    os.Mkdir(rootAddress, 0777)
-  } else {
-    os.RemoveAll(rootAddress)
-    os.Mkdir(rootAddress, 0777)
+  if _, err := os.Stat(rootAddress); err == nil {
+    os.Remove(rootAddress)
   }
+  os.Mkdir(rootAddress, 0777)
 
   out, err := os.Create(downloadAddress + ".tmp")
   if err != nil {
@@ -206,18 +221,6 @@ func installGoPlus(unzipRootAddress, buildScriptName string) error {
   return nil
 }
 
-var errorLogAddress string
-
-func checkError(err error) {
-  if err != nil {
-    errorLogFile, _ := os.OpenFile(errorLogAddress, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-    defer errorLogFile.Close()
-
-    t := time.Now()
-    errorLogFile.WriteString(t.String() + ":  " + err.Error() + "\n")
-  }
-}
-
 func sendStatus(ctx context.Context, statusKey string) {
   wRuntime.EventsEmit(ctx, "installation-status", statusKey)
 }
@@ -229,36 +232,50 @@ func (a *App) StartInstall(remoteAddress string) (req map[string]interface{}) {
 
   req = initRequest()
 
+  // init dir config
+  //
   config := initDirConfig()
-  errorLogAddress = config["errorLogAddress"]
 
   defer func() {
     if err := recover(); err != nil {
       req["status"] = false
       req["key"] = "abnormal"
-      req["message"] = errorLogAddress
     }
   }()
 
+  // download release package
+  //
   sendStatus(a.ctx, "download")
   err := downloadReleasePackage(config["rootAddress"], config["downloadAddress"], remoteAddress)
-  checkError(err)
+  req = checkError(err, "errorDownload")
 
+  // unzip release package
+  //
   sendStatus(a.ctx, "unzip")
   err = unZip(config["downloadAddress"], config["unzipAddress"])
-  checkError(err)
+  req = checkError(err, "errorUnzip")
 
+  // get unzip root address
+  //
   sendStatus(a.ctx, "install")
   config["unzipRootAddress"], err = getUnzipRootAddress(config["unzipAddress"])
-  checkError(err)
+  req = checkError(err, "errorGetUnzipRootAddress")
   config["installerScriptName"] = getInstallerScriptName(config["osType"])
 
+  // install GoPlus
+  //
   err = installGoPlus(config["unzipRootAddress"], config["installerScriptName"])
-  checkError(err)
-  sendStatus(a.ctx, "done")
+  req = checkError(err, "errorInstall")
 
-  req["status"] = true
+  sendStatus(a.ctx, "complete")
+
+  req["key"] = "errorDownload"
   return req
 }
 
-// <---------------- Hooks: Start GoPlus installation ----------------
+// CloseProcess ------------- Hooks: Close GoPlus installation process ---------------->
+func (a *App) CloseProcess() {
+  os.Exit(0)
+}
+
+// <---------------- Hooks: Close GoPlus installation process ----------------
