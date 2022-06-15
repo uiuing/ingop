@@ -1,7 +1,9 @@
-<div align="center">
+<p></p>
+<div style="height: 320px" align="center">
     <img src="https://user-images.githubusercontent.com/73827386/173846196-6363a11c-16c6-4b96-ac6b-9b77cea4134f.gif">
-    <hr />
 </div>
+
+<hr />
 
 # GoPlus online installer (Go+ language)
 
