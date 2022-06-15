@@ -9,9 +9,11 @@ import TipsCheckGoEnvironment from "../components/CheckEnvironment.vue";
 const router = useRouter();
 const { proxy } = getCurrentInstance();
 
+const isApiOK = ref(true);
 const remoteURL = ref("");
 
 const releaseChange = (url) => {
+  isApiOK.value = false;
   remoteURL.value = url;
 };
 
@@ -30,7 +32,7 @@ const start = () => {
     <p> Hi &#x1F44B; </p>
     <p> {{ $t('installationPrepare.title') }} </p>
   </div>
-  <el-button @click="start" type="primary" :icon="Download" size="large" round>
+  <el-button @click="start" type="primary" :icon="Download" size="large" :disabled="isApiOK" round>
     {{ $t('installationPrepare.start') }}
   </el-button>
   <div class="select-releases">

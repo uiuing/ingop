@@ -37,7 +37,6 @@ runtime.EventsOn("goplus-version", (message) => {
 
 </script>
 <template>
-  <el-progress class="progress" :percentage="percentage" :color="redToGreen" />
   <div class="status-output">
     <span class="annotation"> # {{ $t('installStatus.' + statusKey) }} </span>
     <div v-if="showCommand">
@@ -47,20 +46,16 @@ runtime.EventsOn("goplus-version", (message) => {
       > <span>{{ goPlusVersion }}</span>
     </div>
   </div>
+  <el-progress class="progress" :percentage="percentage" :color="redToGreen" />
 </template>
 
 <style scoped>
 .progress {
-  margin: 50px 0 10px 0;
+  margin: 16px 0 0 0;
   width: 70%;
 }
 
-.code-line {
-  vertical-align: top;
-}
-
 .status-output {
-  width: 100%;
   border: 1px solid var(--el-border-color);
   border-radius: 4px;
   text-align: left;
@@ -77,9 +72,5 @@ runtime.EventsOn("goplus-version", (message) => {
 .annotation {
   color: rgba(48, 49, 51, 0.87);
   font-size: 14px;
-}
-
-.text-status {
-  margin: 10px 0;
 }
 </style>

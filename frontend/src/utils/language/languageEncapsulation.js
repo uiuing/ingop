@@ -1,15 +1,18 @@
 import English from "./English";
 import Chinese from "./Chinese";
+import Japanese from "./Japanese";
 
 // --------------------------------------------------
 const LANGUAGES = {
     English,
-    Chinese
+    Chinese,
+    Japanese
 };
 // --------------------------------------------------
 const ACRONYM_COMPARISON = {
     en: "English",
-    zh: "Chinese"
+    zh: "Chinese",
+    ja: "Japanese"
 };
 // --------------------------------------------------
 

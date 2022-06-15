@@ -10,7 +10,7 @@ const remoteURL = ref(route.params.remoteURL);
 const isInstalling = ref(true);
 const statusInstalling = ref("start");
 const errorKey = ref("");
-const isClose = ref(true);
+const isClose = ref(false);
 
 InstallGoPlus(remoteURL.value).then((res) => {
   isInstalling.value = res.status;
@@ -20,7 +20,9 @@ InstallGoPlus(remoteURL.value).then((res) => {
     statusInstalling.value = "error";
     errorKey.value = res.key;
   }
-  isClose.value = false;
+  setTimeout(() => {
+    isClose.value = true;
+  }, 1300);
 });
 
 const closeProcess = () => {
@@ -38,7 +40,7 @@ const closeProcess = () => {
     <error-installation :errorKey="errorKey" v-else />
   </div>
   <div class="btn-close">
-    <el-button :disabled="isClose" @click="closeProcess">{{ $t("installationWaiting.close") }}</el-button>
+    <el-button :disabled="!isClose" @click="closeProcess">{{ $t("installationWaiting.close") }}</el-button>
   </div>
 </template>
 

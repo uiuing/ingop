@@ -64,6 +64,8 @@ func DownloadReleasePackage(rootCatalogue, zipStorageLocation, remoteURL string)
     if err != nil {
         return err
     }
+    out.Close()
+    resp.Body.Close()
 
     err = os.Rename(zipStorageLocation+".tmp", zipStorageLocation)
     if err != nil {
@@ -111,6 +113,7 @@ func UnZip(rootCatalogue, zipStorageLocation, versionName string, autoDelete boo
         }
     }
     if autoDelete {
+        r.Close()
         err = os.Remove(zipStorageLocation)
         if err != nil {
             return "", err

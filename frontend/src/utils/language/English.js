@@ -3,7 +3,7 @@ export default {
         title: 'Welcome to the Go+ online installer',
         start: 'Start install',
         selectRelease: 'Select release',
-        check: 'Checking environment ...',
+        check: 'Check and try to repair the environment ...',
     },
     errorGoEnvironment: {
         error: 'Environmental errors',

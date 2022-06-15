@@ -28,7 +28,7 @@ CheckGoEnvironment().then((res) => {
 
 <template>
   <el-dialog
-      width="40%"
+      width="50%"
       :model-value="isShow"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
