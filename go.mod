@@ -5,7 +5,7 @@ go 1.17
 require github.com/wailsapp/wails/v2 v2.0.0-beta.37
 
 require (
-	github.com/goplus/gop v1.1.0-rc3 // indirect
+    github.com/goplus/gop v1.1.0 // indirect
 
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/google/uuid v1.1.2 // indirect

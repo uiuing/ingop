@@ -11,12 +11,9 @@ const options = ref([]);
 proxy.$api.getReleasesData().then(data => {
   options.value = data;
   const stableChildren = data.find(item => item.label === "stable")["children"];
-
   value.value = stableChildren[0].value;
   emit('releaseChange', stableChildren[0].value);
 }).catch((err) => {
-
-  console.error("getReleasesData error:", err);
   proxy.$controller.errorNetwork(router);
 });
 

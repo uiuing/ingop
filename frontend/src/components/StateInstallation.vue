@@ -16,7 +16,7 @@ function updatePercentage() {
   for (let i = 0; i < 100 / taskNumber.value; ++i) {
     setTimeout(() => {
       percentage.value++;
-    }, i * 70);
+    }, i * 30);
   }
 }
 

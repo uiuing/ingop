@@ -1,24 +1,19 @@
-import { CheckGoEnvironment } from "../../wailsjs/go/main/App";
-
-const startRun = (router, remoteAddress) => {
-    CheckGoEnvironment().then((res) => {
-        if (res.status) {
-            router.push({
-                name: "InstallationWaiting",
-                params: {
-                    remoteAddress: remoteAddress
-                }
-            });
-        } else {
-            router.push({
-                name: "ErrorGoEnvironment",
-                params: {
-                    key: res.key
-                }
-            });
+const startRun = (res, router, remoteURL) => {
+    if (res.status) {
+        router.push({
+            name: "InstallationWaiting",
+            params: {
+                remoteURL: remoteURL
+            }
+        });
+        return;
+    }
+    router.push({
+        name: "ErrorGoEnvironment",
+        params: {
+            key: res.key,
+            remoteURL: remoteURL
         }
-    }).then((err) => {
-        console.error("checkGoEnvironment error: ", err);
     });
 };
 
@@ -27,16 +22,16 @@ const errorNetwork = (router) => {
         name: "ErrorNetwork",
         params: {}
     });
-}
+};
 
 const callBackIndex = (router) => {
     router.push({
         name: "InstallationPrepare",
         params: {}
     });
-}
+};
 
 export default {
-    startRun,errorNetwork,
+    startRun, errorNetwork,
     callBackIndex
 };

@@ -7,12 +7,13 @@ import api from "./controller/api";
 
 const app = createApp(App);
 
+app.use(router)
+app.use(language);
+
 app.config.globalProperties.$controller = controller;
 app.config.globalProperties.$api = api;
 
-app.use(router)
-    .use(language)
-    .mount('#app');
+app.mount('#app');
 
 
 document.documentElement.style.setProperty("--internal-height", window.innerHeight + "px");

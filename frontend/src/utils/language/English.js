@@ -3,6 +3,7 @@ export default {
         title: 'Welcome to the Go+ online installer',
         start: 'Start install',
         selectRelease: 'Select release',
+        check: 'Checking environment ...',
     },
     errorGoEnvironment: {
         error: 'Environmental errors',
@@ -35,9 +36,8 @@ export default {
             apiError: 'API error, please contact us through Github',
             errorDownload: 'Download install package failed, please check network, if it still cannot be resolved, please contact us through Github',
             errorUnzip: 'Unzip install package failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github',
-            errorGetUnzipPath: 'Get unzip path failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github',
             errorInstall: 'Execute install script failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github',
-            errorGetGoPlusVersion: 'Get Go+ version failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github',
+            errorCurrentGoPlusInfo: 'Get Go+ version failed, please check install package is not damaged, if it still cannot be resolved, please contact us through Github',
         }
     }
 };

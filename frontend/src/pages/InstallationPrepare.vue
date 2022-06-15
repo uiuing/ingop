@@ -4,20 +4,22 @@ import SelectReleases from "../components/SelectReleases.vue";
 import { Download } from "@element-plus/icons-vue";
 import { getCurrentInstance, ref } from "vue";
 import { useRouter } from "vue-router";
+import TipsCheckGoEnvironment from "../components/CheckEnvironment.vue";
 
 const router = useRouter();
 const { proxy } = getCurrentInstance();
 
-const releaseUrl = ref("");
+const remoteURL = ref("");
 
 const releaseChange = (url) => {
-  releaseUrl.value = url;
+  remoteURL.value = url;
 };
+
+const isCheck = ref(false);
 
 const start = () => {
-  proxy.$controller.startRun(router, releaseUrl.value);
+  isCheck.value = true;
 };
-
 </script>
 
 <template>
@@ -34,6 +36,7 @@ const start = () => {
   <div class="select-releases">
     <select-releases @releaseChange="releaseChange" />
   </div>
+  <tips-check-go-environment :remoteURL="remoteURL" v-if="isCheck" />
 </template>
 
 <style scoped>

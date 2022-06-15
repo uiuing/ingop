@@ -11,6 +11,8 @@
     "@element-plus/icons-vue": "^2.0.1",
     "axios": "^0.27.2",
     "element-plus": "^2.2.2",
+    "eslint": "^8.17.0",
+    "eslint-plugin-vue": "^9.1.1",
     "unplugin-auto-import": "^0.8.6",
     "unplugin-vue-components": "^0.19.6",
     "vue": "^3.2.25",

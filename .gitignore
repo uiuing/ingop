@@ -10,4 +10,6 @@ dist
 
 # Wails project files
 /build/bin
+/build/darwin
+/build/windows
 /frontend/package.json.md5

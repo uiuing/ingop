@@ -2,7 +2,8 @@ export default {
     installationPrepare: {
         title: '欢迎使用 Go+ 在线安装程序',
         start: '开始安装',
-        selectRelease: '选择发行版本'
+        selectRelease: '选择发行版本',
+        check: '正在检查环境中 ...',
     },
     errorGoEnvironment: {
         error: '环境错误',
@@ -35,9 +36,8 @@ export default {
             apiError: 'API 异常, 请前往 Github 反馈给我们',
             errorDownload: '下载安装包失败, 请检查网络, 如果仍然无法解决请前往 Github 反馈给我们',
             errorUnzip: '解压安装包失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们',
-            errorGetUnzipPath: '获取解压路径失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们',
             errorInstall: '执行安装脚本失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们',
-            errorGetGoPlusVersion:'Go+ 版本号获取失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们'
+            errorCurrentGoPlusInfo:'Go+ 版本号获取失败, 请检查安装包是否被损坏, 如果仍然无法解决请前往 Github 反馈给我们'
         }
     }
 };

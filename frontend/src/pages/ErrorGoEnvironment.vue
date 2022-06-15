@@ -1,22 +1,26 @@
 <script setup>
 import TipsGithubIssue from "../components/TipsGithubIssue.vue";
+import TipsCheckEnvironment from "../components/CheckEnvironment.vue";
 
-import { useRoute, useRouter } from "vue-router";
-import { getCurrentInstance, ref } from "vue";
+import { useRoute } from "vue-router";
+import { ref } from "vue";
 
-const router = useRouter();
 const route = useRoute();
-const { proxy } = getCurrentInstance();
 const key = ref(route.params.key);
+const remoteURL = ref(route.params.remoteURL);
+
+const isCheck = ref(false);
+
 
 const downloadGo = () => {
   window.runtime.BrowserOpenURL("https://go.dev/dl");
 };
 
 const recheck = () => {
-  proxy.$controller.checkGoEnvironment(router);
+  isCheck.value = true;
 };
 </script>
+
 <template>
   <h1>{{ $t('errorGoEnvironment.error') }}</h1>
   <div class="text-tips">
@@ -37,6 +41,7 @@ const recheck = () => {
       }}
     </el-button>
   </div>
+  <tips-check-environment :remoteURL="remoteURL" v-if="isCheck" />
 </template>
 
 <style scoped>
