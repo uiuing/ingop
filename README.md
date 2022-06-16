@@ -14,6 +14,8 @@ This repository **provides you with the environment** you need to install the **
 
 Not only that, you can **uninstall**, **fix** and **update** **Go+** with a single click.
 
+Client Support: Mac/Windows/Linux
+
 <p></p>
 
 ## Currently working on.
