@@ -22,7 +22,7 @@ Client Support: Mac/Windows/Linux
 
 ## Currently working on.
 
-**[milestone - GoPlus installer v1.0](https://github.com/uiuing/goplus_installer-online/milestone/3)**
+**[milestone - InGop v1.0](https://github.com/uiuing/goplus_installer-online/milestone/3)**
 
 [milestone - GoPlus installer v1.0 Beta](https://github.com/uiuing/goplus_installer-online/milestone/1)
 
