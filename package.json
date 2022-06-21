@@ -3,7 +3,7 @@
   "version": "0.9.1",
   "description": "One-stop Go+ programming language environment manager",
   "main": "electron/main.js",
-  "repository": "https://github.com/uiuing/goplus-install",
+  "repository": "https://github.com/uiuing/ingop",
   "author": "uiuing <uiuing@foxmail.com>",
   "license": "Apache-2.0",
   "scripts": {
