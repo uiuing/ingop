@@ -1,15 +1,33 @@
-# IntelliJ project files
-.idea
-*.iml
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# NodeJS project files
 node_modules
-
-# Vue.js project files
 dist
+dist-ssr
+*.local
 
-# Wails project files
-/build/bin
-/build/darwin
-/build/windows
-/frontend/package.json.md5
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.ideas
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+release
+
+# Test files
+electron/controllers/**/**/test
+src/controllers/**/test
+src/controllers/test
+
+.idea

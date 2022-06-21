@@ -1,0 +1,79 @@
+{
+  "name": "ingop",
+  "version": "0.9.1",
+  "description": "One-stop Go+ programming language environment manager",
+  "main": "electron/main.js",
+  "repository": "https://github.com/uiuing/goplus-install",
+  "author": "uiuing <uiuing@foxmail.com>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "electron": "wait-on tcp:3000 && cross-env NODE_ENV=development electron .",
+    "electron:serve": "concurrently -k \"yarn dev\" \"yarn electron\"",
+    "electron:build": "vite build && electron-builder"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "element-plus": "^2.2.5",
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^9.1.1",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.9.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^26.0.0",
+    "sudo-prompt": "^9.2.1",
+    "unplugin-auto-import": "^0.8.8",
+    "unplugin-vue-components": "^0.19.6",
+    "vite-plugin-eslint": "^1.6.1",
+    "vue": "^3.2.37",
+    "vue-i18n": "^9.1.10",
+    "vue-router": "^4.0.16",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "concurrently": "^6.5.1",
+    "cross-env": "^7.0.3",
+    "electron": "^15.5.7",
+    "electron-builder": "^23.0.3",
+    "vite": "^2.9.12",
+    "wait-on": "^6.0.1"
+  },
+  "build": {
+    "appId": "com.uiuing.ingop",
+    "productName": "InGop",
+    "copyright": "Copyright © 2021 ingop.uiuing.com",
+    "asar": false,
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "./public/app-icon.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "./public/app-icon.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": "true"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "dist",
+      "output": "release"
+    }
+  }
+}
