@@ -1,6 +1,5 @@
-const binLink = () => {
-};
+const binLink = () => {};
 
 module.exports = {
-  binLink
+  binLink,
 };

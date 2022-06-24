@@ -1,13 +1,12 @@
-const { app, globalShortcut, BrowserWindow, Menu } = require('electron');
-const path = require('path');
+const { app, globalShortcut, BrowserWindow, Menu } = require("electron");
+const path = require("path");
 
 const { NODE_ENV } = process.env;
 
 Menu.setApplicationMenu(null);
 
 const IpcMainSend = {
-  stateMessages: () => {
-  }
+  stateMessages: () => {},
 };
 
 function createWindow() {
@@ -18,17 +17,17 @@ function createWindow() {
     maximizable: false,
     center: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
+      preload: path.join(__dirname, "preload.js"),
+    },
   });
   mainWindow.loadURL(
-      NODE_ENV === 'development'
-          ? 'http://localhost:3000'
-          : `file://${path.join(__dirname, '../dist/index.html')}`
+    NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : `file://${path.join(__dirname, "../dist/index.html")}`
   );
 
-  if (NODE_ENV === 'development') {
-    globalShortcut.register('CommandOrControl+Shift+i', function () {
+  if (NODE_ENV === "development") {
+    globalShortcut.register("CommandOrControl+Shift+i", function () {
       mainWindow.webContents.openDevTools();
     });
   }
@@ -38,21 +37,21 @@ function createWindow() {
    * @param {Object} status - Almost all the data of the above interfaces.
    */
   IpcMainSend.stateMessages = (status) => {
-    mainWindow.webContents.send('state-messages', status);
+    mainWindow.webContents.send("state-messages", status);
   };
 }
 
 app.whenReady().then(() => {
   createWindow();
-  app.on('activate', function () {
+  app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit();
+app.on("window-all-closed", function () {
+  if (process.platform !== "darwin") app.quit();
 });
 
-const ipc = require('./ipc/ipcMain');
+const ipc = require("./ipc/ipcMain");
 
 ipc.Listen(IpcMainSend);

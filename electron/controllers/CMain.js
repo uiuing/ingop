@@ -25,5 +25,5 @@ module.exports = {
   startUpdate,
   startReload,
   startUninstall,
-  getNewGoplusVersion
+  getNewGoplusVersion,
 };
