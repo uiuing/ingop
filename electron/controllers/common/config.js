@@ -1,10 +1,10 @@
-const Path = require('path');
+const Path = require("path");
 
-const IS_WIN = process.platform === 'win32';
+const IS_WIN = process.platform === "win32";
 
 const ROOT_PATH = {
-  win32: 'C:/Program Files/GoPlus',
-  unix: '/usr/local/goplus'
+  win32: "C:/Program Files/GoPlus",
+  unix: "/usr/local/goplus",
 };
 
 const USER_NAME = process.env.USER || process.env.USERNAME;
@@ -12,7 +12,7 @@ const USER_NAME = process.env.USER || process.env.USERNAME;
 // --------------------------------------------------------------------------------------------------------------------
 
 const rootPath = (() => {
-  const key = IS_WIN ? 'win32' : 'unix';
+  const key = IS_WIN ? "win32" : "unix";
   return ROOT_PATH[key];
 })();
 
@@ -24,13 +24,13 @@ const authorizationCommand = (() => {
 })();
 
 const envGoPath = {
-  dir: Path.join(rootPath, 'env', 'go'),
-  bin: Path.join(rootPath, 'env', 'go', 'bin')
+  dir: Path.join(rootPath, "env", "go"),
+  bin: Path.join(rootPath, "env", "go", "bin"),
 };
 
 const gopPath = {
-  dir: Path.join(rootPath, 'gop'),
-  bin: Path.join(rootPath, 'gop', 'bin')
+  dir: Path.join(rootPath, "gop"),
+  bin: Path.join(rootPath, "gop", "bin"),
 };
 
 const releases = {
@@ -42,7 +42,7 @@ const releases = {
     gop(gopReleasesJSON) {
       const { gop } = gopReleasesJSON;
       return gop[process.platform][process.arch];
-    }
+    },
   },
   version: {
     go(goReleasesJSON) {
@@ -52,8 +52,8 @@ const releases = {
     gop(gopReleasesJSON) {
       const { gop } = gopReleasesJSON;
       return gop.version;
-    }
-  }
+    },
+  },
 };
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -63,5 +63,5 @@ module.exports = {
   authorizationCommand,
   envGoPath,
   gopPath,
-  releases
+  releases,
 };
