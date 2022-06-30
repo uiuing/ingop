@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { nativeLanguage } from "@/controllers/utils/language/languageEncapsulation";
 
 async function getReleasesJSON() {

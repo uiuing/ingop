@@ -4,6 +4,7 @@ const innerSize = {
   height: `${window.innerHeight}px`,
   width: `${window.innerWidth}px`,
 };
+
 const initDom = {
   html: document.documentElement,
   body: document.body,

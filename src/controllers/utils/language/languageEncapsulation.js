@@ -1,5 +1,5 @@
-import English from "./data/English";
 import Chinese from "./data/Chinese";
+import English from "./data/English";
 
 // --------------------------------------------------
 const LANGUAGES = {
@@ -20,4 +20,4 @@ const feasibleLanguage =
 
 const locale = ACRONYM_COMPARISON[feasibleLanguage];
 
-export { nativeLanguage, locale, feasibleLanguage, LANGUAGES };
+export { feasibleLanguage, LANGUAGES, locale, nativeLanguage };

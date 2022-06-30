@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+
 import CheckEnvironment from "@/pages/CheckEnvironment.vue";
 
 const routes = [
