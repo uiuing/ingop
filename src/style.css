@@ -1,31 +1,42 @@
 html {
-    background-color: white;
-    text-align: center;
-    color: black;
+  background-color: white;
+  text-align: center;
+  color: black;
 }
 
 body {
-    margin: 0 !important;
-    padding: 0 !important;
-    color: black;
-    overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: black;
+  overflow: hidden !important;
 }
 
-div, span, p, b, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-    cursor: default;
-    vertical-align: baseline;
+div,
+span,
+p,
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  cursor: default;
+  vertical-align: baseline;
 }
 
 p {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 img {
-    pointer-events: none;
+  pointer-events: none;
 }
 
-span, input, p {
-    user-select: none;
+span,
+input,
+p {
+  user-select: none;
 }
