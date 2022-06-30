@@ -1,8 +1,10 @@
 import { createApp } from "vue";
+
 import InGop from "@/InGop.vue";
-import router from "./router";
-import language from "./controllers/utils/language";
 import initMain from "@/initMain";
+
+import language from "./controllers/utils/language";
+import router from "./router";
 
 initMain.initSize();
 initMain.initLang();

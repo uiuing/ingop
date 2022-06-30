@@ -25,8 +25,7 @@ function createWindow() {
         : `file://${path.join(__dirname, "../dist/index.html")}`
     )
     .catch((err) => {
-      // eslint-disable-next-line no-console
-      console.log(err);
+      throw new Error(err);
     });
 
   if (NODE_ENV === "development") {

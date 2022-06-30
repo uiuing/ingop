@@ -23,7 +23,7 @@ const existsRoot = () => {
 };
 
 const checkEnvVersion = (cmd) => {
-  let outVersion;
+  let outVersion = "";
   try {
     outVersion = execSync(`${cmd} version`).toString("utf8");
   } catch (e) {
