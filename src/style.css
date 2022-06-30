@@ -1,14 +1,10 @@
-html {
-  color: black;
-  text-align: center;
-  background-color: white;
-}
-
 body {
   padding: 0 !important;
   margin: 0 !important;
   overflow: hidden !important;
-  color: #000;
+  color: black;
+  text-align: center;
+  background-color: white;
 }
 
 div,
@@ -22,7 +18,7 @@ h4,
 h5,
 h6 {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   vertical-align: baseline;
   cursor: default;
 }
