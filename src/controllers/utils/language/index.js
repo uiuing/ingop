@@ -1,10 +1,10 @@
-import { createI18n } from "vue-i18n/index";
+import { createI18n } from 'vue-i18n/index'
 
-import { LANGUAGES, locale } from "./languageEncapsulation";
+import { LANGUAGES, locale } from './languageEncapsulation'
 
 const language = createI18n({
   locale,
-  messages: LANGUAGES,
-});
+  messages: LANGUAGES
+})
 
-export default language;
+export default language

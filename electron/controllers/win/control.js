@@ -1,7 +1,7 @@
 const binLink = () => {
   // ...
-};
+}
 
 module.exports = {
-  binLink,
-};
+  binLink
+}

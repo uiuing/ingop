@@ -1,18 +1,10 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from 'vue-router'
 
-import CheckEnvironment from "@/pages/CheckEnvironment.vue";
-
-const routes = [
-  {
-    path: "/",
-    name: "check-environment",
-    component: CheckEnvironment,
-  },
-];
+const routes = [{}]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router

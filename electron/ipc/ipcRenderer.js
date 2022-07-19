@@ -1,13 +1,13 @@
-const { contextBridge, ipcRenderer } = require("electron");
+const { contextBridge, ipcRenderer } = require('electron')
 
 const Listen = () => {
-  contextBridge.exposeInMainWorld("ipcAPI", {
+  contextBridge.exposeInMainWorld('ipcAPI', {
     /*
      * @Description Tell the main process to start the Installation GoPlus
      * @param {Object} releases.json
      */
     startInstall: (releasesJSON) => {
-      ipcRenderer.send("start-install", releasesJSON);
+      ipcRenderer.send('start-install', releasesJSON)
     },
 
     /*
@@ -15,28 +15,28 @@ const Listen = () => {
      * @param {Object} releases.json
      */
     startUpdate: (releasesJSON) => {
-      ipcRenderer.send("start-update", releasesJSON);
+      ipcRenderer.send('start-update', releasesJSON)
     },
 
     /*
      * @Description Tell the main process to start the
      */
     startReload: () => {
-      ipcRenderer.send("start-reload");
+      ipcRenderer.send('start-reload')
     },
 
     /*
      * @Description Tell the main process to start the Uninstallation GoPlus
      */
     startUninstall: () => {
-      ipcRenderer.send("start-uninstall");
+      ipcRenderer.send('start-uninstall')
     },
 
     /*
      * @Description Check if you have the latest version of GoPlus
      */
     getNewGoPlusVersion: () => {
-      ipcRenderer.send("get-new-goplus-version");
+      ipcRenderer.send('get-new-goplus-version')
     },
 
     /*
@@ -45,11 +45,11 @@ const Listen = () => {
      * @param {Object} status - Almost all the data of the above interfaces.
      */
     stateMessages: (callback) => {
-      ipcRenderer.on("state-messages", callback);
-    },
-  });
-};
+      ipcRenderer.on('state-messages', callback)
+    }
+  })
+}
 
 module.exports = {
-  Listen,
-};
+  Listen
+}
