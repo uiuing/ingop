@@ -23,9 +23,9 @@ const authorizationCommand = (() => {
   return `chown -R ${USER_NAME} ${ROOT_PATH.unix}`
 })()
 
-const envGoPath = {
-  dir: Path.join(rootPath, 'env', 'go'),
-  bin: Path.join(rootPath, 'env', 'go', 'bin')
+const envPath = {
+  dir: Path.join(rootPath, 'env'),
+  goBin: Path.join(rootPath, 'env', 'go', 'bin')
 }
 
 const gopPath = {
@@ -61,7 +61,7 @@ const releases = {
 module.exports = {
   rootPath,
   authorizationCommand,
-  envGoPath,
+  envPath,
   gopPath,
   releases
 }

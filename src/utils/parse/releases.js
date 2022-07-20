@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { nativeLanguage } from '@/controllers/utils/language/languageEncapsulation'
+import { nativeLanguage } from '@/utils/language/languageEncapsulation'
 
 async function getReleasesJSON() {
   const config = {
@@ -16,6 +16,5 @@ async function getReleasesJSON() {
   return res.data[source]
 }
 
-export default {
-  getReleasesJSON
-}
+// eslint-disable-next-line import/prefer-default-export
+export { getReleasesJSON }

@@ -1,10 +1,13 @@
-import { feasibleLanguage } from '@/controllers/utils/language/languageEncapsulation'
+/**
+ * @file initialize window width and height and language internationalisation
+ */
+
+import { feasibleLanguage } from '@/utils/language/languageEncapsulation'
 
 const innerSize = {
   height: `${window.innerHeight}px`,
   width: `${window.innerWidth}px`
 }
-
 const initDom = {
   html: document.documentElement,
   body: document.body
@@ -16,7 +19,6 @@ const initSize = () => {
   initDom.body.style.height = innerSize.height
   initDom.body.style.width = innerSize.width
 }
-
 const initLang = () => {
   initDom.html.lang = feasibleLanguage
 }

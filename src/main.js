@@ -1,10 +1,9 @@
 import { createApp } from 'vue'
 
-import initMain from '@/controllers/utils/window/initMain'
 import InGop from '@/InGop.vue'
-
-import language from './controllers/utils/language'
-import router from './router'
+import router from '@/router'
+import language from '@/utils/language'
+import initMain from '@/utils/window/initMain'
 
 initMain.initSize()
 initMain.initLang()

@@ -3,10 +3,12 @@ const path = require('path')
 const { execSync } = require('child_process')
 const { rootPath } = require('./config')
 
+/**
+ * @description Check if the catalogue environment exists
+ * @returns {boolean}
+ */
 const existsRoot = () => {
-  if (!fs.existsSync(rootPath)) {
-    return false
-  }
+  if (!fs.existsSync(rootPath)) return false
   const testFile = path.join(rootPath, 'test')
   if (fs.existsSync(testFile)) {
     fs.rmdirSync(testFile)
@@ -18,45 +20,53 @@ const existsRoot = () => {
     return false
   }
   fs.rmdirSync(testFile)
-
   return true
 }
 
-const checkEnvVersion = (cmd) => {
-  let outVersion = ''
+/**
+ * @param cmd
+ * @returns {boolean|string}
+ */
+const checkVersionEnv = (cmd) => {
   try {
-    outVersion = execSync(`${cmd} version`).toString('utf8')
-  } catch (e) {
-    return false
-  }
-  try {
+    const outVersion = execSync(`${cmd} version`).toString('utf8')
     const reg = /[0-9]+\.[0-9]+\.[0-9]+/
-    if (!reg.test(outVersion)) {
-      return false
-    }
+    return reg.test(outVersion) ? outVersion : false
   } catch (e) {
     return false
   }
-  return outVersion
 }
 
-const checkVersion = (cmd, newVersion) => {
-  const nowVersion = checkEnvVersion(cmd)
+/**
+ * @param cmd
+ * @param newVersion
+ * @returns {boolean}
+ */
+const checkVersionSize = (cmd, newVersion) => {
+  const nowVersion = checkVersionEnv(cmd)
+  if (!nowVersion) return false
   const nowVersionArr = nowVersion.split('.')
   const newVersionArr = newVersion.split('.')
   return (
-    nowVersionArr[0] === newVersionArr[0] &&
-    nowVersionArr[1] === newVersionArr[1] &&
-    nowVersionArr[2] === newVersionArr[2]
+    nowVersionArr[0] >= newVersionArr[0] &&
+    nowVersionArr[1] >= newVersionArr[1] &&
+    nowVersionArr[2] >= newVersionArr[2]
   )
 }
 
+/**
+ * @description Check for a match with the local version
+ * @type {{
+ *  go(string): boolean,
+ *  gop(string): boolean
+ * }}
+ */
 const existsEnv = {
   go(version) {
-    return checkVersion('go', version)
+    return checkVersionSize('go', version)
   },
   gop(version) {
-    return checkVersion('gop', version)
+    return checkVersionSize('gop', version)
   }
 }
 
