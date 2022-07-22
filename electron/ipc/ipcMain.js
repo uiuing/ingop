@@ -48,7 +48,7 @@ const Listen = (IpcMainSend) => {
   })
 
   /*
-   * @Description Check if you have the latest version of GoPlus
+   * @Description Get the version of GoPlus, if not installed, return false, if installed, return the version.
    */
   ipcMain.on('get-goplus-version', () => {
     const m = new Message(IpcMainSend.stateMessages, 'version')

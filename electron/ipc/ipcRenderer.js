@@ -33,7 +33,7 @@ const Listen = () => {
     },
 
     /*
-     * @Description Check if you have the latest version of GoPlus
+     * @Description Get the version of GoPlus, if not installed, return false, if installed, return the version.
      */
     getGoplusVersion: () => {
       ipcRenderer.send('get-goplus-version')
@@ -41,8 +41,7 @@ const Listen = () => {
 
     /*
      * @Description Listening From main process download/unzip/compile/install/uninstall/update state message.
-     * @param {string} event
-     * @param {Object} status - Almost all the data of the above interfaces.
+     * @param {function} stateMessages - Callback function to receive the state message.
      */
     stateMessages: (callback) => {
       ipcRenderer.on('state-messages', callback)
