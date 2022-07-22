@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { nativeLanguage } from '@/utils/language/languageEncapsulation'
 
-async function getReleasesJSON() {
+const getReleasesJSON = async () => {
   const config = {
     params: {
       th: Math.floor(new Date().getTime() / 1000 / 60 / 60)
@@ -16,5 +16,21 @@ async function getReleasesJSON() {
   return res.data[source]
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export { getReleasesJSON }
+const {
+  startInstall,
+  startUpdate,
+  startReload,
+  startUninstall,
+  getGoplusVersion,
+  stateMessages
+} = window.ipcAPI
+
+export {
+  getGoplusVersion,
+  getReleasesJSON,
+  startInstall,
+  startReload,
+  startUninstall,
+  startUpdate,
+  stateMessages
+}

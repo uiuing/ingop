@@ -33,29 +33,24 @@ const gopPath = {
   bin: Path.join(rootPath, 'gop', 'bin')
 }
 
-const releases = {
-  remote: {
-    go(goReleasesJSON) {
-      const { go } = goReleasesJSON
-      return go[process.platform][process.arch]
-    },
-    gop(gopReleasesJSON) {
-      const { gop } = gopReleasesJSON
-      return gop[process.platform][process.arch]
-    }
-  },
-  version: {
-    go(goReleasesJSON) {
-      const { go } = goReleasesJSON
-      return go.version
-    },
-    gop(gopReleasesJSON) {
-      const { gop } = gopReleasesJSON
-      return gop.version
-    }
+/**
+ * @description Parse Release Config
+ * @param releaseJSON
+ * @returns {{remote: {go:string,gop:string}, version: {go:string,gop:string}}}
+ * @constructor
+ */
+function Releases(releaseJSON) {
+  const { go, gop } = releaseJSON
+  this.remote = {
+    go: go[process.platform][process.arch],
+    gop: gop[process.platform][process.arch]
   }
+  this.version = {
+    go: go.version,
+    gop: gop.version
+  }
+  return this
 }
-
 // --------------------------------------------------------------------------------------------------------------------
 
 module.exports = {
@@ -63,5 +58,5 @@ module.exports = {
   authorizationCommand,
   envPath,
   gopPath,
-  releases
+  Releases
 }

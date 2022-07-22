@@ -35,8 +35,8 @@ const Listen = () => {
     /*
      * @Description Check if you have the latest version of GoPlus
      */
-    getNewGoPlusVersion: () => {
-      ipcRenderer.send('get-new-goplus-version')
+    getGoplusVersion: () => {
+      ipcRenderer.send('get-goplus-version')
     },
 
     /*

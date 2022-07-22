@@ -65,8 +65,14 @@ const existsEnv = {
   go(version) {
     return checkVersionSize('go', version)
   },
+  goVersion() {
+    return checkVersionEnv('go')
+  },
   gop(version) {
     return checkVersionSize('gop', version)
+  },
+  gopVersion() {
+    return checkVersionEnv('gop')
   }
 }
 
