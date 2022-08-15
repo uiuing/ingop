@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "next",
+    "next/core-web-vitals",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["simple-import-sort", "@typescript-eslint", "prettier"],
+  "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "@next/next/no-html-link-for-pages": ["error", "renderer/pages"],
+    "prettier/prettier": "error",
+    "comma-dangle": ["error", "never"],
+    "semi": ["error", "never"]
+  }
+}
