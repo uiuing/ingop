@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { test } from '../../apis/ipc'
 
@@ -8,11 +8,11 @@ export default function Layout({ children }: React.PropsWithChildren) {
     title: 'InGop'
   }
   // Test ipc
-  useEffect(() => {
-    test('hhh').then((r) => {
-      alert(r)
-    })
-  })
+  // useEffect(() => {
+  //   test('hhh').then((r) => {
+  //     alert(r)
+  //   })
+  // })
   return (
     <>
       <Head>

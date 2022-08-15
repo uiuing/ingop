@@ -2,6 +2,7 @@
   "extends": ["stylelint-config-standard", "stylelint-config-idiomatic-order"],
   "plugins": ["stylelint-order", "stylelint-prettier"],
   "rules": {
-    "prettier/prettier": true
+    "prettier/prettier": true,
+    "string-quotes": "single"
   }
 }

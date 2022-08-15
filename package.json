@@ -1,8 +1,10 @@
 {
   "name": "ingop",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "out/main/index.js",
-  "productName": "ElectronTypescriptNext",
+  "productName": "InGop",
+  "description": "One-stop Go+ programming language environment manager",
+  "author": "uiuing <uiuing@foxmail.com>",
   "scripts": {
     "clean": "rimraf out",
     "dev": "npm run build-electron && electron .",
@@ -18,11 +20,9 @@
     "lint:stylelint": "stylelint 'renderer/**/*.{css,scss,less}' --fix"
   },
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "electron-is-dev": "^2.0.0",
-    "electron-next": "^3.1.5",
-    "next": "^12.2.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "electron-next": "^3.1.5"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.2.5",
@@ -40,7 +40,11 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "next": "^12.2.5",
     "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-dom": "^18.2.0",
     "rimraf": "^3.0.2",
     "stylelint": "^14.10.0",
     "stylelint-config-idiomatic-order": "^8.1.0",
@@ -50,7 +54,27 @@
     "typescript": "^4.7.4"
   },
   "build": {
-    "asar": true,
+    "asar": false,
+    "appId": "com.uiuing.ingop",
+    "productName": "InGop",
+    "copyright": "Copyright © 2022 ingop.uiuing.com",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "./public/logo_mini_512x512.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "./public/logo_mini_512x512.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": "true"
+    },
     "files": [
       "out/main",
       "out/renderer/dist"

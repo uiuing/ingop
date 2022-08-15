@@ -35,4 +35,3 @@ next-env.d.ts
 
 # vscode
 .vscode
-!/.prettierrc

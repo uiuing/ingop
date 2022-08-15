@@ -32,7 +32,16 @@ app.on('ready', async () => {
       ).toString()
 
   await mainWindow.loadURL(url)
+
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show()
+  })
 })
+
+// if (!isDev) {
+//   Menu.setApplicationMenu(null)
+//   app.dock.hide()
+// }
 
 // Quit the app once all windows are closed
 app.on('window-all-closed', app.quit)

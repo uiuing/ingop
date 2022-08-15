@@ -1,5 +1,5 @@
-import Layout from '../components/Layout/index'
+import Layout from '../components/Layout'
 
-export default function Buffer() {
+export default function Index() {
   return <Layout></Layout>
 }
