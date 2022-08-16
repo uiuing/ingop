@@ -1,18 +1,10 @@
 import Head from 'next/head'
 import React from 'react'
 
-import { test } from '../../apis/ipc'
-
 export default function Layout({ children }: React.PropsWithChildren) {
   const meta = {
     title: 'InGop'
   }
-  // Test ipc
-  // useEffect(() => {
-  //   test('hhh').then((r) => {
-  //     alert(r)
-  //   })
-  // })
   return (
     <>
       <Head>

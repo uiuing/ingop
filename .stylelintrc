@@ -1,8 +1,19 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-idiomatic-order"],
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-idiomatic-order"
+  ],
   "plugins": ["stylelint-order", "stylelint-prettier"],
   "rules": {
-    "prettier/prettier": true,
-    "string-quotes": "single"
+    "string-quotes": "single",
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "declaration-colon-newline-after": "always-multi-line",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "singleQuote": true
+      }
+    ]
   }
 }

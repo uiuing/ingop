@@ -1,14 +1,17 @@
-import './global.css'
+import './global.scss'
 
 import type { AppProps } from 'next/app'
 
 import Buffer from '../components/Buffer'
+import Layout from '../components/Layout'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Buffer></Buffer>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   )
 }

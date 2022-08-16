@@ -1,4 +1,4 @@
 module.exports = {
   distDir: '../out/renderer/.next',
-  assetPrefix: './'
+  assetPrefix: process.env.NODE_ENV === 'production' ? './' : '/'
 }

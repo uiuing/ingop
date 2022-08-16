@@ -1,7 +1,7 @@
 // ! ipc Main is a global file, containing the root function for the renderer's communication events with the process.
 import './server/ipc'
 
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu } from 'electron'
 import isDev from 'electron-is-dev'
 import prepareNext from 'electron-next'
 import { join } from 'path'
@@ -14,7 +14,7 @@ app.on('ready', async () => {
 
   const mainWindow = new BrowserWindow({
     ...autoScreenSize(),
-    resizable: false,
+    resizable: isDev,
     maximizable: false,
     center: true,
     webPreferences: {
@@ -38,10 +38,10 @@ app.on('ready', async () => {
   })
 })
 
-// if (!isDev) {
-//   Menu.setApplicationMenu(null)
-//   app.dock.hide()
-// }
+if (!isDev) {
+  Menu.setApplicationMenu(null)
+  app.dock.hide()
+}
 
 // Quit the app once all windows are closed
 app.on('window-all-closed', app.quit)
