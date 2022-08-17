@@ -1,0 +1,39 @@
+package main
+
+import (
+	"github.com/uiuing/ingop/releases-migration/hooks"
+	"path"
+	"time"
+)
+
+var c hooks.Config
+
+func run(g hooks.GitHubOAuth, t hooks.Task) {
+	err := t.RunTask(g)
+	if err != nil {
+		print "\x1b[31mError: "+err.Error()+"\x1b[0m\n"
+	}
+	for range time.Tick(time.Duration(t.IntervalSeconds * int64(time.Second))) {
+		err = t.RunTask(g)
+		if err != nil {
+			print "\x1b[31mError: "+err.Error()+"\x1b[0m\n"
+		}
+	}
+}
+
+func main() {
+	print "\x1b[32m+++++ Being launched at\x1b[0m\n"
+	c, err := hooks.ConfigParse()
+	err!
+	for t <- c.Tasks {
+		go run(c.GitHubOAuth, t)
+		print `	start task:
+		- username: `+t.UserName+`
+		- repository: `+t.Repository+`
+		- storage location: `+t.StorageLocation+`
+`
+		time.Sleep(3 * time.Second)
+	}
+	println "\x1b[32m+++++ Start-up complete, background listening in progress\x1b[0m\n"
+	select {}
+}

@@ -1,0 +1,34 @@
+package hooks
+
+type GitHubOAuth struct {
+	UserName string `yaml:"username" validate:"required"`
+	PassWord string `yaml:"password" validate:"required"`
+}
+
+type Task struct {
+	RunState        string `yaml:"run-state" validate:"required,boolean"`
+	UserName        string `yaml:"username" validate:"required"`
+	Repository      string `yaml:"repository" validate:"required"`
+	IntervalSeconds int64  `yaml:"interval-seconds" validate:"required,numeric,gt=0"`
+	StorageLocation string `yaml:"storage-location" validate:"required,dir"`
+	PublicUrl       string `yaml:"public-url" validate:"required,url"`
+}
+
+type Config struct {
+	GitHubOAuth GitHubOAuth `yaml:"github-oauth" validate:"required"`
+	Tasks       []Task      `yaml:"tasks"  validate:"required,dive"`
+}
+
+type ReleasesJson struct {
+	HtmlUrl    string `json:"html_url"`
+	Id         int64  `json:"id"`
+	Name       string `json:"name"`
+	PublicDate string `json:"published_at"`
+	TarballUrl string `json:"tarball_url"`
+	Body       string `json:"body"`
+}
+
+type BootJson struct {
+	ReleasesJson
+	OldTarballUrl string `json:"old_tarball_url"`
+}

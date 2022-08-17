@@ -1,0 +1,88 @@
+{
+  "name": "ingop",
+  "version": "1.0.0",
+  "main": "out/main/index.js",
+  "productName": "InGop",
+  "description": "One-stop Go+ programming language environment manager",
+  "author": "uiuing <uiuing@foxmail.com>",
+  "scripts": {
+    "clean": "rimraf out",
+    "dev": "npm run build-electron && electron .",
+    "build-renderer": "next build renderer && next export renderer -o out/renderer/dist",
+    "build-electron": "tsc -p main",
+    "build": "npm run build-renderer && npm run build-electron",
+    "pack-app": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "type-check": "tsc -p ./renderer/tsconfig.json && tsc -p main/tsconfig.json",
+    "lint": "npm run prettier && npm run lint:eslint && npm run lint:stylelint",
+    "prettier": "prettier --write 'renderer/**/*.{html,ts,js,tsx,jsx,css,json}' 'main/**/*.{ts,js}'",
+    "lint:eslint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./renderer ./main",
+    "lint:stylelint": "stylelint 'renderer/**/*.{css,scss,less}' --fix"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "electron-is-dev": "^2.0.0",
+    "electron-next": "^3.1.5"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^12.2.5",
+    "@types/node": "^18.7.3",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "electron": "^20.0.2",
+    "electron-builder": "^23.3.3",
+    "eslint": "^8.22.0",
+    "eslint-config-next": "^12.2.5",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.4.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "next": "^12.2.5",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-dom": "^18.2.0",
+    "rimraf": "^3.0.2",
+    "sass": "^1.54.4",
+    "stylelint": "^14.10.0",
+    "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-standard": "^27.0.0",
+    "stylelint-config-standard-scss": "^5.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "build": {
+    "asar": false,
+    "appId": "com.uiuing.ingop",
+    "productName": "InGop",
+    "copyright": "Copyright © 2022 ingop.uiuing.com",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "./public/logo_mini_512x512.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "./public/logo_mini_512x512.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": "true"
+    },
+    "files": [
+      "out/main",
+      "out/renderer/dist"
+    ]
+  }
+}
