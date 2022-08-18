@@ -31,6 +31,7 @@
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
+    "axios": "^0.27.2",
     "electron": "^20.0.2",
     "electron-builder": "^23.3.3",
     "eslint": "^8.22.0",
