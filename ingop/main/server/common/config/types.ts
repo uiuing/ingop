@@ -1,6 +1,6 @@
 export type IsWin = boolean
 
-export type GoplusPath = {
+export type IngopPaths = {
   home: string
   // go+ files
   gop_root: string
@@ -10,6 +10,4 @@ export type GoplusPath = {
   go_root: string
   go_path: string
   go_bin: string
-  // original document
-  source: string
 }

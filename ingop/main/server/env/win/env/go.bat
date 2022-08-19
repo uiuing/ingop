@@ -23,10 +23,10 @@
 set USERregpath=HKEY_CURRENT_USER\Environment
 
 :: config
-set goplus_home=%USERPROFILE%\goplus
-set GOROOT=%goplus_home%\env\go
-set GOPATH=%goplus_home%\env\go\workspace
-set GOBIN=%goplus_home%\env\go\bin
+set ingop_home=%USERPROFILE%\ingop
+set GOROOT=%ingop_home%\env\go
+set GOPATH=%ingop_home%\env\go\workspace
+set GOBIN=%ingop_home%\env\go\bin
 
 :: env-GOROOT
 reg add "%USERregpath%" /v GOROOT /t REG_SZ /d "%GOROOT%" /f

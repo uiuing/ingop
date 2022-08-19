@@ -1,5 +1,6 @@
 import get from 'axios'
 
+import { parseFileName } from '../../utils/url'
 import { CallBackFile, CallBackGopR, CallBackGoR, ReleasesUrl } from './types'
 
 export const getReleases = {
@@ -17,7 +18,7 @@ export const getReleases = {
       )
   }
 }
-function requestReleases(url: ReleasesUrl, callback: any) {
+function requestReleases(url: ReleasesUrl, callback: (...arg) => void) {
   get(url)
     .then((r) => callback(false, true, r.data))
     .catch((e) => callback(true, e, false, null))
@@ -32,7 +33,7 @@ export function getRemoteFile(url: string, callback: CallBackFile) {
         ((progressEvent.loaded / progressEvent.total) * 100) | 0
       if (complete !== nowComplete) {
         complete = nowComplete === 100 ? 99 : nowComplete
-        callback(false, null, false, complete, null)
+        callback(false, null, false, complete, null, null)
       }
     }
   })
@@ -44,9 +45,10 @@ export function getRemoteFile(url: string, callback: CallBackFile) {
           null,
           true,
           100,
-          typeof reader.result === 'string' ? reader.result : ''
+          typeof reader.result === 'string' ? reader.result : null,
+          parseFileName(url)
         )
       reader.readAsDataURL(r.data)
     })
-    .catch((e) => callback(true, e, false, 0, ''))
+    .catch((e) => callback(true, e, false, 0, null, null))
 }

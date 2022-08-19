@@ -26,22 +26,23 @@ export interface GoReleases {
 
 export type CallBackGopR = (
   isError: boolean,
-  errorInfo: string,
+  errorInfo: string | null,
   downloadOk: boolean,
-  releasesData: GopReleases
+  releasesData: GopReleases | null
 ) => void
 export type CallBackGoR = (
   isError: boolean,
-  errorInfo: string,
+  errorInfo: string | null,
   downloadOk: boolean,
-  releasesData: GoReleases
+  releasesData: GoReleases | null
 ) => void
 export type CallBackFile = (
   isError: boolean,
-  errorInfo: string,
+  errorInfo: string | null,
   downloadOk: boolean,
   progress: number,
-  base64Data: string
+  base64Data: string | null,
+  fileName: string | null
 ) => void
 
 export type ReleasesUrl =

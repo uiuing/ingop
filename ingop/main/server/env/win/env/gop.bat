@@ -22,8 +22,8 @@
 set USERregpath=HKEY_CURRENT_USER\Environment
 
 :: config
-set goplus_home=%USERPROFILE%\goplus
-set GOPBIN=%goplus_home%\gop\bin
+set ingop_home=%USERPROFILE%\ingop
+set GOPBIN=%ingop_home%\gop\bin
 
 :: env-GOPBIN
 reg add "%USERregpath%" /v GOPBIN /t REG_SZ /d "%GOPBIN%" /f
@@ -40,3 +40,12 @@ reg add "%USERregpath%" /v PATH /t REG_EXPAND_SZ /d "%user_path%;%%GOPBIN%%;" /f
 for /f "tokens=3*" %%A in ('reg query "%USERregpath%" /v PATH') do set user_path=%%A%%B
 set user_path=!user_path:;;=;!
 reg add "%USERregpath%" /v PATH /t REG_EXPAND_SZ /d "%user_path%" /f
+
+set GO111MODULE=on
+set GOPROXY=https://goproxy.cn
+
+ping google.com -n 1 -w 3 > nul
+if not %errorlevel% leq 0 (
+    reg add "%USERregpath%" /v GO111MODULE /t REG_SZ /d "%GO111MODULE%" /f
+    reg add "%USERregpath%" /v GOPROXY /t REG_SZ /d "%GOPROXY%" /f
+)

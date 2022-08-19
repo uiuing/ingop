@@ -20,4 +20,4 @@
 
 # Remove environment variables that may have an impact
 
-echo "" > "$HOME"/goplus/env/env.bash
+echo "" > "$HOME"/ingop/env/env.bash
