@@ -23,7 +23,7 @@
 set USERregpath=HKEY_CURRENT_USER\Environment
 
 :: config
-set ingop_home=%USERPROFILE%\ingop
+set ingop_home=%USERPROFILE%\.ingop
 set GOROOT=%ingop_home%\env\go
 set GOPATH=%ingop_home%\env\go\workspace
 set GOBIN=%ingop_home%\env\go\bin

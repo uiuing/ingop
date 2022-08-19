@@ -23,11 +23,11 @@
 set USERregpath=HKEY_CURRENT_USER\Environment
 
 :: config
-set ingop_home=%USERPROFILE%\ingop
+set ingop_home=%USERPROFILE%\.ingop
 set GOBIN=%ingop_home%\env\go\bin
 set GOPBIN=%ingop_home%\gop\bin
 
-# Remove custom variables
+:: Remove custom variables
 Reg Delete "%USERregpath%" /v GOBIN /f
 Reg Delete "%USERregpath%" /v GOPBIN /f
 

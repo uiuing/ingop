@@ -22,7 +22,7 @@
 set USERregpath=HKEY_CURRENT_USER\Environment
 
 :: config
-set ingop_home=%USERPROFILE%\ingop
+set ingop_home=%USERPROFILE%\.ingop
 set GOPBIN=%ingop_home%\gop\bin
 
 :: env-GOPBIN

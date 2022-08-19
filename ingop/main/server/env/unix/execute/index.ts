@@ -1,7 +1,7 @@
 import { execSync } from 'child_process'
 import { join } from 'path'
 
-import { Bash, EnvManage } from './types'
+import { Bash, EnvManage } from '../../../common/env/types'
 
 const envPath = join(__dirname, '../env')
 
@@ -14,11 +14,11 @@ const bashPath: Bash = {
 }
 
 const bashCommand: Bash = {
-  gop: `chmod 777 '${bashPath.gop}' && '${bashPath.gop}'`,
+  gop: `chmod 777 "${bashPath.gop}" && "${bashPath.gop}"`,
   env: {
-    go: `chmod 777 '${bashPath.env.go}' && '${bashPath.env.go}'`
+    go: `chmod 777 "${bashPath.env.go}" && "${bashPath.env.go}"`
   },
-  remove: `chmod 777 '${bashPath.remove}' && '${bashPath.remove}'`
+  remove: `chmod 777 "${bashPath.remove}" && "${bashPath.remove}"`
 }
 
 export const envManage: EnvManage = {

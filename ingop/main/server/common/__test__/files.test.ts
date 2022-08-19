@@ -1,8 +1,8 @@
 import { readdirSync } from 'fs'
 import { existsSync } from 'next/dist/lib/find-pages-dir'
 
-import { ingopPathsArray } from '../common/config'
-import { initDirs, removeDirs } from '../common/files'
+import { ingopPathsArray } from '../config'
+import { initDirs, removeDirs } from '../files'
 
 export function __test__initDirs(): [string, string[]][] {
   initDirs(ingopPathsArray)

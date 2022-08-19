@@ -32,7 +32,7 @@ if [ -f "$HOME"/.zshrc ]; then
 fi
 
 # Make variable files refresh every time they are opened
-source_env="source \"\$HOME/ingop/env/env.bash\" #!! InGop env profile !!"
+source_env="source \"\$HOME/.ingop/env/env.bash\" #!! InGop env profile !!"
 for profile in "${env_profiles[@]}"; do
   if ! grep -q "$source_env" "$profile"; then
     echo -e "\n" >> "$profile"
@@ -41,7 +41,7 @@ for profile in "${env_profiles[@]}"; do
 done
 
 # Creating variable files
-ingop_env_profile="$HOME"/ingop/env/env.bash
+ingop_env_profile="$HOME"/.ingop/env/env.bash
 if [ ! -f "$ingop_env_profile" ]; then
     touch "$ingop_env_profile"
 fi
@@ -54,9 +54,9 @@ if ! grep -q "$shell_top" "$ingop_env_profile"; then
   echo "$shell_top" >> "$ingop_env_profile"
 fi
 
-shell_content="export GOROOT=$HOME/ingop/env/go
-export GOPATH=$HOME/ingop/env/go/workspace
-export GOBIN=$HOME/ingop/env/go/bin
+shell_content="export GOROOT=$HOME/.ingop/env/go
+export GOPATH=$HOME/.ingop/env/go/workspace
+export GOBIN=$HOME/.ingop/env/go/bin
 export PATH=\$PATH:\$GOBIN"
 
 if ! grep -q "$shell_content" "$ingop_env_profile"; then

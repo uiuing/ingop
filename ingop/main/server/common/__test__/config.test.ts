@@ -1,4 +1,4 @@
-import { ingopPaths, ingopPathsArray, isWin } from '../common/config'
+import { ingopPaths, ingopPathsArray, isWin } from '../config'
 
 console.info('isWin', isWin)
 

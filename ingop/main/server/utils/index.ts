@@ -5,10 +5,6 @@ type AutoScreenSize = {
   height: number
 }
 
-/**
- * @description Auto resize window to fit content
- * @returns {AutoScreenSize}
- */
 export function autoScreenSize(): AutoScreenSize {
   const auto: AutoScreenSize = { width: 900, height: 562 }
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
