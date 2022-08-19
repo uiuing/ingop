@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <b>Learn the GO+ language more easily.</b>
+  <b>更轻松的学习GO+语言</b>
     <br/><br/>
   <a href="https://github.com/uiuing/ingop/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-Apache 2.0-blue.svg">
@@ -22,32 +22,33 @@
   </a>
 </p>
 
-## Internationalization
+## 国际化
 
 [English](https://github.com/uiuing/ingop/blob/main/README.md) | [简体中文](https://github.com/uiuing/ingop/blob/main/README.zh-Hans.md)
 
-## Introduction
-**Learn the GO+ language more easily.**
+## 介绍
+**更轻松的学习GO+语言**
 
-InGop has prepared:
-### Go+ language Environment Management Client
-- [x] InGop provides you with a super simple GUI client, for Go+ language dependency management/install/update/uninstall.
+InGop准备了：
 
-- [x] Even without basic computer knowledge, you can start learning and using the Go+ language.
+### Go+ 语言环境管理客户端
+- [x] InGop 为你提供了一个超级简单的 GUI 客户端，用于 Go+ 语言的依赖管理/安装/更新/卸载。
 
-- [x] Internationalization support ( Simplified Chinese / English / more... )
+- [x] 即使没有基本的计算机知识，你也可以开始学习和使用Go+语言。
 
-### A vernacular tutorial and practical guide to the Go+ language
-- [x] a set of vernacular Go+ language programming guides and hands-on tutorials
+- [x] 国际化支持（ 中文 / 英文 / 更多... ）。
 
-- [x] No Golang language base required
+### Go+ 语言的白话教程和实用指南
+- [x] 一套大白话的 Go+ 语言编程指南和实战教程
 
-- [x] Internationalization support ( Simplified Chinese / English / more... )
+- [x] 不需要 Golang 语言的基础
 
-> However, you should note, that parts of the content are not official tutorials or guides for the Go+ language.
-> If you find a mistake, you are welcome to correct any errors and contribute to it at any time.
+- [x] 国际化支持（ 中文 / 英文 / 更多... ）。
+
+> 不过，你应该注意，部分内容并不是Go+语言的官方教程或指南。
+> 如果你发现了错误，欢迎随时纠正任何错误并作出贡献。
 
 <br />
 <br />
 
-**Content is in development, stay tuned!**
+**内容正在开发中，敬请关注!**
