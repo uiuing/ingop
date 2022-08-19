@@ -20,7 +20,7 @@ export const getReleases = {
 }
 function requestReleases(url: ReleasesUrl, callback: (...arg) => void) {
   get(url)
-    .then((r) => callback(false, true, r.data))
+    .then((r) => callback(false, null, true, r.data))
     .catch((e) => callback(true, e, false, null))
 }
 

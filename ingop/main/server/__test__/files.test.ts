@@ -1,5 +1,4 @@
-import { readdirSync } from 'fs'
-import { existsSync } from 'next/dist/lib/find-pages-dir'
+import { existsSync, readdirSync } from 'fs'
 
 import { ingopPathsArray } from '../config'
 import { initDirs, removeDirs } from '../files'

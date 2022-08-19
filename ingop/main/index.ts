@@ -1,5 +1,5 @@
 // ! ipc Main is a global file, containing the root function for the renderer's communication events with the process.
-import './server/ipc'
+import './ipc/index'
 
 import { app, BrowserWindow, Menu } from 'electron'
 import isDev from 'electron-is-dev'

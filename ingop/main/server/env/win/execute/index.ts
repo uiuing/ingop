@@ -2,7 +2,7 @@ import { execSync } from 'child_process'
 import { userInfo } from 'os'
 import { join } from 'path'
 
-import { Bash, EnvManage } from '../../../common/env/types'
+import { Bash, EnvManage } from '../../types'
 
 const envPath = join(__dirname, '../env')
 

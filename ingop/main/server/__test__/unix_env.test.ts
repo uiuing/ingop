@@ -1,9 +1,9 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
-import { ingopPaths, ingopPathsArray } from '../../common/config'
-import { initDirs, removeDirs } from '../../common/files'
-import { envManage } from '../unix/execute'
+import { ingopPaths, ingopPathsArray } from '../config'
+import { envManage } from '../env/unix/execute'
+import { initDirs, removeDirs } from '../files'
 
 const envBashPath = join(ingopPaths.env, 'env.bash')
 

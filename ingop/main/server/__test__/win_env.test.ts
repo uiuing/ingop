@@ -1,6 +1,6 @@
-import { ingopPathsArray } from '../../common/config'
-import { initDirs, removeDirs } from '../../common/files'
-import { envManage } from '../win/execute'
+import { ingopPathsArray } from '../config'
+import { envManage } from '../env/win/execute'
+import { initDirs, removeDirs } from '../files'
 
 // .ignore
 initDirs(ingopPathsArray)
