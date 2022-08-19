@@ -63,7 +63,7 @@ releases.json                         <-- Generated version information
 # Apply to your machine
 
 ## Easy to use
-Download the files you need in [Releases](https://github.com/uiuing/ingop/releases-migration/releases) and upload them to your server
+Download the files you need in [Releases](https://github.com/uiuing/ingop/tree/main/releases-migration/releases/v0.1.0) and upload them to your server
 
 Run to the background
 ```bash
