@@ -61,7 +61,7 @@ releases.json                         <-- 生成的版本信息
 # 在你的机器上运行
 
 ## 简单使用
-在 [Releases](https://github.com/uiuing/ingop/releases-migration/releases) 中下载你需要的文件，并将它们上传到你的服务器上
+在 [Releases](https://github.com/uiuing/ingop/tree/main/releases-migration/releases/v0.1.0) 中下载你需要的文件，并将它们上传到你的服务器上
 
 运行到后台
 ```bash
