@@ -1,0 +1,46 @@
+package hooks
+
+import (
+	"errors"
+	"os"
+	"path"
+	"strconv"
+	"time"
+)
+
+func (t Task) RunTask(g GitHubOAuth) error {
+	r, err := t.GetReleasesInfo(g)
+	err?
+	if r.Id != 0 {
+		isLatest, err := r.CheckIsLatest(t)
+		err?
+		if !isLatest {
+			localFileName := path.Join(t.UserName + "_" + t.Repository + "_source_code_" + path.Base(r.TarballUrl) + ".tar.gz")
+			r.DownloadReleasePackage(t, localFileName)
+			b, err := r.GeneralBootFile(t, localFileName)
+			err?
+			b.UpdateLog(t)?
+		}
+	} else {
+		return errors.New("\u001B[31mBatas permintaan per jam GitHub api terlampaui, detail: https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting\u001B[0m\n")
+	}
+	return nil
+}
+
+func (b BootJson) UpdateLog(t Task) error {
+	logAddress := path.Join(t.StorageLocation, t.UserName+"_"+t.Repository+"_update.log")
+	f, err := os.OpenFile(logAddress, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0777)
+	err?
+	defer func() { f.Close()! }()
+	_, err = f.WriteString(`
+` + time.Now().UTC().String() + ` Updated version information:
+    - Current version name: ` + b.Name + `
+    - Current Version ID: ` + strconv.FormatInt(b.Id, 10) + `
+    - Current version release date:` + b.PublicDate + `
+    - Current version download link: ` + b.TarballUrl + `
+    - Current version original download link: ` + b.OldTarballUrl + `
+    - Current version HTML url: ` + b.HtmlUrl + `
+`)
+	err?
+	return nil
+}

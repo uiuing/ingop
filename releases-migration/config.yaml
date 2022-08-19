@@ -1,0 +1,21 @@
+# Model example:
+
+github-oauth:
+  username: your-username
+  password: your-password
+
+tasks:
+  -
+    run-state: true
+    username: goplus
+    repository: gop
+    interval-seconds: 7200
+    storage-location: /tmp/goplus/gop
+    public-url: https://ingop.uiuing.com/mirror/goplus/gop
+  -
+    run-state: true
+    username: goplus
+    repository: c2go
+    interval-seconds: 7200
+    storage-location: /tmp/goplus/c2go
+    public-url: https://ingop.uiuing.com/mirror/goplus/c2go

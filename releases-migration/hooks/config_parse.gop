@@ -1,0 +1,49 @@
+package hooks
+
+import (
+	"fmt"
+	"github.com/go-playground/validator/v10"
+	"github.com/jinzhu/configor"
+	"strconv"
+)
+
+var conf Config
+
+func ConfigParse() (Config, error) {
+	configor.Load(&conf, "config.yaml")?
+	checkEmpty()?
+	filterHibernationTask()?
+	return conf, nil
+}
+
+func checkEmpty() error {
+	validate := validator.New()
+	err := validate.Struct(conf)
+	if err != nil {
+		for _, err <- err.(validator.ValidationErrors) {
+			err?
+		}
+	}
+	return nil
+}
+
+func filterHibernationTask() (err error) {
+	defer func() {
+		if p := recover(); p != nil {
+			err = fmt.Errorf(`
+	an error has occurred,perhaps because there is no active task.
+	i.e. a task with a "run-state" of true.
+	additional reference information: 
+		%v`, p)
+		}
+	}()
+
+	err = nil
+	for i, task <- conf.Tasks {
+		b, _ := strconv.ParseBool(task.RunState)
+		if !b {
+			conf.Tasks = append(conf.Tasks[:i], conf.Tasks[i+1:]...)
+		}
+	}
+	return err
+}
