@@ -3,7 +3,7 @@
 [![Language](https://img.shields.io/badge/language-Go+-blue.svg)](https://github.com/goplus/gop)
 [![GitHub release](https://img.shields.io/github/v/tag/goplus/gop.svg?label=Go%2b+release)](https://github.com/goplus/gop/releases)
 
-[中文文档](https://github.com/uiuing/ingop/releases-migration/README_ZH.md)
+[中文文档](https://github.com/uiuing/ingop/tree/main/releases-migration/README_ZH.md)
 
 GitHub Releases The Latest Package Listening and Migration Tool.
 
