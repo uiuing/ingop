@@ -1,4 +1,4 @@
-export type FileData = {
+export type FileDataParams = {
   fileName: string
   base64Data: string
 }

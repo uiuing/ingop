@@ -10,7 +10,7 @@ import { EnvManage } from '../methods/env/types'
 import { envManage as unixEnvManage } from '../methods/env/unix/execute'
 import { envManage as winEnvManage } from '../methods/env/win/execute'
 import { initDirs, removeDirs, saveFile } from '../methods/files'
-import { ExistsEnv, FileData } from './types'
+import { ExistsEnv, FileDataParams } from './types'
 
 export const ingopHome = {
   init: () => {
@@ -44,7 +44,7 @@ export const existsEnv: ExistsEnv = {
 
 export class autoSaveFile {
   path: string
-  constructor({ fileName, base64Data }: FileData) {
+  constructor({ fileName, base64Data }: FileDataParams) {
     this.path = join(ingopPaths.home, fileName)
     saveFile(this.path, base64Data)
   }

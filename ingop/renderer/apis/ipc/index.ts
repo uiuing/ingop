@@ -1,4 +1,4 @@
-import { AutoSaveFile, EnvManage, FileData } from './types'
+import { AutoSaveFile, EnvManage, FileDataParams } from './types'
 
 export const ingopHome = {
   init: async () => {
@@ -10,11 +10,11 @@ export const ingopHome = {
 }
 
 export const autoSaveFile: AutoSaveFile = {
-  gop: async (fileData: FileData) => {
+  gop: async (fileData: FileDataParams) => {
     await global.ipcRenderer.invoke('auto-sava-gop-file', fileData)
   },
   env: {
-    go: async (fileData: FileData) => {
+    go: async (fileData: FileDataParams) => {
       await global.ipcRenderer.invoke('auto-sava-env-go-file', fileData)
     }
   }

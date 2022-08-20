@@ -7,7 +7,7 @@ import {
   existsEnv,
   ingopHome
 } from './methods'
-import { FileData } from './types'
+import { FileDataParams } from './types'
 
 ipcMain.handle('ingop-home-init', async () => {
   ingopHome.init()
@@ -29,12 +29,18 @@ ipcMain.handle('check-env-go-isNew', async (_event, newVersion: string) => {
   return await existsEnv.env.go.isNew(newVersion)
 })
 
-ipcMain.handle('auto-sava-gop-file', async (_event, fileData: FileData) => {
-  await new autoSaveFile(fileData).gop()
-})
-ipcMain.handle('auto-sava-env-go-file', async (_event, fileData: FileData) => {
-  await new autoSaveFile(fileData).env.go()
-})
+ipcMain.handle(
+  'auto-sava-gop-file',
+  async (_event, fileData: FileDataParams) => {
+    await new autoSaveFile(fileData).gop()
+  }
+)
+ipcMain.handle(
+  'auto-sava-env-go-file',
+  async (_event, fileData: FileDataParams) => {
+    await new autoSaveFile(fileData).env.go()
+  }
+)
 
 ipcMain.handle('compile-gop', async () => {
   return await compile.gop()

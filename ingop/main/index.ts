@@ -6,7 +6,7 @@ import isDev from 'electron-is-dev'
 import prepareNext from 'electron-next'
 import { join } from 'path'
 
-import { autoScreenSize } from './server/utils'
+import { autoScreenSize } from './methods/utils'
 
 // Prepare the renderer once the app is ready
 app.on('ready', async () => {
@@ -17,6 +17,7 @@ app.on('ready', async () => {
     resizable: isDev,
     maximizable: false,
     center: true,
+    show: false,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: false,
@@ -36,12 +37,26 @@ app.on('ready', async () => {
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
+
+  const gotTheLock = app.requestSingleInstanceLock()
+  if (!gotTheLock) {
+    app.quit()
+  } else {
+    app.on('second-instance', () => {
+      if (mainWindow) {
+        if (mainWindow.isMinimized()) mainWindow.restore()
+        mainWindow.focus()
+        mainWindow.show()
+      }
+    })
+  }
 })
 
 if (!isDev) {
   Menu.setApplicationMenu(null)
-  app.dock.hide()
+  if (process.platform === 'darwin') {
+    app.dock.hide()
+  }
 }
 
-// Quit the app once all windows are closed
 app.on('window-all-closed', app.quit)

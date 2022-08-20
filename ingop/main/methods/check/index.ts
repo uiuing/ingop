@@ -1,6 +1,8 @@
 import { exec } from 'child_process'
 
-export function execCommand(cmd: string): Promise<string | null> {
+import { AsyncBoolean, AsyncString, AsyncStringNull } from './types'
+
+export function execCommand(cmd: string): AsyncStringNull {
   return new Promise((resolve) => {
     exec(`${cmd}`, { encoding: 'utf8' }, (err, stdout) => {
       if (err) resolve(null)
@@ -9,7 +11,7 @@ export function execCommand(cmd: string): Promise<string | null> {
   })
 }
 
-export async function checkVersionEnv(cmd: string): Promise<string> {
+export async function checkVersionEnv(cmd: string): AsyncString {
   const s = await execCommand(`${cmd} version`)
   if (s === null) return ''
   const r = s.match(/[0-9.]+/)
@@ -19,7 +21,7 @@ export async function checkVersionEnv(cmd: string): Promise<string> {
 export async function isNewVersion(
   cmd: string,
   newVersion: string
-): Promise<boolean> {
+): AsyncBoolean {
   const nowVersion = await checkVersionEnv(cmd)
   if (!nowVersion) return false
   const levels1 = nowVersion.split('.')

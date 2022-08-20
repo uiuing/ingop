@@ -20,18 +20,17 @@
     "lint:stylelint": "stylelint 'renderer/**/*.{css,scss,less}' --fix"
   },
   "dependencies": {
-    "app-root-path": "^3.0.0",
     "decompress": "^4.2.1",
     "electron-is-dev": "^2.0.0",
     "electron-next": "^3.1.5"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.2.5",
-    "@types/decompress": "^4.2.4",
     "@types/node": "^18.7.3",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@types/decompress": "^4.2.4",
     "@typescript-eslint/parser": "^5.33.0",
     "axios": "^0.27.2",
     "electron": "^20.0.2",

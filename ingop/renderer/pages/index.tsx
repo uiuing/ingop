@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { autoSaveFile, ingopHome } from '../apis/ipc'
-import { FileData } from '../apis/ipc/types'
+import { FileDataParams } from '../apis/ipc/types'
 import { getReleases, getRemoteFile } from '../apis/releases'
 
 export default function Index() {
@@ -20,7 +20,7 @@ export default function Index() {
               fileName
             ) => {
               if (downloadOk) {
-                autoSaveFile.gop({ fileName, base64Data } as FileData)
+                autoSaveFile.gop({ fileName, base64Data } as FileDataParams)
               }
             }
           )

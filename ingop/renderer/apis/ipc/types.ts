@@ -1,12 +1,12 @@
-export type FileData = {
+export type FileDataParams = {
   fileName: string
   base64Data: string
 }
 
 export type AutoSaveFile = {
-  gop: (fileData: FileData) => void
+  gop: (fileData: FileDataParams) => void
   env: {
-    go: (fileData: FileData) => void
+    go: (fileData: FileDataParams) => void
   }
 }
 
