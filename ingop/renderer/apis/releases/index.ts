@@ -19,7 +19,12 @@ export const getReleases = {
   }
 }
 function requestReleases(url: ReleasesUrl, callback: (...arg) => void) {
-  get(url)
+  const t = Math.floor(new Date().getTime() / 1000 / 3600)
+  get(url, {
+    params: {
+      t
+    }
+  })
     .then((r) => callback(false, null, true, r.data))
     .catch((e) => callback(true, e, false, null))
 }

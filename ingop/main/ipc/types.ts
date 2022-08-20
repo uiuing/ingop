@@ -14,3 +14,7 @@ export type ExistsEnv = {
     go: ExistsMethod
   }
 }
+
+export type Compile = {
+  gop: () => Promise<boolean>
+}

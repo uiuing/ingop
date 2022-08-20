@@ -17,7 +17,7 @@ app.on('ready', async () => {
     resizable: isDev,
     maximizable: false,
     center: true,
-    show: false,
+    show: isDev,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: false,

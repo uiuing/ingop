@@ -10,7 +10,7 @@ import { EnvManage } from '../methods/env/types'
 import { envManage as unixEnvManage } from '../methods/env/unix/execute'
 import { envManage as winEnvManage } from '../methods/env/win/execute'
 import { initDirs, removeDirs, saveFile } from '../methods/files'
-import { ExistsEnv, FileDataParams } from './types'
+import { Compile, ExistsEnv, FileDataParams } from './types'
 
 export const ingopHome = {
   init: () => {
@@ -70,7 +70,7 @@ export class autoSaveFile {
   }
 }
 
-export const compile = {
+export const compile: Compile = {
   gop: async (): Promise<boolean> => {
     return await buildGop()
   }
