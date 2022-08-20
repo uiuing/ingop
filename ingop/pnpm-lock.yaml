@@ -21,12 +21,14 @@ specifiers:
   eslint-plugin-import: ^2.26.0
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-simple-import-sort: ^7.0.0
+  i18next: ^21.9.1
   next: ^12.2.5
   postcss: ^8.4.16
   prettier: ^2.7.1
   react: ^18.2.0
   react-addons-css-transition-group: ^15.6.2
   react-dom: ^18.2.0
+  react-i18next: ^11.18.4
   rimraf: ^3.0.2
   sass: ^1.54.4
   stylelint: ^14.10.0
@@ -62,12 +64,14 @@ devDependencies:
   eslint-plugin-import: 2.26.0_5yqa6y7jadhx25xxnmrnyuevy4
   eslint-plugin-prettier: 4.2.1_i2cojdczqdiurzgttlwdgf764e
   eslint-plugin-simple-import-sort: 7.0.0_eslint@8.22.0
+  i18next: 21.9.1
   next: 12.2.5_ivfob5dyaiglqb5g2zdrumbbbm
   postcss: 8.4.16
   prettier: 2.7.1
   react: 18.2.0
   react-addons-css-transition-group: 15.6.2_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
+  react-i18next: 11.18.4_4sidbwfhen5r7txudrvpua6nty
   rimraf: 3.0.2
   sass: 1.54.4
   stylelint: 14.10.0
@@ -2690,6 +2694,12 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
+  /html-parse-stringify/3.0.1:
+    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
+    dependencies:
+      void-elements: 3.1.0
+    dev: true
+
   /html-tags/3.2.0:
     resolution: {integrity: sha512-vy7ClnArOZwCnqZgvv+ddgHgJiAFXe3Ge9ML5/mBctVJoUoYPCdxVucOywjDARn6CVoh3dRSFdPHy2sX80L0Wg==}
     engines: {node: '>=8'}
@@ -2718,6 +2728,12 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /i18next/21.9.1:
+    resolution: {integrity: sha512-ITbDrAjbRR73spZAiu6+ex5WNlHRr1mY+acDi2ioTHuUiviJqSz269Le1xHAf0QaQ6GgIHResUhQNcxGwa/PhA==}
+    dependencies:
+      '@babel/runtime': 7.18.9
     dev: true
 
   /iconv-corefoundation/1.1.7:
@@ -3857,6 +3873,26 @@ packages:
       scheduler: 0.23.0
     dev: true
 
+  /react-i18next/11.18.4_4sidbwfhen5r7txudrvpua6nty:
+    resolution: {integrity: sha512-gK/AylAQC5DvCD5YLNCHW4PNzpCfrWIyVAXbSMl+/5QXzlDP8VdBoqE2s2niGHB+zIXwBV9hRXbDrVuupbgHcg==}
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.18.9
+      html-parse-stringify: 3.0.1
+      i18next: 21.9.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: true
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
@@ -4864,6 +4900,11 @@ packages:
       extsprintf: 1.4.1
     dev: true
     optional: true
+
+  /void-elements/3.1.0:
+    resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
+    engines: {node: '>=0.10.0'}
+    dev: true
 
   /warning/3.0.0:
     resolution: {integrity: sha512-jMBt6pUrKn5I+OGgtQ4YZLdhIeJmObddh6CsibPxyQ5yPZm1XExSyzC1LCNX7BzhxWgiHmizBWJTHJIjMjTQYQ==}

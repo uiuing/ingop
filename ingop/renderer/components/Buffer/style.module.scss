@@ -1,17 +1,22 @@
 .mask {
   position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
 }
 
-.fadeOut {
-  animation: fade-out 1.4s forwards;
+.fadeOutTop {
+  animation: fade-out-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-@keyframes fade-out {
+@keyframes fade-out-top {
   0% {
     opacity: 1;
+    transform: translateY(0);
   }
 
   100% {
     opacity: 0;
+    transform: translateY(-50px);
   }
 }

@@ -1,32 +1,6 @@
-import { useEffect } from 'react'
-
-import { autoSaveFile, ingopHome } from '../apis/ipc'
-import { FileDataParams } from '../apis/ipc/types'
-import { getReleases, getRemoteFile } from '../apis/releases'
+import { useTranslation } from 'react-i18next'
 
 export default function Index() {
-  useEffect(() => {
-    ingopHome.init().then(() => {
-      getReleases.gop((isError, errorInfo, downloadOk, releasesData) => {
-        if (downloadOk) {
-          getRemoteFile(
-            releasesData?.tarball_url as string,
-            (
-              isError,
-              errorInfo,
-              downloadOk,
-              progress,
-              base64Data,
-              fileName
-            ) => {
-              if (downloadOk) {
-                autoSaveFile.gop({ fileName, base64Data } as FileDataParams)
-              }
-            }
-          )
-        }
-      })
-    })
-  }, [])
-  return <></>
+  const { t } = useTranslation()
+  return <div>{t('test')}</div>
 }
