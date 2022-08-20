@@ -1,6 +1,12 @@
 import { ipcMain } from 'electron'
 
-import { autoSaveFile, envManage, ingopHome } from './api'
+import {
+  autoSaveFile,
+  compile,
+  envManage,
+  existsEnv,
+  ingopHome
+} from './methods'
 import { FileData } from './types'
 
 ipcMain.handle('ingop-home-init', async () => {
@@ -10,11 +16,28 @@ ipcMain.handle('ingop-home-remove', async () => {
   ingopHome.remove()
 })
 
+ipcMain.handle('check-gop-exist', async () => {
+  return await existsEnv.gop.exist()
+})
+ipcMain.handle('check-gop-isNew', async (_event, newVersion: string) => {
+  return await existsEnv.gop.isNew(newVersion)
+})
+ipcMain.handle('check-env-go-exist', async () => {
+  return await existsEnv.env.go.exist()
+})
+ipcMain.handle('check-env-go-isNew', async (_event, newVersion: string) => {
+  return await existsEnv.env.go.isNew(newVersion)
+})
+
 ipcMain.handle('auto-sava-gop-file', async (_event, fileData: FileData) => {
   await new autoSaveFile(fileData).gop()
 })
 ipcMain.handle('auto-sava-env-go-file', async (_event, fileData: FileData) => {
   await new autoSaveFile(fileData).env.go()
+})
+
+ipcMain.handle('compile-gop', async () => {
+  return await compile.gop()
 })
 
 ipcMain.handle('env-gop-init', () => {

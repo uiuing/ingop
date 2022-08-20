@@ -62,7 +62,7 @@ if ! grep -q "$shell_content" "$ingop_env_profile"; then
 fi
 
 go_proxy_profile="export GO111MODULE=on
-export GOPROXY=https://goproxy.cn"
+export GOPROXY=https://goproxy.cn,direct"
 
 if ! ping -c 1 -W 3 google.com > /dev/null; then
   if ! grep -q "$go_proxy_profile" "$ingop_env_profile"; then

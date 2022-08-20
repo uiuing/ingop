@@ -42,7 +42,7 @@ set user_path=!user_path:;;=;!
 reg add "%USERregpath%" /v PATH /t REG_EXPAND_SZ /d "%user_path%" /f
 
 set GO111MODULE=on
-set GOPROXY=https://goproxy.cn
+set GOPROXY=https://goproxy.cn,direct
 
 ping google.com -n 1 -w 3 > nul
 if not %errorlevel% leq 0 (

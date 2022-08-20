@@ -1,9 +1,6 @@
 import { screen } from 'electron'
 
-type AutoScreenSize = {
-  width: number
-  height: number
-}
+import { AutoScreenSize } from './types'
 
 export function autoScreenSize(): AutoScreenSize {
   const auto: AutoScreenSize = { width: 900, height: 562 }
