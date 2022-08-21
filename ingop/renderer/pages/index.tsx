@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next'
 
 export default function Index() {
-  const { t } = useTranslation()
-  return <div>{t('test')}</div>
+  // const { t } = useTranslation()
+  return <></>
 }

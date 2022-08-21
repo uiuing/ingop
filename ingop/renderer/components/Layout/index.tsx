@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import React from 'react'
 
+import Banner from '../Banner'
+import styles from './style.module.scss'
+
 export default function Layout({ children }: React.PropsWithChildren) {
   const meta = {
     title: 'InGop'
@@ -15,7 +18,12 @@ export default function Layout({ children }: React.PropsWithChildren) {
           content="initial-scale=1.0,width=device-width,user-scalable=no"
         />
       </Head>
-      <main>{children}</main>
+      <main className={styles.wrapper}>
+        <div className={styles.banner}>
+          <Banner></Banner>
+        </div>
+        <div className={styles.content}>{children}</div>
+      </main>
     </>
   )
 }

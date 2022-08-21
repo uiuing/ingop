@@ -1,12 +1,13 @@
 .mask {
   position: absolute;
+  z-index: 9999;
   width: 100vw;
   height: 100vh;
   background-color: white;
 }
 
 .fadeOutTop {
-  animation: fade-out-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: fade-out-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 @keyframes fade-out-top {
@@ -16,6 +17,7 @@
   }
 
   100% {
+    display: none;
     opacity: 0;
     transform: translateY(-50px);
   }

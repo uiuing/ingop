@@ -2,7 +2,7 @@ import decompress from 'decompress'
 import { existsSync, readdirSync, renameSync, unlinkSync } from 'fs'
 import { join } from 'path'
 
-import { checkVersionEnv, isNewVersion } from '../methods/check'
+import { existsEnv } from '../methods/check'
 import { ingopPaths, ingopPathsArray } from '../methods/config'
 import { isWin } from '../methods/config'
 import { buildGop } from '../methods/env/compile'
@@ -10,7 +10,12 @@ import { EnvManage } from '../methods/env/types'
 import { envManage as unixEnvManage } from '../methods/env/unix/execute'
 import { envManage as winEnvManage } from '../methods/env/win/execute'
 import { initDirs, removeDirs, saveFile } from '../methods/files'
-import { Compile, ExistsEnv, FileDataParams } from './types'
+import {
+  Compile,
+  ExistsAllEnvParams,
+  ExistsAllEnvResult,
+  FileDataParams
+} from './types'
 
 export const ingopHome = {
   init: () => {
@@ -21,25 +26,36 @@ export const ingopHome = {
   }
 }
 
-export const existsEnv: ExistsEnv = {
-  gop: {
-    exist: async () => {
-      return (await checkVersionEnv('gop')) !== ''
+export async function existsAllEnv(
+  p: ExistsAllEnvParams
+): Promise<ExistsAllEnvResult> {
+  const r = {
+    gop: {
+      exist: false,
+      isNew: false
     },
-    isNew: async (newVersion: string) => {
-      return await isNewVersion('gop', newVersion)
-    }
-  },
-  env: {
-    go: {
-      exist: async () => {
-        return (await checkVersionEnv('go')) !== ''
-      },
-      isNew: async (newVersion: string) => {
-        return await isNewVersion('go', newVersion)
+    env: {
+      go: {
+        exist: false,
+        isNew: false
       }
     }
   }
+  let i = await existsEnv.env.go.exist()
+  if (i) {
+    r.env.go.exist = i
+    i = await existsEnv.env.go.isNew(p.env.goNewVersion)
+    if (i) {
+      r.env.go.isNew = i
+      i = await existsEnv.gop.exist()
+      if (i) {
+        r.gop.exist = i
+        i = await existsEnv.gop.isNew(p.gopNewVersion)
+        if (i) r.gop.isNew = true
+      }
+    }
+  }
+  return r
 }
 
 export class autoSaveFile {

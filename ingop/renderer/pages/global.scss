@@ -1,3 +1,5 @@
+@import '~@douyinfe/semi-ui/dist/css/semi.min.css';
+
 html,
 body {
   top: 0;
@@ -12,4 +14,18 @@ body {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p,
+svg,
+img {
+  -webkit-user-drag: none;
+  user-select: none;
 }

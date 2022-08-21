@@ -25,8 +25,8 @@ function requestReleases(url: ReleasesUrl, callback: (...arg) => void) {
       t
     }
   })
-    .then((r) => callback(false, null, true, r.data))
-    .catch((e) => callback(true, e, false, null))
+    .then((r) => callback(null, r.data))
+    .catch((e) => callback(e, null))
 }
 
 export function getRemoteFile(url: string, callback: CallBackFile) {

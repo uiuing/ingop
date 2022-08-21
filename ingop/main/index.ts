@@ -17,7 +17,6 @@ app.on('ready', async () => {
     resizable: isDev,
     maximizable: false,
     center: true,
-    show: isDev,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: false,
@@ -33,10 +32,6 @@ app.on('ready', async () => {
       ).toString()
 
   await mainWindow.loadURL(url)
-
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
-  })
 
   const gotTheLock = app.requestSingleInstanceLock()
   if (!gotTheLock) {
@@ -54,9 +49,6 @@ app.on('ready', async () => {
 
 if (!isDev) {
   Menu.setApplicationMenu(null)
-  if (process.platform === 'darwin') {
-    app.dock.hide()
-  }
 }
 
 app.on('window-all-closed', app.quit)

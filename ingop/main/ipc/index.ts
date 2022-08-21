@@ -4,10 +4,10 @@ import {
   autoSaveFile,
   compile,
   envManage,
-  existsEnv,
+  existsAllEnv,
   ingopHome
 } from './methods'
-import { FileDataParams } from './types'
+import { ExistsAllEnvParams, FileDataParams } from './types'
 
 ipcMain.handle('ingop-home-init', async () => {
   ingopHome.init()
@@ -16,17 +16,8 @@ ipcMain.handle('ingop-home-remove', async () => {
   ingopHome.remove()
 })
 
-ipcMain.handle('check-gop-exist', async () => {
-  return await existsEnv.gop.exist()
-})
-ipcMain.handle('check-gop-isNew', async (_event, newVersion: string) => {
-  return await existsEnv.gop.isNew(newVersion)
-})
-ipcMain.handle('check-env-go-exist', async () => {
-  return await existsEnv.env.go.exist()
-})
-ipcMain.handle('check-env-go-isNew', async (_event, newVersion: string) => {
-  return await existsEnv.env.go.isNew(newVersion)
+ipcMain.handle('check-env-all', async (_event, p: ExistsAllEnvParams) => {
+  return await existsAllEnv(p)
 })
 
 ipcMain.handle(

@@ -2,7 +2,8 @@ import {
   AutoSaveFile,
   Compile,
   EnvManage,
-  ExistsEnv,
+  ExistsAllEnvParams,
+  ExistsAllEnvResult,
   FileDataParams,
   IngopHome
 } from './types'
@@ -16,25 +17,10 @@ export const ingopHome: IngopHome = {
   }
 }
 
-export const existsEnv: ExistsEnv = {
-  gop: {
-    exist: async () => {
-      return await global.ipcRenderer.invoke('check-gop-exist')
-    },
-    isNew: async (newVersion: string) => {
-      return await global.ipcRenderer.invoke('check-gop-isNew', newVersion)
-    }
-  },
-  env: {
-    go: {
-      exist: async () => {
-        return await global.ipcRenderer.invoke('check-env-go-exist')
-      },
-      isNew: async (newVersion: string) => {
-        return await global.ipcRenderer.invoke('check-env-go-isNew', newVersion)
-      }
-    }
-  }
+export async function existsAllEnv(
+  p: ExistsAllEnvParams
+): Promise<ExistsAllEnvResult> {
+  return await global.ipcRenderer.invoke('check-env-all', p)
 }
 
 export const autoSaveFile: AutoSaveFile = {

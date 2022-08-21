@@ -1,19 +1,22 @@
-import { checkVersionEnv, execCommand, isNewVersion } from '../check'
+import { existsEnv } from '../check'
 
 async function test() {
   console.info(
-    'test check function [execCommand("ls")] :',
-    await execCommand('ls')
+    'test check function [existsEnv.gop.exist()] :',
+    await existsEnv.gop.exist()
+  )
+  console.info(
+    'test check function [existsEnv.gop.isNew("2.0.1")] :',
+    await existsEnv.gop.isNew('2.0.1')
   )
 
   console.info(
-    'test check function [checkVersionEnv("go")] :',
-    await checkVersionEnv('go')
+    'test check function [existsEnv.env.go.exist()] :',
+    await existsEnv.env.go.exist()
   )
-
   console.info(
-    'test check function [isNewVersion("go","1.16")] :',
-    await isNewVersion('go', '1.16')
+    'test check function [existsEnv.env.go.isNew("1.16")] :',
+    await existsEnv.env.go.isNew('1.16')
   )
 }
 

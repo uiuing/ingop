@@ -13,6 +13,7 @@
     "@next/next/no-html-link-for-pages": ["error", "renderer/pages"],
     "prettier/prettier": "error",
     "comma-dangle": ["error", "never"],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "@next/next/no-img-element": "off"
   }
 }

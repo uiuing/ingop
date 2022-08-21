@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .banner {
+    width: 30vw;
+    height: 100vh;
+    border-right: 2px solid var(--semi-color-border);
+  }
+
+  .content {
+    width: 70vw;
+    height: 100vh;
+  }
+}

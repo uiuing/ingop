@@ -1,6 +1,6 @@
 import { exec } from 'child_process'
 
-import { AsyncBoolean, AsyncString, AsyncStringNull } from './types'
+import { AsyncBoolean, AsyncString, AsyncStringNull, ExistsEnv } from './types'
 
 export function execCommand(cmd: string): AsyncStringNull {
   return new Promise((resolve) => {
@@ -11,17 +11,14 @@ export function execCommand(cmd: string): AsyncStringNull {
   })
 }
 
-export async function checkVersionEnv(cmd: string): AsyncString {
+async function checkVersionEnv(cmd: string): AsyncString {
   const s = await execCommand(`${cmd} version`)
   if (s === null) return ''
   const r = s.match(/[0-9.]+/)
   return r === null ? '' : r[0]
 }
 
-export async function isNewVersion(
-  cmd: string,
-  newVersion: string
-): AsyncBoolean {
+async function isNewVersion(cmd: string, newVersion: string): AsyncBoolean {
   const nowVersion = await checkVersionEnv(cmd)
   if (!nowVersion) return false
   const levels1 = nowVersion.split('.')
@@ -34,4 +31,25 @@ export async function isNewVersion(
     if (_now < _new) return false
   }
   return true
+}
+
+export const existsEnv: ExistsEnv = {
+  gop: {
+    exist: async () => {
+      return (await checkVersionEnv('gop')) !== ''
+    },
+    isNew: async (newVersion: string) => {
+      return await isNewVersion('gop', newVersion)
+    }
+  },
+  env: {
+    go: {
+      exist: async () => {
+        return (await checkVersionEnv('go')) !== ''
+      },
+      isNew: async (newVersion: string) => {
+        return await isNewVersion('go', newVersion)
+      }
+    }
+  }
 }

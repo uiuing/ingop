@@ -3,15 +3,20 @@ export type FileDataParams = {
   base64Data: string
 }
 
-type ExistsMethod = {
-  exist: () => Promise<boolean>
-  isNew: (newVersion: string) => Promise<boolean>
+type ExistsValue = {
+  exist: boolean
+  isNew: boolean
 }
 
-export type ExistsEnv = {
-  gop: ExistsMethod
+export type ExistsAllEnvParams = {
+  gopNewVersion: string
+  env: { goNewVersion: string }
+}
+
+export type ExistsAllEnvResult = {
+  gop: ExistsValue
   env: {
-    go: ExistsMethod
+    go: ExistsValue
   }
 }
 
