@@ -7,14 +7,18 @@ import styles from './style.module.scss'
 export default function InitBuffer() {
   const { initOK } = useInitConfig()
   const [unBuffer, setUnBuffer] = useState(false)
+  const [hideBuffer, setHideBuffer] = useState(false)
   if (initOK)
     setTimeout(() => {
-      setUnBuffer(true)
-    }, 500)
+      setHideBuffer(true)
+      setTimeout(() => {
+        setUnBuffer(true)
+      }, 500)
+    }, 1600)
   return unBuffer ? (
     <></>
   ) : (
-    <div className={`${styles.mask} ${initOK ? styles.fadeOutTop : ''}`}>
+    <div className={`${styles.mask} ${hideBuffer ? styles.fadeOutTop : ''}`}>
       <EffectLogo />
     </div>
   )

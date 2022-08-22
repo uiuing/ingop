@@ -40,9 +40,7 @@ export default function useInitConfig(): InitConfigResult {
       }
       setInitOK(true)
     }
-    setTimeout(() => {
-      getReleases.gop(initEnvReleases)
-    }, 1400)
+    getReleases.gop(initEnvReleases)
   }, [])
   return { initOK }
 }
