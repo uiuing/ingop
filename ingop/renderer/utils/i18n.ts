@@ -1,4 +1,5 @@
 import { changeLanguage } from 'i18next'
+import { getI18n } from 'react-i18next'
 
 export function initLanguage() {
   if (typeof global !== 'undefined') {
@@ -13,7 +14,7 @@ export function initLanguage() {
 }
 
 export function setLanguage(language: string) {
-  if (typeof global !== 'undefined') {
+  if (typeof global !== 'undefined' && getI18n().language !== language) {
     global.localStorage.setItem('language', language)
     changeLanguage(language)
   }

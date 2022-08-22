@@ -1,4 +1,4 @@
-import { ipcMain } from 'electron'
+import { ipcMain, shell } from 'electron'
 
 import {
   autoSaveFile,
@@ -45,4 +45,8 @@ ipcMain.handle('env-env-go-init', () => {
 })
 ipcMain.handle('env-all-remove', () => {
   envManage.remove()
+})
+
+ipcMain.on('open-url', async (_event, url: string) => {
+  await shell.openExternal(url)
 })

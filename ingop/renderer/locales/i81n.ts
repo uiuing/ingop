@@ -3,12 +3,14 @@ import { initReactI18next } from 'react-i18next'
 
 import enUS from './data/en-US.json'
 import zhCN from './data/zh-CN.json'
-const resources = {
+export const resources = {
   'en-US': {
-    translation: enUS
+    translation: enUS,
+    description: 'English'
   },
   'zh-CN': {
-    translation: zhCN
+    translation: zhCN,
+    description: '简体中文'
   }
 }
 i18n.use(initReactI18next).init({

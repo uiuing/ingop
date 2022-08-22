@@ -1,3 +1,9 @@
 {
-  "test": "hello"
+  "title": {
+    "init": "Initialising ...",
+    "installGo": "Installing Environment ...",
+    "installGop": "Installing Go+ ...",
+    "manage": "Environment Management",
+    "errorNet": "Network Anomalies"
+  }
 }

@@ -1,17 +1,20 @@
 import Head from 'next/head'
 import React from 'react'
+import { getI18n, useTranslation } from 'react-i18next'
+import { useRecoilValue } from 'recoil'
 
+import { RouterModuleStore } from '../../store'
 import Banner from '../Banner'
 import styles from './style.module.scss'
 
 export default function Layout({ children }: React.PropsWithChildren) {
-  const meta = {
-    title: 'InGop'
-  }
+  const { t } = useTranslation()
+  const routerModule = useRecoilValue(RouterModuleStore)
+  console.log(t('title.' + routerModule))
   return (
     <>
       <Head>
-        <title>{meta.title}</title>
+        <title>{`InGop - ${t('title.' + routerModule)}`}</title>
         <meta charSet="utf-8" />
         <meta
           name="viewport"

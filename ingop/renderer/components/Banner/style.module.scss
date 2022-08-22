@@ -1,3 +1,24 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  padding: 1vw;
+
+  .option {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+  }
+
+  .gopLogo {
+    width: 65%;
+    height: 100%;
+    margin-top: 30%;
+  }
+}
+
 .qiniuDoll {
   position: absolute;
   z-index: 100;

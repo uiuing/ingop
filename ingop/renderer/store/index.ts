@@ -3,6 +3,11 @@ import { atom } from 'recoil'
 import { ExistsAllEnvResult } from '../apis/ipc/types'
 import { GopReleases } from '../apis/releases/types'
 
+export const RouterModuleStore = atom({
+  key: 'RouterModuleStore',
+  default: 'init' as string
+})
+
 export const GopReleasesStore = atom({
   key: 'GopReleasesStore',
   default: {} as GopReleases | null

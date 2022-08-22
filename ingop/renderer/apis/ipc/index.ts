@@ -53,3 +53,7 @@ export const envManage: EnvManage = {
     await global.ipcRenderer.invoke('env-all-remove')
   }
 }
+
+export function openUrl(url: string) {
+  global.ipcRenderer.send('open-url', url)
+}
