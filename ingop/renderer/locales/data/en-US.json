@@ -1,9 +1,13 @@
 {
   "title": {
     "init": "Initialising ...",
-    "installGo": "Installing Environment ...",
+    "install": "Start installation of Go+",
+    "installGo": "Installing the required environment ...",
     "installGop": "Installing Go+ ...",
     "manage": "Environment Management",
     "errorNet": "Network Anomalies"
+  },
+  "download": {
+    "title": "Downloading"
   }
 }

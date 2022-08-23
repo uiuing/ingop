@@ -9,9 +9,9 @@ export type FileDataParams = {
 }
 
 export type AutoSaveFile = {
-  gop: (fileData: FileDataParams) => void
+  gop: (fileData: FileDataParams) => Promise<boolean>
   env: {
-    go: (fileData: FileDataParams) => void
+    go: (fileData: FileDataParams) => Promise<boolean>
   }
 }
 
@@ -32,6 +32,10 @@ export type ExistsAllEnvResult = {
   gop: ExistsValue
   env: {
     go: ExistsValue
+  }
+  system: {
+    platform: string
+    arch: string
   }
 }
 

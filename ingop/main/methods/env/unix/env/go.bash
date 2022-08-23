@@ -62,3 +62,5 @@ export PATH=\$PATH:\$GOBIN"
 if ! grep -q "$shell_content" "$ingop_env_profile"; then
   echo "$shell_content" >> "$ingop_env_profile"
 fi
+
+ln -s -f $HOME/.ingop/env/go/bin/* /usr/local/bin

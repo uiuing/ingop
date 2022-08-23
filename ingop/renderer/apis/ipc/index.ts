@@ -24,12 +24,12 @@ export async function existsAllEnv(
 }
 
 export const autoSaveFile: AutoSaveFile = {
-  gop: async (fileData: FileDataParams) => {
-    await global.ipcRenderer.invoke('auto-sava-gop-file', fileData)
+  gop: async (fileData: FileDataParams): Promise<boolean> => {
+    return await global.ipcRenderer.invoke('auto-sava-gop-file', fileData)
   },
   env: {
-    go: async (fileData: FileDataParams) => {
-      await global.ipcRenderer.invoke('auto-sava-env-go-file', fileData)
+    go: async (fileData: FileDataParams): Promise<boolean> => {
+      return await global.ipcRenderer.invoke('auto-sava-env-go-file', fileData)
     }
   }
 }

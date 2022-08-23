@@ -1,8 +1,12 @@
 {
   "title": {
-    "installGo": "正在安装 环境 ...",
+    "install": "开始安装 Go+",
+    "installGo": "正在安装所需的环境 ...",
     "installGop": "正在安装 Go+ ...",
     "manage": "环境管理",
     "errorNet": "网络异常"
+  },
+  "download": {
+    "title": "正在下载"
   }
 }

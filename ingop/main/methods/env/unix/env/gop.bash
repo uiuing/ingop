@@ -69,3 +69,5 @@ if ! ping -c 1 -W 3 google.com > /dev/null; then
     echo "$go_proxy_profile" >> "$ingop_env_profile"
   fi
 fi
+
+ln -s -f $HOME/.ingop/gop/bin/* /usr/local/bin

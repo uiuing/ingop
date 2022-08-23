@@ -25,7 +25,7 @@ export default function Layout({ children }: React.PropsWithChildren) {
       </Head>
       <main className={styles.wrapper}>
         <div className={styles.banner}>
-          <Banner></Banner>
+          <Banner />
         </div>
         <div className={styles.content}>{children}</div>
       </main>

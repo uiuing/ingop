@@ -6,6 +6,10 @@ import { RouterModuleStore } from '../store'
 export const useControlRouter = () => {
   const setRouterModule = useSetRecoilState(RouterModuleStore)
   const router = useRouter()
+  const toInstall = () => {
+    router.push('/install')
+    setRouterModule('install')
+  }
   const toInstallGo = () => {
     router.push('/install/go')
     setRouterModule('installGo')
@@ -22,5 +26,5 @@ export const useControlRouter = () => {
     router.push('/error/network')
     setRouterModule('errorNet')
   }
-  return { toInstallGo, toInstallGop, toManage, toErrorNetwork }
+  return { toInstall, toInstallGo, toInstallGop, toManage, toErrorNetwork }
 }

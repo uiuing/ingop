@@ -23,13 +23,13 @@ ipcMain.handle('check-env-all', async (_event, p: ExistsAllEnvParams) => {
 ipcMain.handle(
   'auto-sava-gop-file',
   async (_event, fileData: FileDataParams) => {
-    await new autoSaveFile(fileData).gop()
+    return await new autoSaveFile(fileData).gop()
   }
 )
 ipcMain.handle(
   'auto-sava-env-go-file',
   async (_event, fileData: FileDataParams) => {
-    await new autoSaveFile(fileData).env.go()
+    return await new autoSaveFile(fileData).env.go()
   }
 )
 

@@ -1,5 +1,6 @@
 import decompress from 'decompress'
 import { existsSync, readdirSync, renameSync, unlinkSync } from 'fs'
+import * as os from 'os'
 import { join } from 'path'
 
 import { existsEnv } from '../methods/check'
@@ -29,7 +30,7 @@ export const ingopHome = {
 export async function existsAllEnv(
   p: ExistsAllEnvParams
 ): Promise<ExistsAllEnvResult> {
-  const r = {
+  const r: ExistsAllEnvResult = {
     gop: {
       exist: false,
       isNew: false
@@ -39,6 +40,10 @@ export async function existsAllEnv(
         exist: false,
         isNew: false
       }
+    },
+    system: {
+      platform: os.platform(),
+      arch: os.arch()
     }
   }
   let i = await existsEnv.env.go.exist()
@@ -77,11 +82,13 @@ export class autoSaveFile {
     renameSync(goplus_gop_hash_dir, gop_root)
     removeDirs([goplus_gop_hash_dir])
     if (existsSync(this.path)) unlinkSync(this.path)
+    return true
   }
   env = {
     go: async () => {
-      await decompress(this.path, ingopPaths.go_root)
+      await decompress(this.path, ingopPaths.env)
       if (existsSync(this.path)) unlinkSync(this.path)
+      return true
     }
   }
 }

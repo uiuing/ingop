@@ -1,28 +1,18 @@
-import { Typography } from '@douyinfe/semi-ui'
-
 import ButtonGithub from './ButtonGithub'
+import gopLogo from './images/base64/gopLogo'
+import qiniuDoll from './images/base64/qiniuDoll'
 import SelectLang from './SelectLang'
 import styles from './style.module.scss'
 
 export default function Banner() {
-  const { Title } = Typography
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.option}>
         <ButtonGithub />
         <SelectLang />
       </div>
-      <img
-        src="./gop_logo.svg"
-        alt="goplus go+ logo"
-        className={styles.gopLogo}
-      />
-      <img
-        src="./qiniu_doll.png"
-        className={styles.qiniuDoll}
-        alt="qiniu doll"
-      />
+      <img src={gopLogo} alt="goplus go+ logo" className={styles.gopLogo} />
+      <img src={qiniuDoll} className={styles.qiniuDoll} alt="qiniu doll" />
     </div>
   )
 }

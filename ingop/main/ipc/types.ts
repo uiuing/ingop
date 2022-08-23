@@ -18,6 +18,10 @@ export type ExistsAllEnvResult = {
   env: {
     go: ExistsValue
   }
+  system: {
+    platform: string
+    arch: string
+  }
 }
 
 export type Compile = {

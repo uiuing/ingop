@@ -17,7 +17,7 @@ export default function useInitConfig(): InitConfigResult {
   const setGopReleasesStore = useSetRecoilState(GopReleasesStore)
   const setExistsAllEnvStore = useSetRecoilState(ExistsAllEnvStore)
   const [initOK, setInitOK] = useState<boolean>(false)
-  const { toInstallGop, toInstallGo, toManage } = useControlRouter()
+  const { toInstall, toManage } = useControlRouter()
   useEffect(() => {
     initLanguage()
     async function initEnvReleases(errorInfo, releasesData) {
@@ -30,10 +30,8 @@ export default function useInitConfig(): InitConfigResult {
         env: { goNewVersion: '1.16' }
       })
       setExistsAllEnvStore(e)
-      if (!e.env.go.exist) {
-        await toInstallGo()
-      } else if (!e.gop.exist) {
-        await toInstallGop()
+      if (!e.env.go.exist || !e.gop.exist) {
+        await toInstall()
       }
       if (e.gop.exist && e.env.go.exist) {
         await toManage()

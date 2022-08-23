@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <RecoilRoot>
-        <Buffer></Buffer>
+        <Buffer />
         <Layout>
           <Component {...pageProps} />
         </Layout>
