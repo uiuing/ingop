@@ -1,4 +1,5 @@
 import ButtonGithub from './ButtonGithub'
+import ButtonHelp from './ButtonHelp'
 import gopLogo from './images/base64/gopLogo'
 import qiniuDoll from './images/base64/qiniuDoll'
 import SelectLang from './SelectLang'
@@ -8,6 +9,7 @@ export default function Banner() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.option}>
+        <ButtonHelp />
         <ButtonGithub />
         <SelectLang />
       </div>

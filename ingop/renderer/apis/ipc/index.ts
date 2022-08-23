@@ -57,3 +57,7 @@ export const envManage: EnvManage = {
 export function openUrl(url: string) {
   global.ipcRenderer.send('open-url', url)
 }
+
+export function rebootWindows() {
+  global.ipcRenderer.send('reboot-windows')
+}

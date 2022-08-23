@@ -5,7 +5,8 @@ import {
   compile,
   envManage,
   existsAllEnv,
-  ingopHome
+  ingopHome,
+  rebootWindows
 } from './methods'
 import { ExistsAllEnvParams, FileDataParams } from './types'
 
@@ -49,4 +50,8 @@ ipcMain.handle('env-all-remove', () => {
 
 ipcMain.on('open-url', async (_event, url: string) => {
   await shell.openExternal(url)
+})
+
+ipcMain.on('reboot-windows', async () => {
+  await rebootWindows()
 })

@@ -7,7 +7,12 @@
     "manage": "Environment Management",
     "errorNet": "Network Anomalies"
   },
-  "download": {
-    "title": "Downloading"
+  "install": {
+    "title": "Welcome to the Go+ installation with InGop",
+    "desc": "Go+ programming language For engineering, STEM education, and data science",
+    "button": "Start Installation",
+    "download": {
+      "title": "Downloading"
+    }
   }
 }

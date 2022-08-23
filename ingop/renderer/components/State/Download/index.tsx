@@ -15,7 +15,7 @@ export default function Download({ module, percent }: Props) {
   return (
     <>
       <Title heading={3} style={{ margin: '10% 0 7% 0' }}>
-        {`${t('download.title')} [${module}] ...`}
+        {`${t('install.download.title')} [${module}] ...`}
       </Title>
       <Progress
         percent={percent}

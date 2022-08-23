@@ -3,7 +3,7 @@ import { existsSync, readdirSync, renameSync, unlinkSync } from 'fs'
 import * as os from 'os'
 import { join } from 'path'
 
-import { existsEnv } from '../methods/check'
+import { execCommand, existsEnv } from '../methods/check'
 import { ingopPaths, ingopPathsArray } from '../methods/config'
 import { isWin } from '../methods/config'
 import { buildGop } from '../methods/env/compile'
@@ -100,3 +100,7 @@ export const compile: Compile = {
 }
 
 export const envManage: EnvManage = isWin ? winEnvManage : unixEnvManage
+
+export async function rebootWindows() {
+  await execCommand('reboot')
+}

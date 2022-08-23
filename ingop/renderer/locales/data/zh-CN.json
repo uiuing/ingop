@@ -6,7 +6,12 @@
     "manage": "环境管理",
     "errorNet": "网络异常"
   },
-  "download": {
-    "title": "正在下载"
+  "install": {
+    "title": "欢迎使用 InGop 来安装 Go+",
+    "desc": "Go+ 编程语言用于工程、STEM教育和数据科学",
+    "button": "开始安装",
+    "download": {
+      "title": "正在下载"
+    }
   }
 }
