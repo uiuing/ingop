@@ -86,6 +86,7 @@ export class autoSaveFile {
   }
   env = {
     go: async () => {
+      removeDirs([ingopPaths.go_root])
       await decompress(this.path, ingopPaths.env)
       if (existsSync(this.path)) unlinkSync(this.path)
       return true

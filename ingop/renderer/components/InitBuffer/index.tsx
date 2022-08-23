@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil'
 
 import useInitConfig from '../../hooks/useInitConfig'
 import { InitOKStore } from '../../store'
-import EffectLogo from './EffectLogo'
+import EffectLogo from '../Effect/Logo'
 import styles from './style.module.scss'
 
 export default function InitBuffer() {

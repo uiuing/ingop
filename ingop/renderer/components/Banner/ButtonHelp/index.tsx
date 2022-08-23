@@ -1,7 +1,7 @@
 import { IconHelpCircle } from '@douyinfe/semi-icons'
 import { Button } from '@douyinfe/semi-ui'
 
-import { openUrl } from '../../../apis/ipc'
+// import { openUrl } from '../../../apis/ipc'
 
 export default function ButtonHelp() {
   const openHelp = () => {

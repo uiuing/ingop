@@ -27,6 +27,10 @@ if [ ! -f "$HOME"/.bash_profile ]; then
     touch "$HOME"/.bash_profile
 fi
 
+if [ -f "$HOME"/.bashrc ]; then
+   env_profiles[${#env_profiles[@]}]="$HOME"/.bashrc
+fi
+
 if [ -f "$HOME"/.zshrc ]; then
   env_profiles[${#env_profiles[@]}]=$HOME/.zshrc
 fi

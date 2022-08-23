@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 
-import { existsAllEnv } from '../apis/ipc'
+import { existsAllEnv, ingopHome } from '../apis/ipc'
 import { getReleases } from '../apis/releases'
 import { ExistsAllEnvStore, GopReleasesStore, IsNetErrorStore } from '../store'
 import { initLanguage } from '../utils/i18n'
@@ -19,6 +21,7 @@ export default function useInitConfig(): InitConfigResult {
   const [initOK, setInitOK] = useState<boolean>(false)
   const { toInstall, toManage } = useControlRouter()
   useEffect(() => {
+    ingopHome.init()
     initLanguage()
     async function initEnvReleases(errorInfo, releasesData) {
       setNetErrorStore(errorInfo)

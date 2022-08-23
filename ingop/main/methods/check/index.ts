@@ -1,10 +1,15 @@
 import { exec } from 'child_process'
+import { existsSync } from 'fs'
+import { join } from 'path'
 
+import { ingopPaths, isWin } from '../config'
 import { AsyncBoolean, AsyncString, AsyncStringNull, ExistsEnv } from './types'
 
 export function execCommand(cmd: string): AsyncStringNull {
+  const e = join(ingopPaths.env, 'env.bash')
+  const c = existsSync(e) && !isWin ? `source ${e} && ${cmd}` : cmd
   return new Promise((resolve) => {
-    exec(`${cmd}`, { encoding: 'utf8' }, (err, stdout) => {
+    exec(c, { encoding: 'utf8' }, (err, stdout) => {
       if (err) resolve(null)
       resolve(stdout)
     })

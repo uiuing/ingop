@@ -1,6 +1,6 @@
 export type IngopHome = {
-  init: () => Promise<void>
-  remove: () => Promise<void>
+  init: () => void
+  remove: () => void
 }
 
 export type FileDataParams = {

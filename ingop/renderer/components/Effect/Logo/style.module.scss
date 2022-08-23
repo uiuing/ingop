@@ -4,13 +4,15 @@
 }
 
 .inRightGo {
-  animation: slide-in-right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s
+  animation:
+    slide-in-right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s
     forwards;
   opacity: 0;
 }
 
 .inBottomAdd {
-  animation: slide-in-bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s
+  animation:
+    slide-in-bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s
     forwards;
   opacity: 0;
 }

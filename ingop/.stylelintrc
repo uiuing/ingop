@@ -9,7 +9,7 @@
     "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
     "declaration-colon-newline-after": "always-multi-line",
     "prettier/prettier": [
-      "error",
+      true,
       {
         "endOfLine": "auto",
         "singleQuote": true
