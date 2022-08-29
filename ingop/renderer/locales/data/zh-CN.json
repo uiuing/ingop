@@ -11,14 +11,17 @@
     "desc": "Go+ 编程语言用于工程、STEM教育和数据科学",
     "button": "开始安装",
     "download": {
-      "go": "正在下载数据包，关于：GoLang ..."
+      "go": "正在下载数据包，关于：GoLang ...",
+      "gop": "正在下载数据包，关于：Go+ ..."
     },
     "compile": {
       "title": "正在执行 ...",
-      "go": "正在编译并配置 Golang ..."
+      "go": "正在编译并配置 Golang ...",
+      "gop": "正在编译并配置 Go+ ..."
     },
     "success": {
-      "go": "Golang 已成功安装 ！"
+      "go": "Go+ 所需环境已成功安装 ！",
+      "gop": "Go+ 已成功安装 ！"
     }
   },
   "error": {

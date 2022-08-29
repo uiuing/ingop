@@ -12,14 +12,17 @@
     "desc": "Go+ programming language For engineering, STEM education, and data science",
     "button": "Start Installation",
     "download": {
-      "go": "Downloading packets now, re: Golang ..."
+      "go": "Downloading packets now, re: Golang ...",
+      "gop": "Downloading packets now, re: Go+ ..."
     },
     "compile": {
       "title": "In execution ...",
-      "go": "Golang being compiled and configured ..."
+      "go": "Golang being compiled and configured ...",
+      "gop": "Go+ being compiled and configured ..."
     },
     "success": {
-      "go": "Golang has been installed successfully !"
+      "go": "Environment required for Go+ has been installed successfully !",
+      "gop": "Go+ has been installed successfully !"
     }
   },
   "error": {

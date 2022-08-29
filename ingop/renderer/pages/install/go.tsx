@@ -20,7 +20,7 @@ export default function Go() {
       return <EffectBinary title={t('install.compile.title')} />
     }
     if (runState === 'success') {
-      setTimeout(() => toInstallGop(), 1300)
+      setTimeout(() => toInstallGop(), 2000)
       return <EffectLogo />
     }
   }

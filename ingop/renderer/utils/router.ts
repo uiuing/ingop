@@ -26,5 +26,23 @@ export const useControlRouter = () => {
     router.push('/error/network')
     setRouterModule('errorNet')
   }
-  return { toInstall, toInstallGo, toInstallGop, toManage, toErrorNetwork }
+  const toErrorVersion = () => {
+    router.push('/error/version')
+  }
+  const toTipsReboot = () => {
+    router.push('/tips/reboot')
+  }
+  const toTipsIngopGo = () => {
+    router.push('/tips/ingop-go')
+  }
+  return {
+    toInstall,
+    toInstallGo,
+    toInstallGop,
+    toManage,
+    toErrorNetwork,
+    toErrorVersion,
+    toTipsReboot,
+    toTipsIngopGo
+  }
 }

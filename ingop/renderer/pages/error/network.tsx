@@ -3,7 +3,6 @@ import {
   IllustrationNoResultDark
 } from '@douyinfe/semi-illustrations'
 import { Button, Empty, Typography } from '@douyinfe/semi-ui'
-import { changeLanguage } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { useRecoilValue } from 'recoil'
 
