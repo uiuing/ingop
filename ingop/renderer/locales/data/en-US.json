@@ -27,6 +27,7 @@
   },
   "error": {
     "network": "Network error, please check your network connection and try again.",
+    "version": "Golang version must be greater than or equal to 1.16, Please uninstall your Golang yourself and click Retry afterwards, InGop will automatically install the appropriate environment for you.",
     "again": "Try again"
   }
 }
