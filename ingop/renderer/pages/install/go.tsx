@@ -8,7 +8,7 @@ import useInstallGo from '../../hooks/useInstallGo'
 import { useControlRouter } from '../../utils/router'
 
 export default function Go() {
-  const { percent, runState } = useInstallGo()
+  const { percent, runState, isInitLoad } = useInstallGo()
   const { toInstallGop } = useControlRouter()
   const { t } = useTranslation()
   const { Title } = Typography
@@ -24,12 +24,14 @@ export default function Go() {
       return <EffectLogo />
     }
   }
-  return (
+  return isInitLoad ? (
     <>
       <Title heading={3} style={{ margin: '10% 0 10% 0' }}>
         {t(`install.${runState}.go`)}
       </Title>
       {activeLoadEffect()}
     </>
+  ) : (
+    <></>
   )
 }

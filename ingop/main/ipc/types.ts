@@ -6,6 +6,7 @@ export type FileDataParams = {
 type ExistsValue = {
   exist: boolean
   isNew: boolean
+  isIngop: boolean
 }
 
 export type ExistsAllEnvParams = {

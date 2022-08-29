@@ -12,8 +12,13 @@ export const ingopHome: IngopHome = {
   init: async () => {
     await global.ipcRenderer.invoke('ingop-home-init')
   },
-  remove: async () => {
-    await global.ipcRenderer.invoke('ingop-home-remove')
+  remove: {
+    all: async () => {
+      await global.ipcRenderer.invoke('ingop-home-remove')
+    },
+    gop: async () => {
+      await global.ipcRenderer.invoke('ingop-gop-remove')
+    }
   }
 }
 

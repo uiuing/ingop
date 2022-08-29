@@ -22,8 +22,9 @@ export const ingopHome = {
   init: () => {
     initDirs(ingopPathsArray)
   },
-  remove: () => {
-    removeDirs(ingopPathsArray)
+  remove: {
+    all: () => removeDirs(ingopPathsArray),
+    gop: () => removeDirs([ingopPaths.gop_root])
   }
 }
 
@@ -33,12 +34,14 @@ export async function existsAllEnv(
   const r: ExistsAllEnvResult = {
     gop: {
       exist: false,
-      isNew: false
+      isNew: false,
+      isIngop: false
     },
     env: {
       go: {
         exist: false,
-        isNew: false
+        isNew: false,
+        isIngop: false
       }
     },
     system: {
@@ -49,6 +52,7 @@ export async function existsAllEnv(
   let i = await existsEnv.env.go.exist()
   if (i) {
     r.env.go.exist = i
+    r.env.go.isIngop = await existsEnv.env.go.isIngop()
     i = await existsEnv.env.go.isNew(p.env.goNewVersion)
     if (i) {
       r.env.go.isNew = i

@@ -45,6 +45,11 @@ export const existsEnv: ExistsEnv = {
     },
     isNew: async (newVersion: string) => {
       return await isNewVersion('gop', newVersion)
+    },
+    isIngop: async () => {
+      return (
+        (await execCommand(join(ingopPaths.gop_bin, 'gop version'))) !== null
+      )
     }
   },
   env: {
@@ -54,6 +59,11 @@ export const existsEnv: ExistsEnv = {
       },
       isNew: async (newVersion: string) => {
         return await isNewVersion('go', newVersion)
+      },
+      isIngop: async () => {
+        return (
+          (await execCommand(join(ingopPaths.go_bin, 'go version'))) !== null
+        )
       }
     }
   }

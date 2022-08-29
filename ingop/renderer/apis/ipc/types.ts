@@ -1,6 +1,9 @@
 export type IngopHome = {
   init: () => void
-  remove: () => void
+  remove: {
+    all: () => void
+    gop: () => void
+  }
 }
 
 export type FileDataParams = {
@@ -26,6 +29,7 @@ export type EnvManage = {
 type ExistsValue = {
   exist: boolean
   isNew: boolean
+  isIngop: boolean
 }
 
 export type ExistsAllEnvResult = {

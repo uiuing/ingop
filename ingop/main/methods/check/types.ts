@@ -7,6 +7,7 @@ export type AsyncBoolean = Promise<boolean>
 type ExistsMethod = {
   exist: () => Promise<boolean>
   isNew: (newVersion: string) => Promise<boolean>
+  isIngop: () => Promise<boolean>
 }
 export type ExistsEnv = {
   gop: ExistsMethod

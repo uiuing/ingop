@@ -28,5 +28,7 @@ export const envManage: EnvManage = {
   env: {
     initGo: () => execSync(bashCommand.env.go)
   },
-  remove: () => execSync(bashCommand.remove)
+  remove: () => {
+    execSync(bashCommand.remove)
+  }
 }

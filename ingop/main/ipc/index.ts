@@ -14,7 +14,10 @@ ipcMain.handle('ingop-home-init', async () => {
   ingopHome.init()
 })
 ipcMain.handle('ingop-home-remove', async () => {
-  ingopHome.remove()
+  ingopHome.remove.all()
+})
+ipcMain.handle('ingop-gop-remove', async () => {
+  ingopHome.remove.gop()
 })
 
 ipcMain.handle('check-env-all', async (_event, p: ExistsAllEnvParams) => {

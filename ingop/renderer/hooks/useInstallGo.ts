@@ -17,6 +17,7 @@ export default function useInstallGo() {
   const existsAllEnv = useRecoilValue(ExistsAllEnvStore)
   const [percent, setPercent] = useState(0)
   const [runState, setRunState] = useState<RunState>('download')
+  const [isInitLoad, setIsInitLoad] = useState(false)
   useEffect(() => {
     getReleases.env.go((errorInfo, releasesData) => {
       if (errorInfo === null && releasesData === null) {
@@ -33,6 +34,7 @@ export default function useInstallGo() {
               setIsNetError(errorInfo)
               toErrorNetwork()
             } else if (downloadOk) {
+              setIsInitLoad(true)
               setTimeout(() => {
                 setRunState('compile')
                 autoSaveFile.env
@@ -52,5 +54,5 @@ export default function useInstallGo() {
       }
     })
   }, [])
-  return { percent, runState }
+  return { percent, runState, isInitLoad }
 }
