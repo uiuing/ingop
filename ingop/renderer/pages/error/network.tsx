@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { useRecoilValue } from 'recoil'
 
 import { IsNetErrorStore } from '../../store'
-import styles from './style.module.scss'
+import styles from '../../utils/content.module.scss'
 
 export default function Network() {
   const { t } = useTranslation()

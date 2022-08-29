@@ -7,29 +7,16 @@ import { useRecoilValue } from 'recoil'
 import EffectBinary from '../../components/Effect/Binary'
 import EffectLogo from '../../components/Effect/Logo'
 import StateDownload from '../../components/State/Download'
+import useIngopGo from '../../hooks/useIngopGo'
 import useInstallGop from '../../hooks/useInstallGop'
 import { ExistsAllEnvStore } from '../../store'
 import { useControlRouter } from '../../utils/router'
 
 export default function Gop() {
+  const { isLoad } = useIngopGo()
+  const { percent, runState } = useInstallGop(isLoad)
   const existsAllEnv = useRecoilValue(ExistsAllEnvStore)
-  const { toManage, toErrorVersion, toTipsReboot, toTipsIngopGo } =
-    useControlRouter()
-  if (!existsAllEnv.env.go.isNew) {
-    toErrorVersion()
-    return <></>
-  }
-  if (!existsAllEnv.env.go.isIngop) {
-    if (typeof global !== 'undefined') {
-      const s = global.sessionStorage.getItem('ingop-tips-isIngop-go')
-      if (s !== 'true') {
-        toTipsIngopGo()
-        global.sessionStorage.setItem('ingop-tips-isIngop-go', 'true')
-      }
-    }
-    return <></>
-  }
-  const { percent, runState } = useInstallGop()
+  const { toManage, toTipsReboot } = useControlRouter()
   const { Title } = Typography
   const { t } = useTranslation()
   function activeLoadEffect() {
@@ -39,6 +26,7 @@ export default function Gop() {
     if (runState === 'compile') {
       return <EffectBinary title={t('install.compile.title')} />
     }
+    // TODO to manage
     if (runState === 'success') {
       setTimeout(() => {
         if (existsAllEnv.system.platform === 'win32') {
@@ -52,7 +40,7 @@ export default function Gop() {
   }
   return (
     <>
-      <Title heading={3} style={{ margin: '10% 0 10% 0' }}>
+      <Title heading={3} style={{ margin: '10% 0 4% 0' }}>
         {t(`install.${runState}.gop`)}
       </Title>
       {activeLoadEffect()}

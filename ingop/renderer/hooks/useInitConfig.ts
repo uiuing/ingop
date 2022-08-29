@@ -32,6 +32,7 @@ export default function useInitConfig(): InitConfigResult {
         gopNewVersion,
         env: { goNewVersion: '1.16' }
       })
+      console.log(e)
       setExistsAllEnvStore(e)
       if (!e.env.go.exist || !e.gop.exist) {
         await toInstall()
