@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios'
+
 export interface GopReleases {
   html_url: string
   id: number
@@ -34,7 +36,7 @@ export type CallBackGoR = (
 ) => void
 export type CallBackFile = (
   isError: boolean,
-  errorInfo: string | null,
+  errorInfo: AxiosError | null,
   downloadOk: boolean,
   progress: number,
   base64Data: string | null,

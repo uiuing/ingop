@@ -21,5 +21,9 @@
     "success": {
       "go": "Golang has been installed successfully !"
     }
+  },
+  "error": {
+    "network": "Network error, please check your network connection and try again.",
+    "again": "Try again"
   }
 }

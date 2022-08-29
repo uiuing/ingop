@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios'
 import { atom } from 'recoil'
 
 import { ExistsAllEnvResult } from '../apis/ipc/types'
@@ -25,5 +26,5 @@ export const ExistsAllEnvStore = atom({
 
 export const IsNetErrorStore = atom({
   key: 'IsNetErrorStore',
-  default: null as string | null
+  default: null as AxiosError | null
 })

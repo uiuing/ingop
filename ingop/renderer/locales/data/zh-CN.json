@@ -20,5 +20,9 @@
     "success": {
       "go": "Golang 已成功安装 ！"
     }
+  },
+  "error": {
+    "network": "网络错误，请检查您的网络连接并重试。",
+    "again": "重试"
   }
 }
