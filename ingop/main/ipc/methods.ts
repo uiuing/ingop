@@ -4,8 +4,7 @@ import * as os from 'os'
 import { join } from 'path'
 
 import { execCommand, existsEnv } from '../methods/check'
-import { ingopPaths, ingopPathsArray } from '../methods/config'
-import { isWin } from '../methods/config'
+import { ingopPaths, ingopPathsArray, isWin } from '../methods/config'
 import { buildGop } from '../methods/env/compile'
 import { EnvManage } from '../methods/env/types'
 import { envManage as unixEnvManage } from '../methods/env/unix/execute'
@@ -24,7 +23,7 @@ export const ingopHome = {
   },
   remove: {
     all: () => removeDirs(ingopPathsArray),
-    gop: () => removeDirs([ingopPaths.gop_root])
+    gop: () => removeDirs([ingopPaths.gopRoot])
   }
 }
 
@@ -70,30 +69,33 @@ export async function existsAllEnv(
   return r
 }
 
-export class autoSaveFile {
+export class AutoSaveFile {
   path: string
+
   constructor({ fileName, base64Data }: FileDataParams) {
     this.path = join(ingopPaths.home, fileName)
     saveFile(this.path, base64Data)
   }
+
   async gop() {
-    const { gop_root, home } = ingopPaths
+    const { gopRoot, home } = ingopPaths
     await decompress(this.path, home)
-    const goplus_gop_hash_dir = join(
+    const goplusGopHashDir = join(
       home,
       readdirSync(home).filter((dirName) =>
         /goplus-gop-(.*?)/g.test(dirName)
       )[0]
     )
-    removeDirs([gop_root])
-    renameSync(goplus_gop_hash_dir, gop_root)
-    removeDirs([goplus_gop_hash_dir])
+    removeDirs([gopRoot])
+    renameSync(goplusGopHashDir, gopRoot)
+    removeDirs([goplusGopHashDir])
     if (existsSync(this.path)) unlinkSync(this.path)
     return true
   }
+
   env = {
     go: async () => {
-      removeDirs([ingopPaths.go_root])
+      removeDirs([ingopPaths.goRoot])
       await decompress(this.path, ingopPaths.env)
       if (existsSync(this.path)) unlinkSync(this.path)
       return true
@@ -102,9 +104,7 @@ export class autoSaveFile {
 }
 
 export const compile: Compile = {
-  gop: async (): Promise<boolean> => {
-    return await buildGop()
-  }
+  gop: async (): Promise<boolean> => buildGop()
 }
 
 export const envManage: EnvManage = isWin ? winEnvManage : unixEnvManage

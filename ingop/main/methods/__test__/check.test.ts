@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-console
+
 import { existsEnv } from '../check'
 
 async function test() {

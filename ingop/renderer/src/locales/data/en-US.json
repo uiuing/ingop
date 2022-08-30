@@ -1,0 +1,44 @@
+{
+  "title": {
+    "init": "Initialising ...",
+    "install": "Start installation of Go+",
+    "installGo": "Installing the required environment ...",
+    "installGop": "Installing Go+ ...",
+    "manage": "Environment Management",
+    "errorNet": "Network Anomalies",
+    "errorVersion": "Golang version too low",
+    "tipsReboot": "Make the installation effective",
+    "tipsIngopGo": "Recommended environment for InGop installations"
+  },
+  "install": {
+    "title": "Welcome to the Go+ installation with InGop",
+    "desc": "Go+ programming language For engineering, STEM education, and data science",
+    "button": "Start Installation",
+    "download": {
+      "go": "Downloading packets now, re: Golang ...",
+      "gop": "Downloading packets now, re: Go+ ..."
+    },
+    "compile": {
+      "title": "In execution ...",
+      "go": "Golang being compiled and configured ...",
+      "gop": "Go+ being compiled and configured ..."
+    },
+    "success": {
+      "go": "Environment required for Go+ has been installed successfully !",
+      "gop": "Go+ has been installed successfully !",
+      "tips": "Installation complete, going to admin page ..."
+    }
+  },
+  "error": {
+    "network": "Network error, please check your network connection and try again.",
+    "version": "Golang version must be greater than or equal to 1.16, Please uninstall your Golang yourself and click Retry afterwards, InGop will automatically install the appropriate environment for you.",
+    "again": "Try again"
+  },
+  "tips": {
+    "ingop": {
+      "go": "Detecting that your Golang is not installed on InGop, it is recommended that you uninstall Golang yourself and click Retry, leaving all environments for InGop to install (not required).",
+      "try": "Uninstalled, try again",
+      "cancel": "No problem, install Go+"
+    }
+  }
+}

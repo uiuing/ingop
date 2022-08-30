@@ -7,20 +7,20 @@ export const isWin: IsWin = platform() === 'win32'
 
 export const ingopPaths: IngopPaths = ((): IngopPaths => {
   const home = join(homedir(), '.ingop')
-  const gop_root = join(home, 'gop')
-  const gop_bin = join(gop_root, 'bin')
+  const gopRoot = join(home, 'gop')
+  const gopBin = join(gopRoot, 'bin')
   const env = join(home, 'env')
-  const go_root = join(env, 'go')
-  const go_path = join(go_root, 'workspace')
-  const go_bin = join(go_root, 'bin')
+  const goRoot = join(env, 'go')
+  const goPath = join(goRoot, 'workspace')
+  const goBin = join(goRoot, 'bin')
   return {
     home,
-    gop_root,
-    gop_bin,
+    gopRoot,
+    gopBin,
     env,
-    go_root,
-    go_path,
-    go_bin
+    goRoot,
+    goPath,
+    goBin
   }
 })()
 

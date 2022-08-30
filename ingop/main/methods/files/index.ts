@@ -13,7 +13,7 @@ export function removeDirs(dirs: Dirs) {
 
 export function saveFile(path: string, base64Data: string) {
   if (existsSync(path)) rmSync(path)
-  const dataBuffer = new Buffer(
+  const dataBuffer = Buffer.from(
     base64Data.replace(/^data:(.*?);base64,/, ''),
     'base64'
   )

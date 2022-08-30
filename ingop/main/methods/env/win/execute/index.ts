@@ -14,7 +14,7 @@ const bashPath: Bash = {
   remove: join(envPath, 'remove.bat')
 }
 
-const username = userInfo().username
+const { username } = userInfo()
 const bashCommand: Bash = {
   gop: `icacls "${bashPath.gop}" /grant ${username}:F /t && "${bashPath.gop}"`,
   env: {

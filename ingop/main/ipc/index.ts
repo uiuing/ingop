@@ -1,7 +1,7 @@
 import { ipcMain, shell } from 'electron'
 
 import {
-  autoSaveFile,
+  AutoSaveFile,
   compile,
   envManage,
   existsAllEnv,
@@ -20,26 +20,20 @@ ipcMain.handle('ingop-gop-remove', async () => {
   ingopHome.remove.gop()
 })
 
-ipcMain.handle('check-env-all', async (_event, p: ExistsAllEnvParams) => {
-  return await existsAllEnv(p)
-})
+ipcMain.handle('check-env-all', async (_event, p: ExistsAllEnvParams) =>
+  existsAllEnv(p)
+)
 
-ipcMain.handle(
-  'auto-sava-gop-file',
-  async (_event, fileData: FileDataParams) => {
-    return await new autoSaveFile(fileData).gop()
-  }
+ipcMain.handle('auto-sava-gop-file', async (_event, fileData: FileDataParams) =>
+  new AutoSaveFile(fileData).gop()
 )
 ipcMain.handle(
   'auto-sava-env-go-file',
-  async (_event, fileData: FileDataParams) => {
-    return await new autoSaveFile(fileData).env.go()
-  }
+  async (_event, fileData: FileDataParams) =>
+    new AutoSaveFile(fileData).env.go()
 )
 
-ipcMain.handle('compile-gop', async () => {
-  return await compile.gop()
-})
+ipcMain.handle('compile-gop', async () => compile.gop())
 
 ipcMain.handle('env-gop-init', () => {
   envManage.initGop()

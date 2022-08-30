@@ -2,9 +2,11 @@
 import { IpcRenderer, ipcRenderer } from 'electron'
 
 declare global {
-  var ipcRenderer: IpcRenderer
+  interface Window {
+    ipcRenderer: IpcRenderer
+  }
 }
 
 process.once('loaded', () => {
-  global.ipcRenderer = ipcRenderer
+  window.ipcRenderer = ipcRenderer
 })

@@ -3,15 +3,12 @@ import './ipc/index'
 
 import { app, BrowserWindow, Menu } from 'electron'
 import isDev from 'electron-is-dev'
-import prepareNext from 'electron-next'
 import { join } from 'path'
 
 import { autoScreenSize } from './methods/utils'
 
 // Prepare the renderer once the app is ready
 app.on('ready', async () => {
-  await prepareNext('./renderer')
-
   const mainWindow = new BrowserWindow({
     ...autoScreenSize(),
     resizable: isDev,
@@ -25,7 +22,7 @@ app.on('ready', async () => {
   })
 
   const url = isDev
-    ? 'http://localhost:8000/'
+    ? 'http://127.0.0.1:5000/'
     : new URL(
         join(__dirname, '../renderer/dist/index.html'),
         'file:'

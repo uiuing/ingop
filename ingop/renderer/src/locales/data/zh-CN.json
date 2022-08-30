@@ -1,0 +1,43 @@
+{
+  "title": {
+    "install": "开始安装 Go+",
+    "installGo": "正在安装所需的环境 ...",
+    "installGop": "正在安装 Go+ ...",
+    "manage": "环境管理",
+    "errorNet": "网络异常",
+    "errorVersion": "Golang 版本过低",
+    "tipsReboot": "使安装生效",
+    "tipsIngopGo": "建议使用 InGop 来安装环境"
+  },
+  "install": {
+    "title": "欢迎使用 InGop 来安装 Go+",
+    "desc": "Go+ 编程语言用于工程、STEM教育和数据科学",
+    "button": "开始安装",
+    "download": {
+      "go": "正在下载数据包，关于：GoLang ...",
+      "gop": "正在下载数据包，关于：Go+ ..."
+    },
+    "compile": {
+      "title": "正在执行 ...",
+      "go": "正在编译并配置 Golang ...",
+      "gop": "正在编译并配置 Go+ ..."
+    },
+    "success": {
+      "go": "Go+ 所需环境已成功安装 ！",
+      "gop": "Go+ 已成功安装 ！",
+      "tips": "安装完成，进入管理页面 ..."
+    }
+  },
+  "error": {
+    "network": "网络错误，请检查您的网络连接并重试。",
+    "version": "Golang 版本必须大于或等于 1.16，请自行卸载你的 Golang，之后点击重试，InGop 会自动为你安装合适的环境。",
+    "again": "重试"
+  },
+  "tips": {
+    "ingop": {
+      "go": "检测到你的 Golang 没有安装在 InGop 上，建议您自行卸载 Golang，然后点击重试，留下所有环境让 InGop 安装（不是必须的）。",
+      "try": "已卸载，重试",
+      "cancel": "没关系，继续安装 Go+"
+    }
+  }
+}
