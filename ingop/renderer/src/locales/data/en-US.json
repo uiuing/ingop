@@ -24,7 +24,7 @@
       "gop": "Go+ being compiled and configured ..."
     },
     "success": {
-      "go": "Environment required for Go+ has been installed successfully !",
+      "go": "[Environment required] has been installed successfully !",
       "gop": "Go+ has been installed successfully !",
       "tips": "Installation complete, going to admin page ..."
     }

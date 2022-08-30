@@ -11,3 +11,9 @@ export function parseVersion(url: string): string {
   }
   return ''
 }
+
+export function refresh() {
+  const { location } = window
+  location.hash = ''
+  location.reload()
+}

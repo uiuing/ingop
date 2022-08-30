@@ -8,12 +8,10 @@ import { useRecoilValue } from 'recoil'
 
 import { IsNetErrorStore } from '../../store'
 import styles from '../../utils/content.module.scss'
+import { refresh } from '../../utils/url'
 
 export default function ErrorNetwork() {
   const { t } = useTranslation()
-  function again() {
-    window.location.reload()
-  }
   return (
     <div className={styles.wrapper}>
       <div className={styles.empty}>
@@ -24,7 +22,7 @@ export default function ErrorNetwork() {
         />
         <div style={{ marginTop: '2vh' }}>{ErrorTips()}</div>
       </div>
-      <Button theme="light" type="primary" onClick={() => again}>
+      <Button theme="light" type="primary" onClick={() => refresh()}>
         {t('error.again')}
       </Button>
     </div>

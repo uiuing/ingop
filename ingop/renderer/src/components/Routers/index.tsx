@@ -25,6 +25,7 @@ export default function Routers() {
   return (
     <HashRouter>
       <Routes>
+        <Route path="/" element={<></>} />
         {Object.keys(E).map((k) => (
           <Route key={k} path={k} element={E[k]} />
         ))}

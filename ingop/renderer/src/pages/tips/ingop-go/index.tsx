@@ -7,13 +7,14 @@ import { useTranslation } from 'react-i18next'
 
 import styles from '../../../utils/content.module.scss'
 import { useControlRouter } from '../../../utils/router'
+import { refresh } from '../../../utils/url'
 
 export default function TipsIngopGo() {
   const { t } = useTranslation()
   const { toInstallGop } = useControlRouter()
   function again() {
     window.sessionStorage.removeItem('ingop-tips-isIngop-go')
-    window.location.reload()
+    refresh()
   }
   function install() {
     toInstallGop()
