@@ -1,9 +1,12 @@
-import { Typography } from '@douyinfe/semi-ui'
+import {
+  IllustrationSuccess,
+  IllustrationSuccessDark
+} from '@douyinfe/semi-illustrations'
+import { Empty, Typography } from '@douyinfe/semi-ui'
 import { useTranslation } from 'react-i18next'
 import { useRecoilValue } from 'recoil'
 
 import EffectBinary from '../../components/Effect/Binary'
-import EffectLogo from '../../components/Effect/Logo'
 import StateDownload from '../../components/State/Download'
 import useIngopGo from '../../hooks/useIngopGo'
 import useInstallGop from '../../hooks/useInstallGop'
@@ -31,11 +34,16 @@ export default function InstallGop() {
         toManage()
       }
     }, 2000)
-    return <EffectLogo />
+    return (
+      <Empty
+        image={<IllustrationSuccess style={{ width: '50vw' }} />}
+        darkModeImage={<IllustrationSuccessDark style={{ width: '50vw' }} />}
+      />
+    )
   }
   return (
     <>
-      <Title heading={3} style={{ margin: '10% 0 4% 0' }}>
+      <Title heading={3} style={{ margin: '10% 0' }}>
         {t(`install.${runState}.gop`)}
       </Title>
       {activeLoadEffect()}

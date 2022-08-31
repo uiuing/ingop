@@ -1,10 +1,13 @@
-import { Typography } from '@douyinfe/semi-ui'
+import {
+  IllustrationSuccess,
+  IllustrationSuccessDark
+} from '@douyinfe/semi-illustrations'
+import { Empty, Typography } from '@douyinfe/semi-ui'
 import { useTranslation } from 'react-i18next'
 import { useSetRecoilState } from 'recoil'
 
 import { existsAllEnv } from '../../apis/ipc'
 import EffectBinary from '../../components/Effect/Binary'
-import EffectLogo from '../../components/Effect/Logo'
 import StateDownload from '../../components/State/Download'
 import useInstallGo from '../../hooks/useInstallGo'
 import { ExistsAllEnvStore } from '../../store'
@@ -30,11 +33,16 @@ export default function InstallGo() {
       setExistsAllEnvStore(e)
     })
     setTimeout(() => toInstallGop(), 2000)
-    return <EffectLogo />
+    return (
+      <Empty
+        image={<IllustrationSuccess style={{ width: '50vw' }} />}
+        darkModeImage={<IllustrationSuccessDark style={{ width: '50vw' }} />}
+      />
+    )
   }
   return (
     <>
-      <Title heading={3} style={{ margin: '10% 0 4% 0' }}>
+      <Title heading={3} style={{ margin: '10% 0' }}>
         {t(`install.${runState}.go`)}
       </Title>
       {activeLoadEffect()}

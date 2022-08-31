@@ -39,6 +39,10 @@
       "go": "Detecting that your Golang is not installed on InGop, it is recommended that you uninstall Golang yourself and click Retry, leaving all environments for InGop to install (not required).",
       "try": "Uninstalled, try again",
       "cancel": "No problem, install Go+"
+    },
+    "reboot": {
+      "re": "Immediate reboot",
+      "tip": "Ingop has installed Go+ for you and set up the environment variables you need for your system, if you need them to take effect immediately, please reboot your computer!"
     }
   }
 }

@@ -49,6 +49,6 @@ ipcMain.on('open-url', async (_event, url: string) => {
   await shell.openExternal(url)
 })
 
-ipcMain.on('reboot-windows', async () => {
-  await rebootWindows()
+ipcMain.on('reboot-windows', () => {
+  rebootWindows()
 })

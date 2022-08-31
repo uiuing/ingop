@@ -7,7 +7,7 @@
   "author": "uiuing <uiuing@foxmail.com>",
   "scripts": {
     "clean": "rimraf out",
-    "dev": "electron . & vite dev renderer",
+    "dev": "npm run build-electron && electron . & vite dev renderer",
     "build-renderer": "vite build renderer --emptyOutDir",
     "build-electron": "tsc -p main && npm run copyEnvScripts",
     "copyEnvScripts": "copyfiles -u 3 main/methods/env/win/env/*.bat  main/methods/env/unix/env/*.bash  out/main/methods/env",

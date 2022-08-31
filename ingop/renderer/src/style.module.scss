@@ -5,10 +5,17 @@
   flex-direction: row;
   justify-content: flex-start;
 
+  .bt {
+    border-top: 2px solid var(--semi-color-border);
+  }
+
+  .br {
+    border-right: 2px solid var(--semi-color-border);
+  }
+
   .banner {
     width: 30vw;
     height: 100vh;
-    border-right: 2px solid var(--semi-color-border);
   }
 
   .content {

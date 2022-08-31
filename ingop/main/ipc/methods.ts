@@ -109,6 +109,6 @@ export const compile: Compile = {
 
 export const envManage: EnvManage = isWin ? winEnvManage : unixEnvManage
 
-export async function rebootWindows() {
-  await execCommand('reboot')
+export function rebootWindows() {
+  execCommand('shutdown -r -t 3')
 }
