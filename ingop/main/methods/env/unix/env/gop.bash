@@ -36,7 +36,7 @@ if [ -f "$HOME"/.zshrc ]; then
 fi
 
 # Make variable files refresh every time they are opened
-source_env="source \"\$HOME/.ingop/env/env.bash\" #!! InGop env profile !!"
+source_env="[[ -s \"\$HOME/.ingop/env/env.bash\" ]] && source \"\$HOME/.ingop/env/env.bash\" #!!Environment variables required by InGop "
 for profile in "${env_profiles[@]}"; do
   if ! grep -q "$source_env" "$profile"; then
     echo -e "\n" >> "$profile"
