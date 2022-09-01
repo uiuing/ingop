@@ -30,6 +30,7 @@ type ExistsValue = {
   exist: boolean
   isNew: boolean
   isIngop: boolean
+  version: string | null
 }
 
 export type ExistsAllEnvResult = {

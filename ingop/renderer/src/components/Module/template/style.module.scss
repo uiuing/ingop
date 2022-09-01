@@ -1,0 +1,32 @@
+.template {
+  display: flex;
+  width: 60%;
+  justify-content: center;
+  padding: 1vw;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 0 rgb(0 0 0 / 10%);
+  cursor: pointer;
+  gap: 3%;
+
+  &:hover {
+    box-shadow: var(--ingop-box-shadow-center);
+  }
+
+  .icon {
+    width: 15%;
+  }
+
+  .info {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .desc {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
+}

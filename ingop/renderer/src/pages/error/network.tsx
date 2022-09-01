@@ -22,7 +22,7 @@ export default function ErrorNetwork() {
         />
         <div style={{ marginTop: '2vh' }}>{ErrorTips()}</div>
       </div>
-      <Button theme="light" type="primary" onClick={() => refresh()}>
+      <Button theme="light" type="primary" onClick={refresh}>
         {t('error.again')}
       </Button>
     </div>

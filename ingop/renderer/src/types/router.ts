@@ -9,6 +9,8 @@ export type RP =
   | 'errorVersion'
   | 'tipsReboot'
   | 'tipsIngopGo'
+  | 'reinstall'
+  | 'uninstall'
 
 export type ET = {
   [key in RP]: ReactElement<unknown>

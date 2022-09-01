@@ -17,6 +17,8 @@ export const useControlRouter = () => {
   const toErrorVersion = () => to('errorVersion')
   const toTipsReboot = () => to('tipsReboot')
   const toTipsIngopGo = () => to('tipsReboot')
+  const toReinstall = () => to('reinstall')
+  const toUninstall = () => to('uninstall')
   return {
     toInstall,
     toInstallGo,
@@ -25,6 +27,8 @@ export const useControlRouter = () => {
     toErrorNetwork,
     toErrorVersion,
     toTipsReboot,
-    toTipsIngopGo
+    toTipsIngopGo,
+    toReinstall,
+    toUninstall
   }
 }

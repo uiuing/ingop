@@ -43,5 +43,20 @@
       "re": "立即重启",
       "tip": "Ingop 已为您安装好了 Go+，并且为您设置好了系统所需的环境变量，如果需要立即生效，请重启电脑！"
     }
+  },
+  "manage": {
+    "update": {
+      "title": "更新",
+      "desc": "将 Go+ 更新到最新版本",
+      "notification": "发现更新的版本"
+    },
+    "reinstall": {
+      "title": "重装",
+      "desc": "重新安装 InGop 所安装的内容"
+    },
+    "uninstall": {
+      "title": "卸载",
+      "desc": "删除 InGop 所安装的内容"
+    }
   }
 }

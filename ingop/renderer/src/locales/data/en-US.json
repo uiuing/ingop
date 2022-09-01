@@ -44,5 +44,20 @@
       "re": "Immediate reboot",
       "tip": "Ingop has installed Go+ for you and set up the environment variables you need for your system, if you need them to take effect immediately, please reboot your computer!"
     }
+  },
+  "manage": {
+    "update": {
+      "title": "Update",
+      "desc": "Update Go+ to the latest version",
+      "notification": "Discover the updated version"
+    },
+    "reinstall": {
+      "title": "Reinstall",
+      "desc": "Reinstall what InGop has installed"
+    },
+    "uninstall": {
+      "title": "Uninstall",
+      "desc": "Uninstall what InGop has installed"
+    }
   }
 }

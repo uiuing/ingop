@@ -19,7 +19,7 @@ export default function ErrorVersion() {
           description={t('error.version')}
         />
       </div>
-      <Button theme="light" type="primary" onClick={() => refresh()}>
+      <Button theme="light" type="primary" onClick={refresh}>
         {t('error.again')}
       </Button>
     </div>

@@ -34,13 +34,15 @@ export async function existsAllEnv(
     gop: {
       exist: false,
       isNew: false,
-      isIngop: false
+      isIngop: false,
+      version: null
     },
     env: {
       go: {
         exist: false,
         isNew: false,
-        isIngop: false
+        isIngop: false,
+        version: null
       }
     },
     system: {
@@ -49,17 +51,19 @@ export async function existsAllEnv(
     }
   }
   let i = await existsEnv.env.go.exist()
-  if (i) {
-    r.env.go.exist = i
+  if (i.e) {
+    r.env.go.exist = i.e
+    r.env.go.version = i.v
     r.env.go.isIngop = await existsEnv.env.go.isIngop()
-    i = await existsEnv.env.go.isNew(p.env.goNewVersion)
-    if (i) {
-      r.env.go.isNew = i
+    let iv = await existsEnv.env.go.isNew(p.env.goNewVersion)
+    if (iv) {
+      r.env.go.isNew = iv
       i = await existsEnv.gop.exist()
-      if (i) {
-        r.gop.exist = i
-        i = await existsEnv.gop.isNew(p.gopNewVersion)
-        if (i) {
+      if (i.e) {
+        r.gop.exist = i.e
+        r.gop.version = i.v
+        iv = await existsEnv.gop.isNew(p.gopNewVersion)
+        if (iv) {
           r.gop.isIngop = await existsEnv.env.go.isIngop()
           r.gop.isNew = true
         }
