@@ -63,8 +63,8 @@ export async function existsAllEnv(
         r.gop.exist = i.e
         r.gop.version = i.v
         iv = await existsEnv.gop.isNew(p.gopNewVersion)
+        r.gop.isIngop = await existsEnv.env.go.isIngop()
         if (iv) {
-          r.gop.isIngop = await existsEnv.env.go.isIngop()
           r.gop.isNew = true
         }
       }

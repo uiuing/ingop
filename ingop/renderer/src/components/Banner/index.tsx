@@ -9,6 +9,7 @@ export default function Banner() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.option}>
+        {/* TODO 1 Tips */}
         <ButtonHelp />
         <ButtonGithub />
         <SelectLang />

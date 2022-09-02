@@ -6,6 +6,7 @@
     "manage": "环境管理",
     "errorNet": "网络异常",
     "errorVersion": "Golang 版本过低",
+    "errorIngop": "不是 InGop 应用",
     "tipsReboot": "使安装生效",
     "tipsIngopGo": "建议使用 InGop 来安装环境"
   },
@@ -31,6 +32,7 @@
   "error": {
     "network": "网络错误，请检查您的网络连接并重试。",
     "version": "Golang 版本必须大于或等于 1.16，请自行卸载你的 Golang，之后点击重试，InGop 会自动为你安装合适的环境。",
+    "ingop": "您当前的 Go+ 不是由 InGop 所安装的，也不是由 InGop 所管理的，所以如果您需要使用 InGop，请卸载您当前的 Go+ 并点击重试。",
     "again": "重试"
   },
   "tips": {
@@ -57,6 +59,11 @@
     "uninstall": {
       "title": "卸载",
       "desc": "删除 InGop 所安装的内容"
+    },
+    "tips": {
+      "title": "温馨提示",
+      "confirm": "确认，我明白",
+      "close": "取消"
     }
   }
 }

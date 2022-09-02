@@ -5,8 +5,12 @@
     "installGo": "Installing the required environment ...",
     "installGop": "Installing Go+ ...",
     "manage": "Environment Management",
+    "manageUpdate": "Update Go+",
+    "manageReinstall": "Reinstall Go+",
+    "manageUninstall": "Uninstall Go+",
     "errorNet": "Network Anomalies",
     "errorVersion": "Golang version too low",
+    "errorIngop": "Not an Ingop application",
     "tipsReboot": "Make the installation effective",
     "tipsIngopGo": "Recommended environment for InGop installations"
   },
@@ -32,6 +36,7 @@
   "error": {
     "network": "Network error, please check your network connection and try again.",
     "version": "Golang version must be greater than or equal to 1.16, Please uninstall your Golang yourself and click Retry afterwards, InGop will automatically install the appropriate environment for you.",
+    "ingop": "Your current Go+ was not installed by InGop and is not managed by InGop, so if you need to use InGop, please uninstall your current Go+ and click Retry.",
     "again": "Try again"
   },
   "tips": {
@@ -58,6 +63,11 @@
     "uninstall": {
       "title": "Uninstall",
       "desc": "Uninstall what InGop has installed"
+    },
+    "tips": {
+      "title": "Warm Tips",
+      "confirm": "Yes,I Understand",
+      "close": "Cancel"
     }
   }
 }

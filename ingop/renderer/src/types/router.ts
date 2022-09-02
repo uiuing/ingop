@@ -5,12 +5,14 @@ export type RP =
   | 'installGo'
   | 'installGop'
   | 'manage'
+  | 'manageUpdate'
+  | 'manageReinstall'
+  | 'manageUninstall'
   | 'errorNet'
   | 'errorVersion'
+  | 'errorIngop'
   | 'tipsReboot'
   | 'tipsIngopGo'
-  | 'reinstall'
-  | 'uninstall'
 
 export type ET = {
   [key in RP]: ReactElement<unknown>
