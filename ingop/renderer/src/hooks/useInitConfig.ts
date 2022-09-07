@@ -12,12 +12,12 @@ type InitConfigResult = {
   initOK: boolean
 }
 
-export default function useInitConfig(): InitConfigResult {
+export default function useInitConfig(canError: boolean): InitConfigResult {
   const setNetErrorStore = useSetRecoilState(IsNetErrorStore)
   const setGopReleasesStore = useSetRecoilState(GopReleasesStore)
   const setExistsAllEnvStore = useSetRecoilState(ExistsAllEnvStore)
   const [initOK, setInitOK] = useState<boolean>(false)
-  const { toInstall, toManage } = useControlRouter()
+  const { toInstall, toManage, toErrorNetwork } = useControlRouter()
   useEffect(() => {
     ingopHome.init()
     initLanguage()
@@ -31,13 +31,17 @@ export default function useInitConfig(): InitConfigResult {
         env: { goNewVersion: '1.16' }
       })
       setExistsAllEnvStore(e)
-      if (!e.env.go.exist || !e.gop.exist) {
+      if ((!e.env.go.exist || !e.gop.exist) && !canError) {
         await toInstall()
       }
-      if (e.gop.exist && e.env.go.exist) {
+      if (e.gop.exist && e.env.go.exist && !canError) {
         await toManage()
       }
-      setInitOK(true)
+      if (canError && releasesData === null) {
+        toErrorNetwork()
+      } else {
+        setInitOK(true)
+      }
     }
     getReleases.gop(initEnvReleases)
   }, [])

@@ -41,7 +41,7 @@ export default function ModuleTemplate({
     )
   }
   return (
-    <div className={styles.template} role="presentation" onClick={click}>
+    <div className={`${styles.template}`} role="presentation" onClick={click}>
       <div className={styles.icon}>{iconComponent()}</div>
       <div className={styles.info}>
         <div className={styles.desc}>

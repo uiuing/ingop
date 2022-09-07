@@ -1,12 +1,12 @@
 import { IconLanguage } from '@douyinfe/semi-icons'
 import { Button, Dropdown } from '@douyinfe/semi-ui'
-import { useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { getI18n } from 'react-i18next'
 
 import { resources as i81nSrc } from '../../../locales/i81n'
 import { setLanguage } from '../../../utils/i18n'
 
-export default function SelectLang() {
+export default function SelectLang(): ReactNode {
   return (
     <Dropdown
       showTick

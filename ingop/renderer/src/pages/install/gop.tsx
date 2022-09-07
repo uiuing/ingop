@@ -12,12 +12,13 @@ import useIngopGo from '../../hooks/useIngopGo'
 import useInstallGop from '../../hooks/useInstallGop'
 import { ExistsAllEnvStore } from '../../store'
 import { useControlRouter } from '../../utils/router'
+import { refresh } from '../../utils/url'
 
 export default function InstallGop() {
   const { isLoad } = useIngopGo()
   const { percent, runState } = useInstallGop(isLoad)
   const existsAllEnv = useRecoilValue(ExistsAllEnvStore)
-  const { toManage, toTipsReboot } = useControlRouter()
+  const { toTipsReboot } = useControlRouter()
   const { Title } = Typography
   const { t } = useTranslation()
   function activeLoadEffect() {
@@ -27,19 +28,22 @@ export default function InstallGop() {
     if (runState === 'compile') {
       return <EffectBinary title={t('install.compile.title')} />
     }
-    setTimeout(() => {
-      if (existsAllEnv.system.platform === 'win32') {
-        toTipsReboot()
-      } else {
-        toManage()
-      }
-    }, 2000)
-    return (
-      <Empty
-        image={<IllustrationSuccess style={{ width: '50vw' }} />}
-        darkModeImage={<IllustrationSuccessDark style={{ width: '50vw' }} />}
-      />
-    )
+    if (runState === 'success') {
+      setTimeout(() => {
+        if (existsAllEnv.system.platform === 'win32') {
+          toTipsReboot()
+        } else {
+          refresh()
+        }
+      }, 2000)
+      return (
+        <Empty
+          image={<IllustrationSuccess style={{ width: '50vw' }} />}
+          darkModeImage={<IllustrationSuccessDark style={{ width: '50vw' }} />}
+        />
+      )
+    }
+    return <></>
   }
   return (
     <>

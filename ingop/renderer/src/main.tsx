@@ -16,8 +16,8 @@ ReactDOM.createRoot(
   <RecoilRoot>
     <ResetHead />
     <Buffer />
-    <main className={`${styles.wrapper} ${styles.bt}`}>
-      <div className={`${styles.banner} ${styles.br}`}>
+    <main className={styles.wrapper}>
+      <div className={styles.banner}>
         <Banner />
       </div>
       <div className={styles.content}>

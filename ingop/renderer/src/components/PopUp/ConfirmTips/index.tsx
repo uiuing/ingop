@@ -1,4 +1,5 @@
 import { Modal } from '@douyinfe/semi-ui'
+import { ReactNode } from 'react'
 
 type Props = {
   nowTm: {
@@ -9,13 +10,15 @@ type Props = {
   title: string
   confirmText: string
   closeText: string
+  content: ReactNode
 }
 
 export default function ConfirmTips({
   nowTm,
   title,
   confirmText,
-  closeText
+  closeText,
+  content
 }: Props) {
   return (
     <Modal
@@ -27,9 +30,7 @@ export default function ConfirmTips({
       cancelText={closeText}
       closeOnEsc
     >
-      This is the content of a basic modal.
-      <br />
-      More content...
+      {content}
     </Modal>
   )
 }

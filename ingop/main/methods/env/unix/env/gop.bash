@@ -18,7 +18,13 @@
 #
 # ----------------------------------------------------------------------------
 
-# Change the environment variables for GO+ in the registry
+if ! ping -c 1 -W 3 google.com > /dev/null; then
+  export GO111MODULE=on
+  export GOPROXY="https://goproxy.cn,direct"
+fi
+
+cd $HOME/.ingop/gop
+go run cmd/make.go --build || $HOME/.ingop/env/go/bin/go run cmd/make.go --build
 
 # Check two common environment variable profiles
 env_profiles=("$HOME"/.bash_profile )

@@ -2,7 +2,6 @@ import { IpcRenderer } from 'electron'
 
 import {
   AutoSaveFile,
-  Compile,
   EnvManage,
   ExistsAllEnvParams,
   ExistsAllEnvResult,
@@ -40,10 +39,6 @@ export const autoSaveFile: AutoSaveFile = {
     go: async (fileData: FileDataParams): Promise<boolean> =>
       ipc.invoke('auto-sava-env-go-file', fileData)
   }
-}
-
-export const compile: Compile = {
-  gop: async () => ipc.invoke('compile-gop')
 }
 
 export const envManage: EnvManage = {

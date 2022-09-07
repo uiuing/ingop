@@ -13,10 +13,10 @@ export default function useIngopGo() {
       toErrorVersion()
     }
     if (!existsAllEnv.env.go.isIngop) {
-      const s = global.sessionStorage.getItem('ingop-tips-isIngop-go')
+      const s = window.sessionStorage.getItem('ingop-tips-isIngop-go')
       if (s !== 'true') {
         toTipsIngopGo()
-        global.sessionStorage.setItem('ingop-tips-isIngop-go', 'true')
+        window.sessionStorage.setItem('ingop-tips-isIngop-go', 'true')
       } else {
         setIsLoad(true)
       }

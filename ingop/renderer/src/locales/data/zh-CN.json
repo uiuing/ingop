@@ -10,6 +10,13 @@
     "tipsReboot": "使安装生效",
     "tipsIngopGo": "建议使用 InGop 来安装环境"
   },
+  "banner": {
+    "tips": {
+      "help": "疑问 & 帮助",
+      "github": "Github 存储库",
+      "lang": "切换语言"
+    }
+  },
   "install": {
     "title": "欢迎使用 InGop 来安装 Go+",
     "desc": "Go+ 编程语言用于工程、STEM教育和数据科学",
@@ -63,7 +70,11 @@
     "tips": {
       "title": "温馨提示",
       "confirm": "确认，我明白",
-      "close": "取消"
+      "close": "取消",
+      "update": "以下是更新的信息，您确定要更新吗？",
+      "re": "重新安装可以解决和修复部分问题，但会可能会影响您的部分设置，您确定要重新安装吗？",
+      "un": "这将会卸载掉您使用InGop所安装的一切内容，您确定要卸载吗？",
+      "noUpdate": "没有发现更新版本。"
     }
   }
 }

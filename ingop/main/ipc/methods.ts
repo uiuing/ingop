@@ -5,17 +5,11 @@ import { join } from 'path'
 
 import { execCommand, existsEnv } from '../methods/check'
 import { ingopPaths, ingopPathsArray, isWin } from '../methods/config'
-import { buildGop } from '../methods/env/compile'
 import { EnvManage } from '../methods/env/types'
 import { envManage as unixEnvManage } from '../methods/env/unix/execute'
 import { envManage as winEnvManage } from '../methods/env/win/execute'
 import { initDirs, removeDirs, saveFile } from '../methods/files'
-import {
-  Compile,
-  ExistsAllEnvParams,
-  ExistsAllEnvResult,
-  FileDataParams
-} from './types'
+import { ExistsAllEnvParams, ExistsAllEnvResult, FileDataParams } from './types'
 
 export const ingopHome = {
   init: () => {
@@ -59,14 +53,12 @@ export async function existsAllEnv(
     if (iv) {
       r.env.go.isNew = iv
       i = await existsEnv.gop.exist()
-      if (i.e) {
-        r.gop.exist = i.e
-        r.gop.version = i.v
-        iv = await existsEnv.gop.isNew(p.gopNewVersion)
-        r.gop.isIngop = await existsEnv.env.go.isIngop()
-        if (iv) {
-          r.gop.isNew = true
-        }
+      r.gop.exist = i.e
+      r.gop.version = i.v
+      iv = await existsEnv.gop.isNew(p.gopNewVersion)
+      r.gop.isIngop = await existsEnv.env.go.isIngop()
+      if (iv) {
+        r.gop.isNew = true
       }
     }
   }
@@ -105,10 +97,6 @@ export class AutoSaveFile {
       return true
     }
   }
-}
-
-export const compile: Compile = {
-  gop: async (): Promise<boolean> => buildGop()
 }
 
 export const envManage: EnvManage = isWin ? winEnvManage : unixEnvManage

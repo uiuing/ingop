@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-import { autoSaveFile, compile, envManage } from '../apis/ipc'
+import { autoSaveFile, envManage } from '../apis/ipc'
 import { FileDataParams } from '../apis/ipc/types'
 import { getRemoteFile } from '../apis/releases'
 import { GopReleasesStore, IsNetErrorStore } from '../store'
@@ -40,8 +40,7 @@ export default function useInstallGop(isLoad: boolean) {
               autoSaveFile
                 .gop({ fileName, base64Data } as FileDataParams)
                 .then(() => {
-                  compile.gop().then(() => {
-                    envManage.initGop()
+                  envManage.initGop().then(() => {
                     setTimeout(() => {
                       setRunState('success')
                     }, 3500)

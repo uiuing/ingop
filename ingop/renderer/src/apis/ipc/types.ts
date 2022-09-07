@@ -1,8 +1,8 @@
 export type IngopHome = {
   init: () => void
   remove: {
-    all: () => void
-    gop: () => void
+    all: () => Promise<void>
+    gop: () => Promise<void>
   }
 }
 
@@ -19,11 +19,11 @@ export type AutoSaveFile = {
 }
 
 export type EnvManage = {
-  initGop: () => void
+  initGop: () => Promise<void>
   env: {
     initGo: () => void
   }
-  remove: () => void
+  remove: () => Promise<void>
 }
 
 type ExistsValue = {
@@ -47,8 +47,4 @@ export type ExistsAllEnvResult = {
 export type ExistsAllEnvParams = {
   gopNewVersion: string
   env: { goNewVersion: string }
-}
-
-export type Compile = {
-  gop: () => Promise<boolean>
 }

@@ -2,7 +2,6 @@ import { ipcMain, shell } from 'electron'
 
 import {
   AutoSaveFile,
-  compile,
   envManage,
   existsAllEnv,
   ingopHome,
@@ -32,8 +31,6 @@ ipcMain.handle(
   async (_event, fileData: FileDataParams) =>
     new AutoSaveFile(fileData).env.go()
 )
-
-ipcMain.handle('compile-gop', async () => compile.gop())
 
 ipcMain.handle('env-gop-init', () => {
   envManage.initGop()

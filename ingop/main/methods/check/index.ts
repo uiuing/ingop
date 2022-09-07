@@ -41,12 +41,8 @@ async function isNewVersion(cmd: string, newVersion: string): AsyncBoolean {
 export const existsEnv: ExistsEnv = {
   gop: {
     exist: async () => {
-      let v = await checkVersionEnv('gop')
-      let e = v !== ''
-      if (!e) {
-        v = await checkVersionEnv(join(ingopPaths.gopBin, 'gop'))
-        e = v !== ''
-      }
+      const v = await checkVersionEnv('gop')
+      const e = v !== ''
       return { e, v }
     },
     isNew: async (newVersion: string) => isNewVersion('gop', newVersion),

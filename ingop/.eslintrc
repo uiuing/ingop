@@ -28,6 +28,7 @@
     "react/react-in-jsx-scope": "off",
     "react-hooks/exhaustive-deps": "off",
     "react/jsx-no-useless-fragment": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "react/no-array-index-key": "off"
   }
 }

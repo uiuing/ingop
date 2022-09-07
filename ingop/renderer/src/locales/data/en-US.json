@@ -14,6 +14,13 @@
     "tipsReboot": "Make the installation effective",
     "tipsIngopGo": "Recommended environment for InGop installations"
   },
+  "banner": {
+    "tips": {
+      "help": "Questions & Help",
+      "github": "Github repository",
+      "lang": "Switching languages"
+    }
+  },
   "install": {
     "title": "Welcome to the Go+ installation with InGop",
     "desc": "Go+ programming language For engineering, STEM education, and data science",
@@ -67,7 +74,11 @@
     "tips": {
       "title": "Warm Tips",
       "confirm": "Yes,I Understand",
-      "close": "Cancel"
+      "close": "Cancel",
+      "update": "Below is the updated information, are you sure you want to update?",
+      "re": "A reinstall will solve and fix some of the problems, but it may affect some of your settings, are you sure you want to reinstall?",
+      "un": "This will uninstall everything you have installed using InGop, are you sure you want to uninstall it?",
+      "noUpdate": "No updated version found."
     }
   }
 }

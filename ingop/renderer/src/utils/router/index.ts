@@ -20,7 +20,7 @@ export const useControlRouter = () => {
   const toErrorVersion = () => to('errorVersion')
   const toErrorIngop = () => to('errorIngop')
   const toTipsReboot = () => to('tipsReboot')
-  const toTipsIngopGo = () => to('tipsReboot')
+  const toTipsIngopGo = () => to('tipsIngopGo')
   return {
     toInstall,
     toInstallGo,

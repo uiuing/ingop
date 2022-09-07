@@ -22,6 +22,7 @@ export default function useInitManage() {
     useControlRouter()
   const getGopReleasesStore = useRecoilValue(GopReleasesStore)
   const existsAllEnvStore = useRecoilValue(ExistsAllEnvStore)
+  const [isNew, setIsNew] = useState(true)
   const [nowTm, setNowTm] = useState<{
     dK: string
     confirm: () => void
@@ -29,14 +30,15 @@ export default function useInitManage() {
   } | null>(null)
   const [P, setP] = useState<Array<PT>>([])
   useEffect(() => {
-    if (
-      getGopReleasesStore !== null &&
-      Object.keys(existsAllEnvStore).length !== 0
-    ) {
-      const isNew = isNewVersion(
-        existsAllEnvStore.gop.version as string,
-        parseVersion(getGopReleasesStore.tarball_url)
-      )
+    if (Object.keys(existsAllEnvStore).length !== 0) {
+      if (getGopReleasesStore !== null) {
+        setIsNew(
+          isNewVersion(
+            existsAllEnvStore.gop.version as string,
+            parseVersion(getGopReleasesStore.tarball_url)
+          )
+        )
+      }
       if (!existsAllEnvStore.gop.isIngop) {
         toErrorIngop()
         return
@@ -44,7 +46,7 @@ export default function useInitManage() {
       const T = {
         update: {
           dK: 'update',
-          confirm: () => toManageUpdate(),
+          confirm: isNew ? () => setNowTm(null) : () => toManageUpdate(),
           close: () => setNowTm(null)
         },
         reinstall: {
@@ -58,7 +60,6 @@ export default function useInitManage() {
           close: () => setNowTm(null)
         }
       }
-      // TODO 1 dK i81n
       setP([
         {
           iC: UpdateIcon,
@@ -86,6 +87,6 @@ export default function useInitManage() {
         }
       ])
     }
-  }, [getGopReleasesStore, existsAllEnvStore])
-  return { nowTm, P }
+  }, [isNew, getGopReleasesStore, existsAllEnvStore])
+  return { nowTm, P, getGopReleasesStore, existsAllEnvStore, isNew }
 }

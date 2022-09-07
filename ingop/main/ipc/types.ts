@@ -25,7 +25,3 @@ export type ExistsAllEnvResult = {
     arch: string
   }
 }
-
-export type Compile = {
-  gop: () => Promise<boolean>
-}

@@ -16,7 +16,16 @@
 ::
 :: ----------------------------------------------------------------------------
 
-:: Change the environment variables for GO in the registry
+
+ping google.com -n 1 -w 3 > nul
+if not %errorlevel% leq 0 (
+    set GO111MODULE=on
+    set GOPROXY=https://goproxy.cn,direct
+)
+
+cd %USERPROFILE%\.ingop\gop
+
+go run cmd/make.go --build || "%USERPROFILE%\.ingop\env\go\bin\go" run cmd/make.go --build
 
 @echo off
 set USERregpath=HKEY_CURRENT_USER\Environment

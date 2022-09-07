@@ -26,19 +26,22 @@ export default function InstallGo() {
     if (runState === 'compile') {
       return <EffectBinary title={t('install.compile.title')} />
     }
-    existsAllEnv({
-      gopNewVersion: '0.0.0',
-      env: { goNewVersion: '1.16' }
-    }).then((e) => {
-      setExistsAllEnvStore(e)
-    })
-    setTimeout(() => toInstallGop(), 2000)
-    return (
-      <Empty
-        image={<IllustrationSuccess style={{ width: '50vw' }} />}
-        darkModeImage={<IllustrationSuccessDark style={{ width: '50vw' }} />}
-      />
-    )
+    if (runState === 'success') {
+      existsAllEnv({
+        gopNewVersion: '0.0.0',
+        env: { goNewVersion: '1.16' }
+      }).then((e) => {
+        setExistsAllEnvStore(e)
+      })
+      setTimeout(() => toInstallGop(), 2000)
+      return (
+        <Empty
+          image={<IllustrationSuccess style={{ width: '50vw' }} />}
+          darkModeImage={<IllustrationSuccessDark style={{ width: '50vw' }} />}
+        />
+      )
+    }
+    return <></>
   }
   return (
     <>

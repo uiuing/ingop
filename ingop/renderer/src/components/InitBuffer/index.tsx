@@ -7,7 +7,7 @@ import EffectLogo from '../Effect/Logo'
 import styles from './style.module.scss'
 
 export default function InitBuffer() {
-  const { initOK } = useInitConfig()
+  const { initOK } = useInitConfig(false)
   const [unBuffer, setUnBuffer] = useState(false)
   const [hideBuffer, setHideBuffer] = useState(false)
   const setInitOKStore = useSetRecoilState(InitOKStore)

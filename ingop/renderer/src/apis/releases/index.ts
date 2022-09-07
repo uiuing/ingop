@@ -19,7 +19,7 @@ export const getReleases = {
   }
 }
 function requestReleases(url: ReleasesUrl, callback: (...arg) => void) {
-  const t = Math.floor(new Date().getTime() / 1000 / 3600)
+  const t = Math.floor(new Date().getTime() / 1000)
   get(url, {
     params: {
       t
