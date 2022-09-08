@@ -1,7 +1,7 @@
 // ! ipc Main is a global file, containing the root function for the renderer's communication events with the process.
 import './ipc/index'
 
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu } from 'electron'
 import isDev from 'electron-is-dev'
 import { join } from 'path'
 
@@ -29,7 +29,7 @@ app.on('ready', async () => {
       ).toString()
 
   await mainWindow.loadURL(url)
-  mainWindow.webContents.openDevTools()
+  if (isDev) mainWindow.webContents.openDevTools()
   const gotTheLock = app.requestSingleInstanceLock()
   if (!gotTheLock) {
     app.quit()
@@ -44,8 +44,8 @@ app.on('ready', async () => {
   }
 })
 
-// if (!isDev) {
-//   Menu.setApplicationMenu(null)
-// }
+if (!isDev) {
+  Menu.setApplicationMenu(null)
+}
 
 app.on('window-all-closed', app.quit)
