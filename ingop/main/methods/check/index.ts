@@ -41,13 +41,17 @@ async function isNewVersion(cmd: string, newVersion: string): AsyncBoolean {
 export const existsEnv: ExistsEnv = {
   gop: {
     exist: async () => {
-      const v = await checkVersionEnv('gop')
-      const e = v !== ''
+      let v = await checkVersionEnv('gop')
+      let e = v !== ''
+      if (!e) {
+        v = await checkVersionEnv(join(ingopPaths.gopBin, 'gop'))
+        e = v !== ''
+      }
       return { e, v }
     },
     isNew: async (newVersion: string) => isNewVersion('gop', newVersion),
     isIngop: async () =>
-      (await execCommand(join(ingopPaths.gopBin, 'gop version'))) !== null
+      `"${await checkVersionEnv(join(ingopPaths.gopBin, 'gop'))}"` !== ''
   },
   env: {
     go: {
@@ -62,7 +66,7 @@ export const existsEnv: ExistsEnv = {
       },
       isNew: async (newVersion: string) => isNewVersion('go', newVersion),
       isIngop: async () =>
-        (await execCommand(join(ingopPaths.goBin, 'go version'))) !== null
+        `"${await checkVersionEnv(join(ingopPaths.gopBin, 'go'))}"` !== ''
     }
   }
 }
