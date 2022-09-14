@@ -14,7 +14,7 @@ const ingopGuide = [
         text: 'Manage Client',
         link: '/ingop-guide/introduction/manage-client'
       },
-      { text: 'Go+ Tutorial', link: '/ingop-guide/introduction/tutorial' }
+      { text: 'Go+ Tutorial', link: '/ingop-guide/introduction/gop-tutorial' }
     ]
   },
   {
