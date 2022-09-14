@@ -2,6 +2,7 @@ const tutorial = [
   {
     text: 'Introduction',
     collapsible: true,
+    collapsed: true,
     items: [
       { text: 'What is Go+ ?', link: '/tutorial/introduction/what-is-gop' },
       {

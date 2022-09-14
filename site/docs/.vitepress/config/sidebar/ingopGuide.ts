@@ -1,6 +1,6 @@
 const ingopGuide = [
   {
-    text: 'Introduction',
+    text: 'introduction',
     items: [
       {
         text: 'What is InGop?',
@@ -14,7 +14,7 @@ const ingopGuide = [
         text: 'Manage Client',
         link: '/ingop-guide/introduction/manage-client'
       },
-      { text: 'Go+ Tutorial', link: '/ingop-guide/introduction/gop-tutorial' }
+      { text: 'Go+ Tutorial', link: '/ingop-guide/introduction/tutorial' }
     ]
   },
   {
