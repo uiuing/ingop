@@ -9,7 +9,7 @@ hero:
   text: Learn the GO+ language more easily
   tagline: A solution for Go+ one-stop environment management and resource learning.
   image:
-    src: /public/logo.svg
+    src: /logo.svg
     alt: InGop
   actions:
     - theme: brand

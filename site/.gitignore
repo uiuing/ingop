@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/dist
+/docs/.vitepress/dist
 /out
 
 # misc

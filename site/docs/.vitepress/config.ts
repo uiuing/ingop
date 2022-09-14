@@ -6,16 +6,13 @@ export default defineConfig({
   title: 'InGop',
   description:
     'Learn the GO+ language more easily - InGop has prepared: Go+ language Environment Management Client, a vernacular tutorial and practical guide to the Go+ language.',
-  head: [
-    ['link', { rel: 'icon', type: 'image/png', href: '/public/favicon.png' }]
-  ],
+  head: [['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }]],
   lastUpdated: true,
   cleanUrls: 'with-subfolders',
   themeConfig: {
     socialLinks: [{ icon: 'github', link: 'https://github.com/uiuing/ingop' }],
     editLink: {
-      pattern:
-        'https://github.com/uiuing/ingop/edit/main/site/docs/:path',
+      pattern: 'https://github.com/uiuing/ingop/edit/main/site/docs/:path',
       text: 'Edit this page on GitHub'
     },
     nav: [
