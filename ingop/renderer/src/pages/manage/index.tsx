@@ -4,11 +4,13 @@ import ReactMarkdown from 'react-markdown'
 import ModuleTemplate from '../../components/Module/template'
 import ConfirmTips from '../../components/PopUp/ConfirmTips'
 import useInitManage from '../../hooks/useInitManage'
+import { parseVersion } from '../../utils/url'
 import styles from './style.module.scss'
 
 export default function Manage() {
   const { t } = useTranslation()
-  const { nowTm, P, getGopReleasesStore, isNew } = useInitManage()
+  const { nowTm, P, getGopReleasesStore, existsAllEnvStore, isNew } =
+    useInitManage()
   const tipsKey =
     nowTm?.dK === 'update' && (getGopReleasesStore === null || isNew)
       ? 'noUpdate'
@@ -26,11 +28,20 @@ export default function Manage() {
             {nowTm?.dK === 'update' &&
             getGopReleasesStore !== null &&
             !isNew ? (
-              <div style={{ maxHeight: '35vh', overflowY: 'auto' }}>
-                <ReactMarkdown>
-                  {getGopReleasesStore !== null ? getGopReleasesStore.body : ''}
-                </ReactMarkdown>
-              </div>
+              <>
+                <div>
+                  <b>{`[v${existsAllEnvStore.gop.version} -> v${parseVersion(
+                    getGopReleasesStore?.tarball_url as string
+                  )}]  `}</b>
+                </div>
+                <div style={{ maxHeight: '35vh', overflowY: 'auto' }}>
+                  <ReactMarkdown>
+                    {getGopReleasesStore !== null
+                      ? getGopReleasesStore.body
+                      : ''}
+                  </ReactMarkdown>
+                </div>
+              </>
             ) : (
               <></>
             )}

@@ -12,6 +12,7 @@
   },
   "banner": {
     "tips": {
+      "site": "进入网站，学习 Go+",
       "help": "疑问 & 帮助",
       "github": "Github 存储库",
       "lang": "切换语言"

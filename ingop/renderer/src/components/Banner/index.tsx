@@ -5,6 +5,7 @@ import ButtonGithub from './ButtonGithub'
 import ButtonHelp from './ButtonHelp'
 import gopLogo from './images/base64/gopLogo'
 import qiniuDoll from './images/base64/qiniuDoll'
+import IngopSite from './IngopSite'
 import SelectLang from './SelectLang'
 import styles from './style.module.scss'
 
@@ -13,9 +14,15 @@ export default function Banner() {
   const O = [
     {
       needTip: true,
+      oC: IngopSite,
+      dK: 'banner.tips.site',
+      p: 'bottom'
+    },
+    {
+      needTip: true,
       oC: ButtonHelp,
       dK: 'banner.tips.help',
-      p: 'bottomRight'
+      p: 'bottom'
     },
     {
       needTip: true,

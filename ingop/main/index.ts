@@ -29,7 +29,7 @@ app.on('ready', async () => {
       ).toString()
 
   await mainWindow.loadURL(url)
-  if (isDev) mainWindow.webContents.openDevTools()
+  // if (isDev) mainWindow.webContents.openDevTools()
   const gotTheLock = app.requestSingleInstanceLock()
   if (!gotTheLock) {
     app.quit()

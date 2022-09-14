@@ -1,0 +1,14 @@
+:root {
+  --vp-c-brand: #0064fa;
+  --vp-c-brand-light: #0097ee;
+  --vp-c-brand-dark: #0062d6;
+  --vp-c-brand-darker: #004eb3;
+}
+
+a,img{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
