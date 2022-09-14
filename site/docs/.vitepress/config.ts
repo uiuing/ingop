@@ -15,7 +15,7 @@ export default defineConfig({
     socialLinks: [{ icon: 'github', link: 'https://github.com/uiuing/ingop' }],
     editLink: {
       pattern:
-        'https://github.com/uiuing/ingop/edit/main/docs/:path',
+        'https://github.com/uiuing/ingop/edit/main/site/docs/:path',
       text: 'Edit this page on GitHub'
     },
     nav: [
