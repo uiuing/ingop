@@ -1,4 +1,4 @@
-const tutorial = [
+export default [
   {
     text: 'Introduction',
     collapsible: true,
@@ -78,7 +78,17 @@ const tutorial = [
     collapsible: true,
     collapsed: true,
     items: []
+  },
+  {
+    text: 'ClassFile',
+    collapsible: true,
+    collapsed: true,
+    items: []
+  },
+  {
+    text: 'c2go',
+    collapsible: true,
+    collapsed: true,
+    items: []
   }
 ]
-
-export default tutorial

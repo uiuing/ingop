@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
-import { ingopGuide, tutorial } from './config/sidebar'
+import ingopGuide from './config/sidebar/ingopGuide'
+import tutorial from './config/sidebar/tutorial'
+import nav from './config/nav'
 
 export default defineConfig({
   lang: 'en-US',
@@ -15,18 +17,7 @@ export default defineConfig({
       pattern: 'https://github.com/uiuing/ingop/edit/main/site/docs/:path',
       text: 'Edit this page on GitHub'
     },
-    nav: [
-      {
-        text: 'Guide',
-        link: '/ingop-guide/introduction/what-is-ingop',
-        activeMatch: '/ingop-guide/'
-      },
-      {
-        text: 'Go+ Tutorial',
-        link: '/tutorial/introduction/what-is-gop',
-        activeMatch: '/tutorial/'
-      }
-    ],
+    nav,
     footer: {
       copyright: 'Copyright © 2019-present uiuing'
     },

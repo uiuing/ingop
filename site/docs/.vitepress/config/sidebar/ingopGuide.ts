@@ -1,4 +1,4 @@
-const ingopGuide = [
+export default [
   {
     text: 'introduction',
     items: [
@@ -12,18 +12,16 @@ const ingopGuide = [
       },
       {
         text: 'IGop',
-        link: '/ingop-guide/introduction/manage-client'
+        link: '/ingop-guide/introduction/igop'
       },
       { text: 'Go+ Tutorial', link: '/ingop-guide/introduction/gop-tutorial' }
     ]
   },
   {
-    text: 'InGop',
+    text: 'IGop',
     items: [
-      { text: 'Download', link: '/ingop-guide/ingop/download' },
-      { text: 'Help', link: '/ingop-guide/ingop/help' }
+      { text: 'Download', link: '/ingop-guide/igop/download' },
+      { text: 'Help', link: '/ingop-guide/igop/help' }
     ]
   }
 ]
-
-export default ingopGuide

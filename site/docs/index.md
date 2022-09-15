@@ -20,7 +20,7 @@ hero:
       link: /tutorial/introduction/what-is-gop
     - theme: alt
       text: Download Manage Client
-      link: /ingop-guide/ingop/download
+      link: /ingop-guide/igop/download
 
 features:
   - title: Environment Management Client
