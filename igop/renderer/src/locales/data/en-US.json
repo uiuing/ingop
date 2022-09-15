@@ -1,0 +1,85 @@
+{
+  "title": {
+    "init": "Initialising ...",
+    "install": "Start installation of Go+",
+    "installGo": "Installing the required environment ...",
+    "installGop": "Installing Go+ ...",
+    "manage": "Environment Management",
+    "manageUpdate": "Update Go+",
+    "manageReinstall": "Reinstall Go+",
+    "manageUninstall": "Uninstall Go+",
+    "errorNet": "Network Anomalies",
+    "errorVersion": "Golang version too low",
+    "errorIGop": "Not an IGop application",
+    "tipsReboot": "Make the installation effective",
+    "tipsIGopGo": "Recommended environment for IGop installations"
+  },
+  "banner": {
+    "tips": {
+      "site": "Go to website, learn Go+",
+      "help": "Questions & Help",
+      "github": "Github repository",
+      "lang": "Switching languages"
+    }
+  },
+  "install": {
+    "title": "Welcome to the Go+ installation with IGop",
+    "desc": "Go+ programming language For engineering, STEM education, and data science",
+    "button": "Start Installation",
+    "download": {
+      "go": "Downloading packets now, re: Golang ...",
+      "gop": "Downloading packets now, re: Go+ ..."
+    },
+    "compile": {
+      "title": "In execution ...",
+      "go": "Golang being compiled and configured ...",
+      "gop": "Go+ being compiled and configured ..."
+    },
+    "success": {
+      "go": "[Environment required] has been installed successfully !",
+      "gop": "Go+ has been installed successfully !",
+      "tips": "Installation complete, going to admin page ..."
+    }
+  },
+  "error": {
+    "network": "Network error, please check your network connection and try again.",
+    "version": "Golang version must be greater than or equal to 1.16, Please uninstall your Golang yourself and click Retry afterwards, IGop will automatically install the appropriate environment for you.",
+    "igop": "Your current Go+ was not installed by IGop and is not managed by IGop, so if you need to use IGop, please uninstall your current Go+ and click Retry.",
+    "again": "Try again"
+  },
+  "tips": {
+    "igop": {
+      "go": "Detecting that your Golang is not installed on IGop, it is recommended that you uninstall Golang yourself and click Retry, leaving all environments for IGop to install (not required).",
+      "try": "Uninstalled, try again",
+      "cancel": "No problem, install Go+"
+    },
+    "reboot": {
+      "re": "Immediate reboot",
+      "tip": "IGop has installed Go+ for you and set up the environment variables you need for your system, if you need them to take effect immediately, please reboot your computer!"
+    }
+  },
+  "manage": {
+    "update": {
+      "title": "Update",
+      "desc": "Update Go+ to the latest version",
+      "notification": "Discover the updated version"
+    },
+    "reinstall": {
+      "title": "Reinstall",
+      "desc": "Reinstall what IGop has installed"
+    },
+    "uninstall": {
+      "title": "Uninstall",
+      "desc": "Uninstall what IGop has installed"
+    },
+    "tips": {
+      "title": "Warm Tips",
+      "confirm": "Yes,I Understand",
+      "close": "Cancel",
+      "update": "Below is the updated information, are you sure you want to update?",
+      "re": "A reinstall will solve and fix some of the problems, but it may affect some of your settings, are you sure you want to reinstall?",
+      "un": "This will uninstall everything you have installed using IGop, are you sure you want to uninstall it?",
+      "noUpdate": "No updated version found."
+    }
+  }
+}

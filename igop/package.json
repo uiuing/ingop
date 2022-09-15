@@ -1,0 +1,105 @@
+{
+  "name": "igop",
+  "version": "0.9.1",
+  "main": "out/main/index.js",
+  "productName": "IGop",
+  "description": "One-stop Go+ programming language environment manager",
+  "author": "uiuing <uiuing@foxmail.com>",
+  "scripts": {
+    "clean": "rimraf out",
+    "dev": "npm run build-electron && electron . & vite dev renderer",
+    "build-renderer": "vite build renderer --emptyOutDir",
+    "build-electron": "tsc -p main && npm run copyEnvScripts",
+    "copyEnvScripts": "copyfiles -u 3 main/methods/env/win/env/*.bat  main/methods/env/unix/env/*.bash  out/main/methods/env",
+    "build": "npm run build-renderer && npm run build-electron",
+    "pack-app": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "dist-win": "npm run build && electron-builder  build  --win --x64",
+    "type-check": "tsc -p ./renderer/tsconfig.json && tsc -p main/tsconfig.json",
+    "lint": "npm run prettier && npm run lint:eslint && npm run lint:stylelint",
+    "prettier": "prettier --write 'renderer/**/*.{html,ts,js,tsx,jsx,css,json}' 'main/**/*.{ts,js}'",
+    "lint:eslint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./renderer ./main",
+    "lint:stylelint": "stylelint 'renderer/**/*.{css,scss,less}' --fix"
+  },
+  "dependencies": {
+    "decompress": "^4.2.1",
+    "electron-is-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "@douyinfe/semi-next": "^2.17.1",
+    "@douyinfe/semi-ui": "^2.17.1",
+    "@next/eslint-plugin-next": "^12.2.5",
+    "@types/decompress": "^4.2.4",
+    "@types/node": "^18.7.3",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "@vitejs/plugin-react": "^2.0.1",
+    "axios": "^0.27.2",
+    "copyfiles": "^2.4.1",
+    "electron": "^20.0.2",
+    "electron-builder": "^23.3.3",
+    "eslint": "^8.22.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.4.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "i18next": "^21.9.1",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-i18next": "^11.18.4",
+    "react-markdown": "^8.0.3",
+    "react-router-dom": "^6.3.0",
+    "recoil": "^0.7.5",
+    "rimraf": "^3.0.2",
+    "sass": "^1.54.4",
+    "stylelint": "^14.10.0",
+    "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-standard": "^27.0.0",
+    "stylelint-config-standard-scss": "^5.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.9"
+  },
+  "build": {
+    "asar": true,
+    "appId": "com.uiuing.ingop",
+    "productName": "IGop",
+    "copyright": "Copyright © 2022 ingop.uiuing.com",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "./public/logo_mini_512x512.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "./public/logo_mini_512x512.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": "true"
+    },
+    "files": [
+      "out/main",
+      "out/renderer/dist"
+    ]
+  }
+}

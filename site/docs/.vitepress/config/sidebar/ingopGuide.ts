@@ -11,7 +11,7 @@ const ingopGuide = [
         link: '/ingop-guide/introduction/releases-migration'
       },
       {
-        text: 'Manage Client',
+        text: 'IGop',
         link: '/ingop-guide/introduction/manage-client'
       },
       { text: 'Go+ Tutorial', link: '/ingop-guide/introduction/gop-tutorial' }

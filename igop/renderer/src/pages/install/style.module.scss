@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .c1 {
+    font-size: 4rem;
+    font-style: italic;
+  }
+
+  .c2 {
+    margin: 9vh 0 1vh;
+    font-size: 1.4rem;
+  }
+
+  .btn {
+    border-radius: 15pt;
+    box-shadow: var(--igop-box-shadow);
+  }
+}

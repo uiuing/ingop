@@ -1,0 +1,81 @@
+{
+  "title": {
+    "install": "开始安装 Go+",
+    "installGo": "正在安装所需的环境 ...",
+    "installGop": "正在安装 Go+ ...",
+    "manage": "环境管理",
+    "errorNet": "网络异常",
+    "errorVersion": "Golang 版本过低",
+    "errorIGop": "不是 IGop 应用",
+    "tipsReboot": "使安装生效",
+    "tipsIGopGo": "建议使用 IGop 来安装环境"
+  },
+  "banner": {
+    "tips": {
+      "site": "进入网站，学习 Go+",
+      "help": "疑问 & 帮助",
+      "github": "Github 存储库",
+      "lang": "切换语言"
+    }
+  },
+  "install": {
+    "title": "欢迎使用 IGop 来安装 Go+",
+    "desc": "Go+ 编程语言用于工程、STEM教育和数据科学",
+    "button": "开始安装",
+    "download": {
+      "go": "正在下载数据包，关于：GoLang ...",
+      "gop": "正在下载数据包，关于：Go+ ..."
+    },
+    "compile": {
+      "title": "正在执行 ...",
+      "go": "正在编译并配置 Golang ...",
+      "gop": "正在编译并配置 Go+ ..."
+    },
+    "success": {
+      "go": "【所需环境】已成功安装 ！",
+      "gop": "Go+ 已成功安装 ！",
+      "tips": "安装完成，进入管理页面 ..."
+    }
+  },
+  "error": {
+    "network": "网络错误，请检查您的网络连接并重试。",
+    "version": "Golang 版本必须大于或等于 1.16，请自行卸载你的 Golang，之后点击重试，IGop 会自动为你安装合适的环境。",
+    "igop": "您当前的 Go+ 不是由 IGop 所安装的，也不是由 IGop 所管理的，所以如果您需要使用 IGop，请卸载您当前的 Go+ 并点击重试。",
+    "again": "重试"
+  },
+  "tips": {
+    "igop": {
+      "go": "检测到你的 Golang 没有安装在 IGop 上，建议您自行卸载 Golang，然后点击重试，留下所有环境让 IGop 安装（不是必须的）。",
+      "try": "已卸载，重试",
+      "cancel": "没关系，继续安装 Go+"
+    },
+    "reboot": {
+      "re": "立即重启",
+      "tip": "IGop 已为您安装好了 Go+，并且为您设置好了系统所需的环境变量，如果需要立即生效，请重启电脑！"
+    }
+  },
+  "manage": {
+    "update": {
+      "title": "更新",
+      "desc": "将 Go+ 更新到最新版本",
+      "notification": "发现更新的版本"
+    },
+    "reinstall": {
+      "title": "重装",
+      "desc": "重新安装 IGop 所安装的内容"
+    },
+    "uninstall": {
+      "title": "卸载",
+      "desc": "删除 IGop 所安装的内容"
+    },
+    "tips": {
+      "title": "温馨提示",
+      "confirm": "确认，我明白",
+      "close": "取消",
+      "update": "以下是更新的信息，您确定要更新吗？",
+      "re": "重新安装可以解决和修复部分问题，但会可能会影响您的部分设置，您确定要重新安装吗？",
+      "un": "这将会卸载掉您使用IGop所安装的一切内容，您确定要卸载吗？",
+      "noUpdate": "没有发现更新版本。"
+    }
+  }
+}
