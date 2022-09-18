@@ -7,7 +7,7 @@ export default defineConfig({
   lang: 'en-US',
   title: 'InGop',
   description:
-    'Learn the GO+ language more easily - InGop has prepared: Go+ language Environment Management Client, a vernacular tutorial and practical guide to the Go+ language.',
+    'Learn the GO+ language more easily - InGop solutions to help you on your Coding journey .',
   head: [['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }]],
   lastUpdated: true,
   cleanUrls: 'with-subfolders',
@@ -19,7 +19,7 @@ export default defineConfig({
     },
     nav,
     footer: {
-      copyright: 'Copyright © 2019-present uiuing'
+      copyright: 'Copyright © 2022-present uiuing'
     },
     sidebar: {
       '/ingop-guide/': ingopGuide,

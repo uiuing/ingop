@@ -7,7 +7,7 @@ titleTemplate: Learn the GO+ language more easily
 hero:
   name: InGop
   text: Learn the GO+ language more easily
-  tagline: A solution for Go+ one-stop environment management and resource learning.
+  tagline: InGop solutions to help you on your Coding journey.
   image:
     src: /logo.svg
     alt: InGop
